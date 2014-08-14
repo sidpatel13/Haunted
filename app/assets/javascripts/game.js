@@ -4,44 +4,72 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
   game.load.image('ghost', '/ghost.png');
+  game.load.image('person', '/person.png')
 }
 
-var ghost1;
+var person;
+var ghost1; var ghost2; var ghost3; var ghost4;
+var key1; var key2; var key3; var key4;
 var walls;
 
 function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //  The walls group contains the ground and the 2 ledges we can jump on
+    //  Create group for walls and enable physics
+    
     walls = game.add.group();
-
-    //  We will enable physics for any object that is created in this group
     walls.enableBody = true;
+    
+    // Create person.
 
-    ghost1 = game.add.sprite(32, game.world.height - 150, 'ghost');
+    person = game.add.sprite(1, game.world.height - 150,'person');
+    person.scale.setTo(0.5,0.5);
+    person.anchor.setTo(0.5, 0.5);
+
+    // Create ghost 1.
+
+    ghost1 = game.add.sprite(100, game.world.height - 150, 'ghost');
     ghost1.anchor.setTo(0.5, 0.5);
     ghost1.scale.setTo(2,2);
 
-    //  Enable physics library for ghost1, make world boundaries.
-    game.physics.arcade.enable(ghost1);
+    // Create hotkeys.
+
+    key1 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
+    key2 = game.input.keyboard.addKey(Phaser.Keyboard.TWO);
+    key3 = game.input.keyboard.addKey(Phaser.Keyboard.THREE);
+
+    //  Enable physics for sprites, make world boundaries.
+    
+    game.physics.arcade.enable([person, ghost1]);
+    person.body.collideWorldBounds = true;
     ghost1.body.collideWorldBounds = true;
+
+    // Toggle between characters
+    //game.input.on
+
+}
+
+function toggleBody() {
+  if (person.body.enable) {
+  
+
 
 }
 
 function update() {
 
   if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) { 
-    ghost1.x -= 4;
+    person.x -= 4;
   }
   else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-    ghost1.x += 4;
+    person.x += 4;
   }
 
   if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-    ghost1.y -= 4;
+    person.y -= 4;
   }
   else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-    ghost1.y +=4;
+    person.y +=4;
   }
 }
