@@ -18,12 +18,12 @@ function create() {
 
     //  Create group for walls and enable physics
     
-    walls = game.add.group();
-    walls.enableBody = true;
+    // walls = game.add.group();
+    // walls.enableBody = true;
     
     // Create person.
 
-    person = game.add.sprite(1, game.world.height - 150,'person');
+    person = game.add.sprite(1, game.world.height - 150, 'person');
     person.scale.setTo(0.5,0.5);
     person.anchor.setTo(0.5, 0.5);
 
@@ -46,16 +46,12 @@ function create() {
     ghost1.body.collideWorldBounds = true;
 
     // Toggle between characters
-    //game.input.on
-
 }
 
-function toggleBody() {
-  if (person.body.enable) {
+// function toggleBody() {
+//   if (person.body.enable) {
   
-
-
-}
+// }
 
 function update() {
 
@@ -72,4 +68,7 @@ function update() {
   else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
     person.y +=4;
   }
+
+  game.physics.arcade.collide(ghost1, person);
+
 }
