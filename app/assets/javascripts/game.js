@@ -91,7 +91,6 @@ function create() {
 
     }
 
-
     // Here we create the ground.
     // var ground = walls.create(0, game.world.height - 64, 'ground');
 
