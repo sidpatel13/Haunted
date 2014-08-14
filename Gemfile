@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use postgres as the database for Active Record
@@ -27,11 +26,20 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Rspec testing for rails
 gem 'rspec-rails', '~> 3.0.0', group: [:development, :test]
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+
+# Static asset serving and logging for Heroku
+gem 'rails_12factor', group: :production
 
 gem 'phaser-rails', '~> 2.0.7.0'
+
+# User authentication
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
