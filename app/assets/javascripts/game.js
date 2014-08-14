@@ -45,6 +45,14 @@ function create() {
 
     }
 
+    for (var i=0; i < 2; i++) {
+       //top right box (near border)
+      ledge = platforms.create(i*50+600, 100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+    }
+
 
     // Here we create the ground.
     // var ground = walls.create(0, game.world.height - 64, 'ground');
