@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -13,5 +13,10 @@ class ApplicationController < ActionController::Base
     if current_user && !current_user.email_verified?
       redirect_to finish_signup_path(current_user)
     end
+  end
+
+  def random_url_generator
+    sample_pool = [*"a".."z"] + [*"0".."9"]
+    sample_pool.sample(6).join("")
   end
 end
