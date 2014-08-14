@@ -36,6 +36,7 @@ gem 'rails_12factor', group: :production
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'phaser-rails', '~> 2.0.7.0'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
