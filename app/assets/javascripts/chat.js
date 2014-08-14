@@ -2,7 +2,7 @@ $( document ).ready(function() {
   console.log( "Ready!" );
   var myFirebaseRef = new Firebase("https://haunted.firebaseio.com/");
   var myFirebaseRoom = myFirebaseRef.push({
-    room_url : "abz7w",
+    room_session : "abz7w",
     chat : {}
   });
   var myFirebaseChat = myFirebaseRoom.child("chat")
