@@ -66,6 +66,15 @@ function create() {
       ledge.scale.setTo(1.5, 0.75);
       ledge.body.immovable = true;
 
+       //center box
+      ledge = platforms.create(i*50+350, 250, 'platform')
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+      ledge = platforms.create(i*50+350, 275, 'platform')
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
 
     }
 
