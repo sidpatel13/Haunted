@@ -27,7 +27,12 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Rspec testing for rails
 gem 'rspec-rails', '~> 3.0.0', group: [:development, :test]
+
+# Static asset serving and logging for Heroku
+gem 'rails_12factor', group: :production
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
