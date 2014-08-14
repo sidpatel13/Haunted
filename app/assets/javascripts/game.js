@@ -33,6 +33,11 @@ function create() {
       ledge = platforms.create(0+i*32, 0, 'platform');
       ledge.body.immovable = true;
 
+      //left border
+      ledge = platforms.create(0, 25+i*20, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
     }
 
 
