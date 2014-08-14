@@ -13,6 +13,11 @@ Haunted
   * [Sid Patel](https://github.com/sidpatel13)
   * [David Sin](https://github.com/dabeeya)
 
+## Heroku
+
+  * [Haunted](http://haunted-game.herokuapp.com/)
+
 ## Daily Blog
 
   * [Day 1](http://juliusjung.info/blog/2014/08/14/haunted-day-1/)
+  * [Day 2](http://juliusjung.info/blog/2014/08/14/haunted-day-2/)
