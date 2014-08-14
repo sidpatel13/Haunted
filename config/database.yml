@@ -1,0 +1,18 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: production_database
+  pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  # database: travis_ci_test
+  database: test_database
+  pool: 5
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: development_database
+  pool: 5
