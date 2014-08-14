@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # General Settings
-  config.app_domain = 'heroku.com'
+  config.app_domain = 'http://haunted-game.herokuapp.com/'
 
   # Email
   config.action_mailer.delivery_method = :smtp
