@@ -27,6 +27,14 @@ function create() {
 
     platforms.enableBody = true;
 
+    for (var i=0; i < 25; i++) {
+
+      //top border
+      ledge = platforms.create(0+i*32, 0, 'platform');
+      ledge.body.immovable = true;
+
+    }
+
 
     // Here we create the ground.
     // var ground = walls.create(0, game.world.height - 64, 'ground');
