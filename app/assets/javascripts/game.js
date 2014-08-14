@@ -29,6 +29,77 @@ function create() {
 
     // Create ghost 1.
 
+    platforms = game.add.group();
+
+    platforms.enableBody = true;
+
+    for (var i=0; i < 25; i++) {
+
+      //top border
+      ledge = platforms.create(0+i*32, 0, 'platform');
+      ledge.body.immovable = true;
+
+      //left border
+      ledge = platforms.create(0, 25+i*20, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+       //right border
+      ledge = platforms.create(750, 30+i*20, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+    }
+
+    for (var i=0; i < 2; i++) {
+       //top right box (near border)
+      ledge = platforms.create(i*50+600, 100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+       //top left box (near border)
+      ledge = platforms.create(i*50+100, 100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+      //bottom right box
+      ledge = platforms.create(i*50+600, 400, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+      //bottom left box
+      ledge = platforms.create(i*50+100, 400, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+       //center box
+      ledge = platforms.create(i*50+350, 250, 'platform')
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+      ledge = platforms.create(i*50+350, 275, 'platform')
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+
+    }
+
+    //inner borders
+    for (var i=0; i < 12; i++) {
+      //top right border
+      ledge = platforms.create(650, i*25+100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+      ledge = platforms.create(100, i*25+100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
+    }
+
+    // Here we create the ground.
+    // var ground = walls.create(0, game.world.height - 64, 'ground');
+
     ghost1 = game.add.sprite(100, game.world.height - 150, 'ghost');
     ghost1.anchor.setTo(0.5, 0.5);
     ghost1.scale.setTo(2,2);
@@ -55,8 +126,8 @@ function create() {
 
 function update() {
 
-  if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) { 
-    person.x -= 4;
+  if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+    ghost1.x -= 4;
   }
   else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
     person.x += 4;
