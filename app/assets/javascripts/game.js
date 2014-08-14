@@ -23,6 +23,11 @@ function create() {
     //  We will enable physics for any object that is created in this group
     walls.enableBody = true;
 
+    platforms = game.add.group();
+
+    platforms.enableBody = true;
+
+
     // Here we create the ground.
     // var ground = walls.create(0, game.world.height - 64, 'ground');
 
@@ -63,7 +68,7 @@ function create() {
 
 function update() {
 
-  if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) { 
+  if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
     ghost1.x -= 4;
   }
   else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
