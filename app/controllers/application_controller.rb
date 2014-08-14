@@ -14,9 +14,5 @@ class ApplicationController < ActionController::Base
       redirect_to finish_signup_path(current_user)
     end
   end
-
-  def random_url_generator
-    sample_pool = [*"a".."z"] + [*"0".."9"]
-    sample_pool.sample(6).join("")
-  end
+  
 end
