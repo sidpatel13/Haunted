@@ -10,47 +10,47 @@ function preload() {
 }
 
 var ghost1;
-var platforms;
+var walls;
 var cursors;
 
 function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //  The platforms group contains the ground and the 2 ledges we can jump on
-    platforms = game.add.group();
+    //  The walls group contains the ground and the 2 ledges we can jump on
+    walls = game.add.group();
 
     //  We will enable physics for any object that is created in this group
-    platforms.enableBody = true;
+    walls.enableBody = true;
 
     // Here we create the ground.
-    var ground = platforms.create(0, game.world.height - 64, 'ground');
+    // var ground = walls.create(0, game.world.height - 64, 'ground');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    ground.scale.setTo(2, 2);
+    //ground.scale.setTo(2, 2);
 
     //  This stops it from falling away when you jump on it
-    ground.body.immovable = true;
+    // ground.body.immovable = true;
 
     //  Now let's create two ledges
-    var ledge = platforms.create(400, 400, 'ground');
-    ledge.body.immovable = true;
+    // var ledge = walls.create(400, 400, 'ground');
+    // ledge.body.immovable = true;
 
-    ledge = platforms.create(-150, 250, 'ground');
-    ledge.body.immovable = true;
+    // ledge = walls.create(-150, 250, 'ground');
+    // ledge.body.immovable = true;
 
     // The player and its settings
     ghost1 = game.add.sprite(32, game.world.height - 150, 'ghost');
     ghost1.anchor.setTo(0.5, 0.5);
     ghost1.scale.setTo(2,2);
 
-    //  We need to enable physics on the player
-    //game.physics.arcade.enable(ghost1);
+    //  Enable physics on the player
+    game.physics.arcade.enable(ghost1);
 
     //  Player physics properties. Give the little guy a slight bounce.
     // player.body.bounce.y = 0.2;
     //ghost1.body.gravity.y = 300;
-    //ghost1.body.collideWorldBounds = true;
+    ghost1.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
     // player.animations.add('left', [0, 1, 2, 3], 10, true);
