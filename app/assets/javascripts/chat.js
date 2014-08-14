@@ -1,12 +1,9 @@
 $( document ).ready(function() {
   console.log( "Ready!" );
   var myFirebaseRef = new Firebase("https://haunted.firebaseio.com/");
-  var myFirebaseRoom = myFirebaseRef.push({
-    room_session : "abz7w",
-    chat : {}
-  });
+  var roomSession = $( "#room-session" ).val();
+  var myFirebaseRoom = myFirebaseRef.child(roomSession);
   var myFirebaseChat = myFirebaseRoom.child("chat")
-
   myFirebaseChat.on("child_added", function(snapshot) {
     var message = snapshot.val().message;
     $( "#msg-output" ).append(message.name + " said: " + message.content + "<br>");
