@@ -38,6 +38,11 @@ function create() {
       ledge.scale.setTo(1.5, 0.75);
       ledge.body.immovable = true;
 
+       //right border
+      ledge = platforms.create(750, 30+i*20, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
+
     }
 
 
