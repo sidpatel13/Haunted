@@ -1,19 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users/:id.:format
   def show
-    # authorize! :read, @user
+    authorize! :read, @user
   end
 
-  # GET /users/:id/edit
   def edit
-    # authorize! :update, @user
+    authorize! :update, @user
   end
 
-  # PATCH/PUT /users/:id.:format
   def update
-    # authorize! :update, @user
+    authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, :bypass => true)
