@@ -9,8 +9,8 @@ function createPerson() {
 
 function createGhosts() {
 
-  ghosts = game.add.group();
-  ghosts.enableBody = true;
+  //ghosts = game.add.group();
+  //ghosts.enableBody = true;
 
   ghost1 = game.add.sprite(100, game.world.height - 150, 'ghost');
   ghost1.anchor.setTo(0.5, 0.5);
@@ -32,7 +32,7 @@ function createGhosts() {
   ghost4.scale.setTo(2,2);
   ghost4.isControlled = true;
 
-  ghosts = [ghost1, ghost2, ghost3, ghost4];
+  ghosts.push(ghost1, ghost2, ghost3, ghost4);
   characters.push(ghost1, ghost2, ghost3, ghost4);
 }
 
