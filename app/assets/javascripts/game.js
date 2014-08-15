@@ -16,15 +16,12 @@ var person; //Pacman
 var ghost1, ghost2, ghost3, ghost4; //Individual Ghosts
 var dots = []; //All Dots
 var platforms;
-
 var score = 0;
+var maxScore = 20;
 var scoreText;
 var lives = 3;
 var livesText;
-
 var key1, key2, key3, key4;
-
-
 
 function create() {
 
@@ -34,7 +31,7 @@ function create() {
   createPerson();
   createGhosts();
   createHotkeys();
-  createDots();
+  createDots(10);
 
   //  Enable physics for sprites, make world boundaries.
   game.physics.arcade.enable(characters);
@@ -99,23 +96,31 @@ function returnCoordinates(sprite) {
   return coordinates;
 }
 
-function gameOver () {
-  // ghost eats pac OR checks to see if if .count equals 0
-}
-
 function loseLife (person, ghosts) {
   person.kill();
   lives--;
   livesText.text = 'lives: ' + lives;
-  person.reset(100, 100);
+  if (lives === 0) {
+    gameOver("Player 2");
+  } else {
+    person.reset(100, 100);
+  }
 }
 
 function eatDot (person, dots) {
   dots.kill();
   score++;
   scoreText.text = 'score: ' + score;
+  if (score === maxScore) {
+    gameOver("Player 1");
+  }
 }
 
 function eatGhosts (person, ghosts) {
   ghosts.kill();
+}
+
+function gameOver (winner) {
+  //Give user and opponent modal to restart / congratulate winner
+  console.log("game over winner: " + winner);
 }
