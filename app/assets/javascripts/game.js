@@ -137,43 +137,104 @@ function create() {
     key4.onDown.add(function() { makeActive(4), makeInactive([1, 2, 3])} );
 }
 
+
 function update() {
+
+   function disableLeft(){
+    document.onkeydown = function (e) {
+        if(e.which == 37){
+          return false;
+        }
+     }
+  }
+
+  function disableRight(){
+    document.onkeydown = function (e) {
+      if(e.which == 39){
+          return false;
+      }
+    }
+  }
+
+  function disableUp(){
+    document.onkeydown = function (e) {
+      if(e.which == 38){
+          return false;
+        }
+     }
+  }
+
+  function disableDown() {
+    document.onkeydown = function (e) {
+        if(e.which == 40){
+          return false;
+        }
+    }
+  }
 
   if (person.body.enable == true) {
     if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
       person.x -= 4;
+      disableRight();
+      disableUp();
+      disableDown();
       returnCoordinates(person);
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
       person.x += 4;
+      disableUp();
+      disableDown();
+      disableLeft();
       returnCoordinates(person);
     }
-    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+    else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
       person.y -= 4;
+      disableLeft();
+      disableRight();
+      disableDown();
       returnCoordinates(person);
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
       person.y +=4;
+      disableUp();
+      disableLeft();
+      disableRight();
       returnCoordinates(person);
     }
   }
+
+
+
 
   ghosts.forEach(function(item) {
       if (item.body.enable == true) {
         if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
           item.x -= 4;
+          disableRight();
+          disableUp();
+          disableDown();
           returnCoordinates(item);
         }
+
         else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
           item.x += 4;
+          disableUp();
+          disableDown();
+          disableLeft();
           returnCoordinates(item);
         }
-        if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
           item.y -= 4;
-          returnCoordinates(item);
+           disableLeft();
+           disableRight();
+           disableDown();
+           returnCoordinates(item);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
           item.y +=4;
+           disableUp();
+           disableLeft();
+           disableRight();
           returnCoordinates(item);
         }
       }
