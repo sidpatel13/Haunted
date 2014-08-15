@@ -7,14 +7,17 @@ function preload() {
   game.load.image('person', '/person.png');
   game.load.image('star', '/star.png');
   game.load.image('platform', '/firstaid.png');
+  game.load.image('diamond', '/diamond.png');
 }
 
 var characters = [];
 var person;
 var ghosts = [];
 var ghost1, ghost2, ghost3, ghost4;
+
 var key1, key2, key3, key4;
 var platforms;
+var dots;
 
 function create() {
 
@@ -24,10 +27,12 @@ function create() {
   createPerson();
   createGhosts();
   createHotkeys();
+  createDots();
 
   //  Enable physics for sprites, make world boundaries.
   game.physics.arcade.enable(characters);
-  characters.forEach(function(item) { item.body.collideWorldBounds = true; });
+  game.physics.arcade.enable(dot);
+  characters.forEach(function(character) { character.body.collideWorldBounds = true; });
 
   key1.onDown.add(function() { setUserControl(ghosts, 1) });
   key2.onDown.add(function() { setUserControl(ghosts, 2) });

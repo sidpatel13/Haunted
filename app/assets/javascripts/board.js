@@ -65,3 +65,13 @@ function createBoard() {
 
   }
 }
+
+function createDots() {
+  dot = game.add.sprite(100, 100, 'diamond');
+
+  // person.scale.setTo(0.5, 0.5);
+  // person.anchor.setTo(0.5, 0.5);
+  // person.userControl = true;
+  // characters.push(person);
+}
+
