@@ -112,14 +112,20 @@ function create() {
     ghost1.anchor.setTo(0.5, 0.5);
     ghost1.scale.setTo(2,2);
 
+
+    ghost2 = game.add.sprite(32, game.world.height - 100, 'ghost')
+    ghost2.anchor.setTo(0.5, 0.5)
+    ghost2.scale.setTo(2,2)
+
     //  Enable physics on the player
     game.physics.arcade.enable(ghost1);
+    game.physics.arcade.enable(ghost2);
 
-    //  Player physics properties. Give the little guy a slight bounce.
+    //  Player physics p211roperties. Give the little guy a slight bounce.
     // player.body.bounce.y = 0.2;
     //ghost1.body.gravity.y = 300;
     ghost1.body.collideWorldBounds = true;
-
+    ghost2.body.collideWorldBounds = true;
     //  Our two animations, walking left and right.
     // player.animations.add('left', [0, 1, 2, 3], 10, true);
     // player.animations.add('right', [5, 6, 7, 8], 10, true);
