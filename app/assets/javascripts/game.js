@@ -10,14 +10,16 @@ function preload() {
   game.load.image('diamond', '/diamond.png');
 }
 
-var characters = [];
-var person;
-var ghosts = [];
-var ghost1, ghost2, ghost3, ghost4;
+var characters = []; //Pacman + All Ghosts
+var ghosts = []; //All Ghosts
+var person; //Pacman
+var ghost1, ghost2, ghost3, ghost4; //Individual Ghosts
+var dots = []; //All Dots
+var platforms;
 
 var key1, key2, key3, key4;
-var platforms;
-var dots;
+
+
 
 function create() {
 
@@ -31,7 +33,8 @@ function create() {
 
   //  Enable physics for sprites, make world boundaries.
   game.physics.arcade.enable(characters);
-  game.physics.arcade.enable(dot);
+  game.physics.arcade.enable(dots);
+
   characters.forEach(function(character) { character.body.collideWorldBounds = true; });
 
   key1.onDown.add(function() { setUserControl(ghosts, 1) });
@@ -45,6 +48,7 @@ function create() {
 function update() {
 
   game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  game.physics.arcade.overlap(person, dots, eatDot, null, this);
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
@@ -87,4 +91,8 @@ function gameOver () {
 
 function loseLife (person, ghosts) {
   person.kill();
+}
+
+function eatDot (person, dots) {
+  dots.kill();
 }

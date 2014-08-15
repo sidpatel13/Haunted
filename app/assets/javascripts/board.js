@@ -67,11 +67,14 @@ function createBoard() {
 }
 
 function createDots() {
-  dot = game.add.sprite(100, 100, 'diamond');
+  function createDot() {
+    dot = game.add.sprite(Math.random()*800, Math.random()*600, 'diamond');
+    dot.anchor.setTo(0.5, 0.5);
+    dots.push(dot);
+  }
 
-  // person.scale.setTo(0.5, 0.5);
-  // person.anchor.setTo(0.5, 0.5);
-  // person.userControl = true;
-  // characters.push(person);
+  for(var i=0; i<10; i++){
+    createDot();
+  }
+
 }
-
