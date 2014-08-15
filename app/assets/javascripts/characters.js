@@ -1,3 +1,6 @@
+// var character = {};
+// character.createPerson
+
 function createPerson() {
   person = game.add.sprite(1, game.world.height - 150, 'person');
   person.scale.setTo(0.5, 0.5);

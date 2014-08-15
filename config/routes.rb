@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/rooms', to: 'rooms#generate'
   get '/:room_session', to: 'rooms#show'
+  get '/rooms/one_wall', to: 'rooms#one_wall'
 end
