@@ -1,27 +1,42 @@
-$( document ).ready(function() {
-  console.log( "Ready!" );
-  var myFirebaseRef = new Firebase("https://haunted.firebaseio.com/");
-  var roomSession = $( "#room-session" ).val();
-  var myFirebaseRoom = myFirebaseRef.child(roomSession);
-  var myFirebaseChat = myFirebaseRoom.child("chat")
-  myFirebaseChat.on("child_added", function(snapshot) {
-    var message = snapshot.val().message;
-    $( "#msg-output" ).append(message.name + " said: " + message.content + "<br>");
-  });
+$(document).ready(function() {
 
-  $( "#chat-form" ).submit(function( event ) {
+  // Setup
+  var roomSession = $("#room-session").val();
+  if (typeof roomSession !== "undefined") {
+    var firebase = new firebaseSetup(roomSession);
+  }
+
+  // Recieve a message
+  firebase.chat.on("child_added", recieveMessage);
+
+  // Send a message
+  $("#chat-form").submit(function(event) {
     event.preventDefault();
-    
-    var userName = $('#user-name').val()
-    var messageContent = $('#msg-input').val()
-    $( "#msg-input" ).val("");
-
-    myFirebaseChat.push({
-      message : {
-        name: userName,
-        content: messageContent,
-        timestamp: Firebase.ServerValue.TIMESTAMP
-      }
-    });
+    var name = $("#user-name").val()
+    var message = $("#msg-input").val()
+    $("#msg-input").val("");
+    sendMessage(firebase, name, message);
   });
+
 });
+
+function firebaseSetup(roomSession) {
+  this.ref = new Firebase("https://haunted.firebaseio.com/");
+  this.room = this.ref.child(roomSession);
+  this.chat = this.room.child("chat");
+}
+
+var recieveMessage = function(snapshot) {
+  var message = snapshot.val().message;
+  $("#msg-output").append(message.name + " said: " + message.content + "<br>");
+}
+
+var sendMessage = function(firebase, name, content) {
+  firebase.chat.push({
+    message : {
+      name: name,
+      content: content,
+      timestamp: Firebase.ServerValue.TIMESTAMP
+    }
+  });
+}
