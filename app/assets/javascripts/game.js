@@ -11,7 +11,7 @@ var person;
 var ghost1; var ghost2; var ghost3; var ghost4;
 var ghosts;
 var key1; var key2; var key3; var key4;
-var walls;
+var platforms;
 
 function create() {
 
@@ -178,24 +178,28 @@ function update() {
       disableRight();
       disableUp();
       disableDown();
+      returnCoordinates(person);
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
       person.x += 4;
       disableUp();
       disableDown();
       disableLeft();
+      returnCoordinates(person);
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
       person.y -= 4;
       disableLeft();
       disableRight();
       disableDown();
+      returnCoordinates(person);
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
       person.y +=4;
-       disableUp();
-       disableLeft();
+      disableUp();
+      disableLeft();
       disableRight();
+      returnCoordinates(person);
     }
   }
 
@@ -209,33 +213,34 @@ function update() {
           disableRight();
           disableUp();
           disableDown();
+          returnCoordinates(item);
         }
+
         else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
           item.x += 4;
           disableUp();
           disableDown();
           disableLeft();
-
+          returnCoordinates(item);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
           item.y -= 4;
            disableLeft();
            disableRight();
            disableDown();
-
+           returnCoordinates(item);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
           item.y +=4;
            disableUp();
            disableLeft();
            disableRight();
+          returnCoordinates(item);
         }
       }
   });
 
 }
-
-
 
 function makeActive(hotkey) {
   ghosts[(hotkey - 1)].body.enable = true;
@@ -247,3 +252,8 @@ function makeInactive(hotkeys) {
   })
 };
 
+function returnCoordinates(sprite) {
+  var coordinates = [sprite.x, sprite.y];
+  console.log(coordinates);
+  return coordinates;
+}
