@@ -19,6 +19,8 @@ var platforms;
 
 var score = 0;
 var scoreText;
+var lives = 3;
+var livesText;
 
 var key1, key2, key3, key4;
 
@@ -46,6 +48,7 @@ function create() {
   key4.onDown.add(function() { setUserControl(ghosts, 4) });
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
 } // End create()
 
 
@@ -95,6 +98,9 @@ function gameOver () {
 
 function loseLife (person, ghosts) {
   person.kill();
+  lives--;
+  livesText.text = 'lives: ' + lives;
+  person.reset(100, 100);
 }
 
 function eatDot (person, dots) {
