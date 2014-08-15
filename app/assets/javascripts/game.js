@@ -43,6 +43,8 @@ function update() {
   game.physics.arcade.collide(person, platforms);
 
 
+  game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+
   characters.forEach(function(character) {
     if (character.userControl === true) {
       if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
@@ -79,4 +81,12 @@ function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
   console.log(coordinates);
   return coordinates;
+}
+
+function gameOver () {
+  // ghost eats pac OR checks to see if if .count equals 0
+}
+
+function loseLife (person, ghosts) {
+  person.kill();
 }
