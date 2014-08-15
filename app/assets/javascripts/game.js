@@ -26,7 +26,8 @@ function create() {
   createHotkeys();
 
   //  Enable physics for sprites, make world boundaries.
-  game.physics.arcade.enable(characters);
+  game.physics.enable(characters);
+  game.physics.enable(platforms);
   characters.forEach(function(item) { item.body.collideWorldBounds = true; });
 
   key1.onDown.add(function() { setUserControl(ghosts, 1) });
@@ -38,6 +39,9 @@ function create() {
 
 
 function update() {
+  // game.physics.overlap(person.sprite, platforms, collisionHandler, null, this);
+  game.physics.arcade.collide(person, platforms);
+
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
@@ -58,6 +62,9 @@ function update() {
         returnCoordinates(character);
       }
     }
+
+    // game.physics.arcade.collide(person.sprite, platforms);
+
   });
 
   // Ghost random
