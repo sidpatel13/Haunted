@@ -57,6 +57,13 @@ function update() {
   game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
   game.physics.arcade.overlap(person, dots, eatDot, null, this);
 
+  if (person.powerUp == true){ // there is no attrb for powerUp yet)
+    game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
+  }
+  else {
+    game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  }
+
   characters.forEach(function(character) {
     if (character.userControl === true) {
       if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
@@ -107,4 +114,8 @@ function eatDot (person, dots) {
   dots.kill();
   score++;
   scoreText.text = 'score: ' + score;
+}
+
+function eatGhosts (person, ghosts) {
+  ghosts.kill();
 }
