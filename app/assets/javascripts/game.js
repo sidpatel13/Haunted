@@ -7,14 +7,24 @@ function preload() {
   game.load.image('person', '/person.png');
   game.load.image('star', '/star.png');
   game.load.image('platform', '/firstaid.png');
+  game.load.image('diamond', '/diamond.png');
 }
 
-var characters = [];
-var person;
-var ghosts = [];
-var ghost1, ghost2, ghost3, ghost4;
-var key1, key2, key3, key4;
+var characters = []; //Pacman + All Ghosts
+var ghosts = []; //All Ghosts
+var person; //Pacman
+var ghost1, ghost2, ghost3, ghost4; //Individual Ghosts
+var dots = []; //All Dots
 var platforms;
+
+var score = 0;
+var scoreText;
+var lives = 3;
+var livesText;
+
+var key1, key2, key3, key4;
+
+
 
 function create() {
 
@@ -24,20 +34,28 @@ function create() {
   createPerson();
   createGhosts();
   createHotkeys();
+  createDots();
 
   //  Enable physics for sprites, make world boundaries.
   game.physics.arcade.enable(characters);
-  characters.forEach(function(item) { item.body.collideWorldBounds = true; });
+  game.physics.arcade.enable(dots);
+
+  characters.forEach(function(character) { character.body.collideWorldBounds = true; });
 
   key1.onDown.add(function() { setUserControl(ghosts, 1) });
   key2.onDown.add(function() { setUserControl(ghosts, 2) });
   key3.onDown.add(function() { setUserControl(ghosts, 3) });
   key4.onDown.add(function() { setUserControl(ghosts, 4) });
 
+  scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
 } // End create()
 
 
 function update() {
+
+  game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  game.physics.arcade.overlap(person, dots, eatDot, null, this);
 
   if (person.powerUp == true){ // there is no attrb for powerUp yet)
     game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
@@ -77,7 +95,7 @@ function update() {
 
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
-  console.log(coordinates);
+  //console.log(coordinates);
   return coordinates;
 }
 
@@ -87,6 +105,15 @@ function gameOver () {
 
 function loseLife (person, ghosts) {
   person.kill();
+  lives--;
+  livesText.text = 'lives: ' + lives;
+  person.reset(100, 100);
+}
+
+function eatDot (person, dots) {
+  dots.kill();
+  score++;
+  scoreText.text = 'score: ' + score;
 }
 
 function eatGhosts (person, ghosts) {
