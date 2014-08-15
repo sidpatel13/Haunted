@@ -39,7 +39,12 @@ function create() {
 
 function update() {
 
-  game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  if (person.powerUp == true){ // there is no attrb for powerUp yet)
+    game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
+  }
+  else {
+    game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  }
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
@@ -82,4 +87,8 @@ function gameOver () {
 
 function loseLife (person, ghosts) {
   person.kill();
+}
+
+function eatGhosts (person, ghosts) {
+  ghosts.kill();
 }
