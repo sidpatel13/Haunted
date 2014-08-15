@@ -1,4 +1,8 @@
 function createBoard() {
+
+  platforms = game.add.group();
+  platforms.enableBody = true;
+
   for (var i=0; i < 25; i++) {
 
     //top border
