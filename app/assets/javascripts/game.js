@@ -101,11 +101,11 @@ function create() {
     ghost2.anchor.setTo(0.5, 0.5);
     ghost2.scale.setTo(2,2);
 
-    ghosts = game.add.group(ghost1, ghost2);
+    ghosts = [ghost1, ghost2];
 
     //  Enable physics for sprites, make world boundaries.
 
-    game.physics.arcade.enable([person, ghost1]);
+    game.physics.arcade.enable([person, ghost1, ghost2]);
     person.body.collideWorldBounds = true;
     ghost1.body.collideWorldBounds = true;
 
@@ -120,36 +120,6 @@ function create() {
     key2.onDown.add(function() { makeActive(2) } );
     key3.onDown.add(function() { makeActive(3) } );
     key4.onDown.add(function() { makeActive(4) } );
-
-    //this.game.input.onDownCallback = function(e) { console.log('more tests')};
-
-    // this.game.input.keyboard.onDownCallback = function(e) {
-    //   if (e.keyCode == 49)
-    //     console.log("this is key 1");
-    //   else if (e.keyCode == 50)
-    //     console.log("this is key 2");
-    //   else if (e.keyCode == 51)
-    //     console.log("this is key 3");
-    //   else (e.keyCode == 52)
-    //     console.log("this is key 4");
-    //   else
-    //     console.log("not a hot key");
-    // };
-}
-
-// Make one ghost active and the others inactive.
-
-function makeActive(hotkey) {
-  console.log("You've selected " + hotkey)
-  for (var i = 1; i <= 4; i++) {
-    if (i === hotkey) {
-      person.body.enable = false;
-    }
-    else {
-      console.log("You need to disable these.")
-      // .body.enable = false;
-    }
-  };
 }
 
 function update() {
@@ -169,5 +139,33 @@ function update() {
     }
   }
 
+  ghosts.forEach(function(item) {
+      if (item.body.enable == true) {
+        if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+          item.x -= 4;
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+          item.x += 4;
+        }
+        if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+          item.y -= 4;
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+          item.y +=4;
+        }
+      }
+  });
 
 }
+
+function makeActive(hotkey) {
+  console.log("You've selected " + hotkey)
+  ghosts.forEach(function(item) {
+    if (item.index == hotkey) {
+      item.body.enable = true;
+    }
+    else {
+      item.body.enable = false;
+    }
+  })
+};
