@@ -2,7 +2,6 @@ function createPerson() {
   person = game.add.sprite(1, game.world.height - 150, 'person');
   person.scale.setTo(0.5, 0.5);
   person.anchor.setTo(0.5, 0.5);
-  person.lifespan = 10;
   person.userControl = true;
   characters.push(person);
 }
