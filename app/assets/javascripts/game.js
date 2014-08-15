@@ -96,7 +96,7 @@ function create() {
     ghost1 = game.add.sprite(100, game.world.height - 150, 'ghost');
     ghost1.anchor.setTo(0.5, 0.5);
     ghost1.scale.setTo(2,2);
-
+    
     ghost2 = game.add.sprite(200, game.world.height - 150, 'ghost');
     ghost2.anchor.setTo(0.5, 0.5);
     ghost2.scale.setTo(2,2)
