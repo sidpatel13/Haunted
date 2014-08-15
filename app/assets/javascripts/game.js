@@ -83,5 +83,3 @@ function gameOver () {
 function loseLife (person, ghosts) {
   person.kill();
 }
-
-
