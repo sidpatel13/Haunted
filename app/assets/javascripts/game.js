@@ -17,6 +17,9 @@ var ghost1, ghost2, ghost3, ghost4; //Individual Ghosts
 var dots = []; //All Dots
 var platforms;
 
+var score = 0;
+var scoreText;
+
 var key1, key2, key3, key4;
 
 
@@ -42,6 +45,7 @@ function create() {
   key3.onDown.add(function() { setUserControl(ghosts, 3) });
   key4.onDown.add(function() { setUserControl(ghosts, 4) });
 
+  scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
 } // End create()
 
 
@@ -81,7 +85,7 @@ function update() {
 
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
-  console.log(coordinates);
+  //console.log(coordinates);
   return coordinates;
 }
 
@@ -95,4 +99,6 @@ function loseLife (person, ghosts) {
 
 function eatDot (person, dots) {
   dots.kill();
+  score++;
+  scoreText.text = 'score: ' + score;
 }
