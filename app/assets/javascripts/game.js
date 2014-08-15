@@ -179,6 +179,12 @@ function update() {
       }
   });
 
+  ghosts.forEach(function(item) {
+      if (item.body.enable == false) {
+        item.body.velocity.x = 100;
+      }
+
+  });
 }
 
 function makeActive(hotkey) {
