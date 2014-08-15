@@ -127,7 +127,7 @@ function create() {
 function update() {
 
   if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-    ghost1.x -= 4;
+    person.x -= 4;
   }
   else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
     person.x += 4;
@@ -140,6 +140,6 @@ function update() {
     person.y +=4;
   }
 
-  game.physics.arcade.collide(ghost1, person);
+  //game.physics.arcade.collide(ghost1, person);
 
 }
