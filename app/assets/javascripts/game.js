@@ -86,6 +86,7 @@ function create() {
 
 } // End create()
 
+
 function update() {
 
   characters.forEach(function(item) {
@@ -109,6 +110,12 @@ function update() {
     }
   });
 
+  // Ghost random
+  ghosts.forEach(function(item) {
+      if (item.body.enable == false) {
+        item.body.velocity.x = 100;
+      }
+  });
 }
 
 function makeActive(hotkey) {
