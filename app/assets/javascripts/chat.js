@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+ $( document ).ready(function() {
   console.log( "Ready!" );
   var myFirebaseRef = new Firebase("https://haunted.firebaseio.com/");
   var roomSession = $( "#room-session" ).val();
@@ -11,7 +11,7 @@ $( document ).ready(function() {
 
   $( "#chat-form" ).submit(function( event ) {
     event.preventDefault();
-    
+
     var userName = $('#user-name').val()
     var messageContent = $('#msg-input').val()
     $( "#msg-input" ).val("");
