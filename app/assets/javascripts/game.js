@@ -92,12 +92,16 @@ function create() {
 
     // Create ghost 1.
 
-    // Here we create the ground.
-    // var ground = walls.create(0, game.world.height - 64, 'ground');
-
     ghost1 = game.add.sprite(100, game.world.height - 150, 'ghost');
     ghost1.anchor.setTo(0.5, 0.5);
     ghost1.scale.setTo(2,2);
+
+    //  Enable physics for sprites, make world boundaries.
+
+    game.physics.arcade.enable([person, ghost1]);
+    person.body.collideWorldBounds = true;
+    ghost1.body.collideWorldBounds = true;
+
 
     // Create hotkeys.
 
@@ -106,40 +110,24 @@ function create() {
     key3 = game.input.keyboard.addKey(Phaser.Keyboard.THREE);
     key4 = game.input.keyboard.addKey(Phaser.Keyboard.FOUR);
 
-    //  Enable physics for sprites, make world boundaries.
     key1.onDown.add(function() { console.log("testing key1") });
     key2.onDown.add(function() { console.log("testing key2") });
     key3.onDown.add(function() { console.log("testing key3") });
     key4.onDown.add(function() { console.log("testing key4") });
-
-
-    game.physics.arcade.enable([person, ghost1]);
-    person.body.collideWorldBounds = true;
-    ghost1.body.collideWorldBounds = true;
-
 }
 
-function makeActive() {
-  if (person.body.enable) {
+// function makeActive() {
+//   if (person.body.enable) {
 
-}
+// }
 
 function update() {
 
-  if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-    person.x -= 4;
-  }
-  else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-    person.x += 4;
-  }
+  if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) { person.x -= 4;}
+  else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) { person.x += 4; }
 
-  if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-    person.y -= 4;
-  }
-  else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-    person.y +=4;
-  }
+  if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) { person.y -= 4; }
+  else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) { person.y +=4; }
 
-  game.physics.arcade.collide(ghost1, person);
 
 }
