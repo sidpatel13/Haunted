@@ -29,7 +29,6 @@ function create() {
   game.physics.arcade.enable(characters);
   characters.forEach(function(item) { item.body.collideWorldBounds = true; });
 
-
   key1.onDown.add(function() { setUserControl(ghosts, 1) });
   key2.onDown.add(function() { setUserControl(ghosts, 2) });
   key3.onDown.add(function() { setUserControl(ghosts, 3) });
@@ -55,7 +54,7 @@ function update() {
         returnCoordinates(character);
       }
       else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-        character.y +=4;
+        character.y += 4;
         returnCoordinates(character);
       }
     }
@@ -68,8 +67,6 @@ function update() {
   //     }
   // });
 }
-
-
 
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
