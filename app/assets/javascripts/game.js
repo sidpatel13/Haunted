@@ -1,6 +1,6 @@
 console.log("Hello");
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
   game.load.image('ghost', '/ghost.png');
@@ -91,6 +91,7 @@ function create() {
     person.scale.setTo(0.5, 0.5);
     person.anchor.setTo(0.5, 0.5);
 
+
     // Create ghosts.
 
     ghost1 = game.add.sprite(100, game.world.height - 150, 'ghost');
@@ -113,12 +114,26 @@ function create() {
 
     //  Enable physics for sprites, make world boundaries.
 
+    // var z =  function() {
+    //   var random = Math.floor(Math.rand() * 2
+    //     if(random == 0) {
+    //       return "x";
+    //     }
+    //     else {
+    //       return "y";
+    //     }
+    //  }
+
     game.physics.arcade.enable([person, ghost1, ghost2, ghost3, ghost4]);
     person.body.collideWorldBounds = true;
     ghost1.body.collideWorldBounds = true;
     ghost2.body.collideWorldBounds = true;
     ghost3.body.collideWorldBounds = true;
     ghost4.body.collideWorldBounds = true;
+    ghost1.body.velocity.z = 100;
+    ghost2.body.velocity.x = 100;
+    ghost3.body.velocity.x = 100;
+    ghost4.body.velocity.x = 100;
 
     // Make ghosts inactive by default.
 
@@ -179,12 +194,20 @@ function update() {
       }
   });
 
-  ghosts.forEach(function(item) {
-      if (item.body.enable == false) {
-        item.body.velocity.x = 100;
-      }
+   game.physics.arcade.collide(person, ghost1, collisionHandler, null, this);
 
-  });
+  // ghosts.forEach(function(item) {
+  //     if (item.body.enable == false) {
+  //       item.body.velocity.x = 100;
+  //     }
+
+  // });
+}
+function collisionHandler (obj1, obj2) {
+
+  //  The two sprites are colliding
+  game.stage.backgroundColor = '#992d2d';
+  person.kill();
 }
 
 function makeActive(hotkey) {
@@ -201,4 +224,11 @@ function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
   console.log(coordinates);
   return coordinates;
+}
+
+function render() {
+
+  game.debug.body(person);
+  game.debug.body(ghost1);
+
 }
