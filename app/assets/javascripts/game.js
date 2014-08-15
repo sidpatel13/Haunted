@@ -4,7 +4,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
   game.load.image('ghost', '/ghost.png');
-  game.load.image('person', '/person.png')
+  game.load.image('person', '/person.png');
+  game.load.image('star', '/star.png');
 }
 
 var person;
@@ -12,9 +13,9 @@ var ghost1; var ghost2; var ghost3; var ghost4;
 var ghosts;
 var key1; var key2; var key3; var key4;
 var platforms;
+var star;
 
 function create() {
-
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     platforms = game.add.group();
@@ -85,11 +86,20 @@ function create() {
 
     }
 
+
+
+
+
     // Create person.
 
     person = game.add.sprite(1, game.world.height - 150, 'person');
     person.scale.setTo(0.5, 0.5);
     person.anchor.setTo(0.5, 0.5);
+
+    // Create Stars
+
+    star = game.add.sprite(120, 120, 'star');
+
 
     // Create ghosts.
 
@@ -257,3 +267,8 @@ function returnCoordinates(sprite) {
   console.log(coordinates);
   return coordinates;
 }
+
+function destroySprite (sprite) {
+    console.log("star");
+    sprite.destroy();
+  }
