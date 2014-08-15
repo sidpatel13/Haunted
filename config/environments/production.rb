@@ -81,7 +81,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # General Settings
-  config.app_domain = 'http://haunted-game.herokuapp.com/'
+  config.app_domain = 'http://haunted-game.herokuapp.com'
 
   # Email
   config.action_mailer.delivery_method = :smtp
