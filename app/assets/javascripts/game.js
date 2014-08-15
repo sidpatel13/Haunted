@@ -101,18 +101,28 @@ function create() {
     ghost2.anchor.setTo(0.5, 0.5);
     ghost2.scale.setTo(2,2)
 
-    ghosts = [ghost1, ghost2];
+    ghost3 = game.add.sprite(300, game.world.height - 150, 'ghost');
+    ghost3.anchor.setTo(0.5, 0.5);
+    ghost3.scale.setTo(2,2)
+
+    ghost4 = game.add.sprite(400, game.world.height - 150, 'ghost');
+    ghost4.anchor.setTo(0.5, 0.5);
+    ghost4.scale.setTo(2,2)
+
+    ghosts = [ghost1, ghost2, ghost3, ghost4];
 
     //  Enable physics for sprites, make world boundaries.
 
-    game.physics.arcade.enable([person, ghost1, ghost2]);
+    game.physics.arcade.enable([person, ghost1, ghost2, ghost3, ghost4]);
     person.body.collideWorldBounds = true;
     ghost1.body.collideWorldBounds = true;
     ghost2.body.collideWorldBounds = true;
+    ghost3.body.collideWorldBounds = true;
+    ghost4.body.collideWorldBounds = true;
 
     // Make ghosts inactive by default.
-    ghost1.body.enable = false;
-    ghost2.body.enable = false;
+    
+    ghosts.forEach(function(item) { item.body.enable = false; });
 
     // Create hotkeys.
 
@@ -121,10 +131,10 @@ function create() {
     key3 = game.input.keyboard.addKey(Phaser.Keyboard.THREE);
     key4 = game.input.keyboard.addKey(Phaser.Keyboard.FOUR);
 
-    key1.onDown.add(function() { makeActive(1) } );
-    key2.onDown.add(function() { makeActive(2) } );
-    key3.onDown.add(function() { makeActive(3) } );
-    key4.onDown.add(function() { makeActive(4) } );
+    key1.onDown.add(function() { makeActive(1), makeInactive([2, 3, 4])} );
+    key2.onDown.add(function() { makeActive(2), makeInactive([1, 3, 4])} );
+    key3.onDown.add(function() { makeActive(3), makeInactive([1, 2, 4])} );
+    key4.onDown.add(function() { makeActive(4), makeInactive([1, 2, 3])} );
 }
 
 function update() {
@@ -166,6 +176,11 @@ function update() {
 
 
 function makeActive(hotkey) {
-  console.log(hotkey)
   ghosts[(hotkey - 1)].body.enable = true;  
+};
+
+function makeInactive(hotkeys) {
+  hotkeys.forEach(function(item) {
+    ghosts[(item - 1)].body.enable = false;
+  })  
 };
