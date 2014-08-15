@@ -86,7 +86,8 @@ function gameOver () {
 }
 
 function loseLife (person, ghosts) {
-  person.kill();
+
+
 }
 
 function eatGhosts (person, ghosts) {
