@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require ./phaser.min.js
-//= require_tree .
+//= require ./chat.js
+//= require ./board.js
+//= require ./characters.js
+//= require ./hotkeys.js
+//= require ./game.js
