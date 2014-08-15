@@ -13,9 +13,9 @@ $(document).ready(function() {
   $("#chat-form").submit(function(event) {
     event.preventDefault();
     var name = $("#user-name").val()
-    var message = $("#msg-input").val()
+    var content = $("#msg-input").val()
     $("#msg-input").val("");
-    sendMessage(firebase, name, message);
+    sendMessage(firebase, name, content);
   });
 
 });
@@ -28,7 +28,13 @@ function firebaseSetup(roomSession) {
 
 var recieveMessage = function(snapshot) {
   var message = snapshot.val().message;
-  $("#msg-output").append(message.name + " said: " + message.content + "<br>");
+  var name = message.name;
+  var content = message.content;
+  var user = ((name === "Rootul") ? "me" : "you"); //Set Rootul to user.name
+  var output = "<div class='message " + user + "'>";
+        output += "<span>" + content + "</span>";
+        output += "</div>";
+  $("#msg-output").append(output);
 }
 
 var sendMessage = function(firebase, name, content) {
