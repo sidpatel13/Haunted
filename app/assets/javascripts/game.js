@@ -106,9 +106,9 @@ function create() {
 
     // Create hotkeys.
 
-    key1 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
-    key2 = game.input.keyboard.addKey(Phaser.Keyboard.TWO);
-    key3 = game.input.keyboard.addKey(Phaser.Keyboard.THREE);
+    // key1 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
+    // key2 = game.input.keyboard.addKey(Phaser.Keyboard.TWO);
+    // key3 = game.input.keyboard.addKey(Phaser.Keyboard.THREE);
 
     //  Enable physics for sprites, make world boundaries.
     
