@@ -13,6 +13,7 @@ function createBoard() {
     ledge = platforms.create(0, 25+i*20, 'platform');
     ledge.scale.setTo(1.5, 0.75);
     ledge.body.immovable = true;
+    platform.body.gravity = 0
 
     //right border
     ledge = platforms.create(750, 30+i*20, 'platform');

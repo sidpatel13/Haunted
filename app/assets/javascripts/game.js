@@ -39,6 +39,8 @@ function create() {
 
 function update() {
 
+  game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+
   characters.forEach(function(character) {
     if (character.userControl === true) {
       if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
@@ -59,17 +61,18 @@ function update() {
       }
     }
   });
-
-  // Ghost random
-  // ghosts.forEach(function(item) {
-  //     if (item.body.enable == false) {
-  //       item.body.velocity.x = 100;
-  //     }
-  // });
 }
 
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
   console.log(coordinates);
   return coordinates;
+}
+
+function gameOver() {
+
+}
+
+function loseLife(person, ghosts) {
+  person.kill();
 }
