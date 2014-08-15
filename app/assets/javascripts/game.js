@@ -11,29 +11,29 @@ var person;
 var ghost1; var ghost2; var ghost3; var ghost4;
 var ghosts;
 var key1; var key2; var key3; var key4;
-var walls;
+var platforms;
 
 function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    walls = game.add.group();
+    platforms = game.add.group();
 
-    walls.enableBody = true;
+    platforms.enableBody = true;
 
     for (var i=0; i < 25; i++) {
 
       //top border
-      ledge = walls.create(0+i*32, 0, 'platform');
+      ledge = platforms.create(0+i*32, 0, 'platform');
       ledge.body.immovable = true;
 
       //left border
-      ledge = walls.create(0, 25+i*20, 'platform');
+      ledge = platforms.create(0, 25+i*20, 'platform');
       ledge.scale.setTo(1.5, 0.75);
       ledge.body.immovable = true;
 
        //right border
-      ledge = walls.create(750, 30+i*20, 'platform');
+      ledge = platforms.create(750, 30+i*20, 'platform');
       ledge.scale.setTo(1.5, 0.75);
       ledge.body.immovable = true;
 
@@ -41,33 +41,33 @@ function create() {
 
     for (var i=0; i < 2; i++) {
        //top right box (near border)
-      ledge2 = walls.create(i*50+600, 100, 'platform');
-      ledge2.scale.setTo(1.5, 0.75);
-      ledge2.body.immovable = true;
+      ledge = platforms.create(i*50+600, 100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
        //top left box (near border)
-      ledge3 = walls.create(i*50+100, 100, 'platform');
-      ledge3.scale.setTo(1.5, 0.75);
-      ledge3.body.immovable = true;
+      ledge = platforms.create(i*50+100, 100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
       //bottom right box
-      ledge4 = walls.create(i*50+600, 400, 'platform');
-      ledge4.scale.setTo(1.5, 0.75);
-      ledge4.body.immovable = true;
+      ledge = platforms.create(i*50+600, 400, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
       //bottom left box
-      ledge5 = walls.create(i*50+100, 400, 'platform');
-      ledge5.scale.setTo(1.5, 0.75);
-      ledge5.body.immovable = true;
+      ledge = platforms.create(i*50+100, 400, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
        //center box
-      ledge6 = walls.create(i*50+350, 250, 'platform')
-      ledge6.scale.setTo(1.5, 0.75);
-      ledge6.body.immovable = true;
+      ledge = platforms.create(i*50+350, 250, 'platform')
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
-      ledge7 = walls.create(i*50+350, 275, 'platform')
-      ledge7.scale.setTo(1.5, 0.75);
-      ledge7.body.immovable = true;
+      ledge = platforms.create(i*50+350, 275, 'platform')
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
 
     }
@@ -75,13 +75,13 @@ function create() {
     //inner borders
     for (var i=0; i < 12; i++) {
       //top right border
-      ledge8 = walls.create(650, i*25+100, 'platform');
-      ledge8.scale.setTo(1.5, 0.75);
-      ledge8.body.immovable = true;
+      ledge = platforms.create(650, i*25+100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
-      ledge9 = walls.create(100, i*25+100, 'platform');
-      ledge9.scale.setTo(1.5, 0.75);
-      ledge9.body.immovable = true;
+      ledge = platforms.create(100, i*25+100, 'platform');
+      ledge.scale.setTo(1.5, 0.75);
+      ledge.body.immovable = true;
 
     }
 
@@ -112,8 +112,8 @@ function create() {
     ghosts = [ghost1, ghost2, ghost3, ghost4];
 
     //  Enable physics for sprites, make world boundaries.
-    game.physics.arcade.enable([person, ghost1, ghost2, ghost3, ghost4]);
 
+    game.physics.arcade.enable([person, ghost1, ghost2, ghost3, ghost4]);
     person.body.collideWorldBounds = true;
     ghost1.body.collideWorldBounds = true;
     ghost2.body.collideWorldBounds = true;
@@ -138,26 +138,23 @@ function create() {
 }
 
 function update() {
-  game.physics.arcade.collide(person, walls);
-  game.physics.arcade.collide(ghost1, walls);
-  game.physics.arcade.collide(ghost2, walls);
-  game.physics.arcade.collide(ghost3, walls);
-  game.physics.arcade.collide(ghost4, walls);
-
-  game.physics.arcade.overlap(person, ghost1, collectStar, null, this);
 
   if (person.body.enable == true) {
     if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
       person.x -= 4;
+      returnCoordinates(person);
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
       person.x += 4;
+      returnCoordinates(person);
     }
     if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
       person.y -= 4;
+      returnCoordinates(person);
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
       person.y +=4;
+      returnCoordinates(person);
     }
   }
 
@@ -165,22 +162,24 @@ function update() {
       if (item.body.enable == true) {
         if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
           item.x -= 4;
+          returnCoordinates(item);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
           item.x += 4;
+          returnCoordinates(item);
         }
         if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
           item.y -= 4;
+          returnCoordinates(item);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
           item.y +=4;
+          returnCoordinates(item);
         }
       }
   });
 
 }
-
-
 
 function makeActive(hotkey) {
   ghosts[(hotkey - 1)].body.enable = true;
@@ -192,7 +191,8 @@ function makeInactive(hotkeys) {
   })
 };
 
-function collectStar (person, ghost1) {
-  // Removes the star from the screen
-  ghost1.kill();
-};
+function returnCoordinates(sprite) {
+  var coordinates = [sprite.x, sprite.y];
+  console.log(coordinates);
+  return coordinates;
+}
