@@ -25,8 +25,8 @@ var scoreText;
 var lives = 3;
 var livesText;
 var key1, key2, key3, key4;
-var star1;
-var star2;
+var starOne;
+var starTwo;
 
 function create() {
 
@@ -42,8 +42,8 @@ function create() {
   //  Enable physics for sprites, make world boundaries.
   game.physics.arcade.enable(characters);
   game.physics.arcade.enable(dots);
-  game.physics.arcade.enable(star1);
-  game.physics.arcade.enable(star2);
+  game.physics.arcade.enable(starOne);
+  game.physics.arcade.enable(starTwo);
 
   characters.forEach(function(character) { character.body.collideWorldBounds = true; });
 
@@ -61,8 +61,8 @@ function update() {
 
   game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
   game.physics.arcade.overlap(person, dots, eatDot, null, this);
-  game.physics.arcade.overlap(person, star1, teleportOne, null, this);
-  game.physics.arcade.overlap(person, star2, teleportTwo, null, this);
+  game.physics.arcade.overlap(person, starOne, teleportOne, null, this);
+  game.physics.arcade.overlap(person, starTwo, teleportTwo, null, this);
 
   if (person.powerUp == true){ // there is no attrb for powerUp yet)
     game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
@@ -136,12 +136,12 @@ function gameOver (winner) {
   console.log("game over winner: " + winner);
 }
 
-function teleportOne (person, star1) {
-  // person.kill();
-  person.reset(750,300);
+function teleportOne (person, starOne) {
+  person.kill();
+  person.reset(746,300);
 }
 
-function teleportTwo (person, star2) {
-  // person.kill();
-  person.reset(50,300);
+function teleportTwo (person, starTwo) {
+  person.kill();
+  person.reset(56,300);
 }
