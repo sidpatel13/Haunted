@@ -1,3 +1,6 @@
+//= require ./firebase_chat.js
+//= require ./firebase_game.js
+
 $(document).ready(function() {
 
   // Setup
@@ -18,31 +21,22 @@ $(document).ready(function() {
     sendMessage(firebase, name, content);
   });
 
+  function sendCoordinates(sprite) {
+    firebase.game.push({
+      message : {
+        sprite: sprite,
+        x_coordinates: sprite.x,
+        y_coordinates: sprite.y,
+        timestamp: Firebase.ServerValue.TIMESTAMP
+      }
+    });
+  }
+
 });
 
 function firebaseSetup(roomSession) {
   this.ref = new Firebase("https://haunted.firebaseio.com/");
   this.room = this.ref.child(roomSession);
   this.chat = this.room.child("chat");
-}
-
-var recieveMessage = function(snapshot) {
-  var message = snapshot.val().message;
-  var name = message.name;
-  var content = message.content;
-  var user = ((name === "Rootul") ? "me" : "you"); //Set Rootul to user.name
-  var output = "<div class='message " + user + "'>";
-        output += "<span>" + content + "</span>";
-        output += "</div>";
-  $("#msg-output").append(output);
-}
-
-var sendMessage = function(firebase, name, content) {
-  firebase.chat.push({
-    message : {
-      name: name,
-      content: content,
-      timestamp: Firebase.ServerValue.TIMESTAMP
-    }
-  });
+  this.game = this.room.child("game");
 }

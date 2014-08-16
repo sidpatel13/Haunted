@@ -65,3 +65,16 @@ function createBoard() {
 
   }
 }
+
+function createDots(count) {
+  function createDot() {
+    dot = game.add.sprite(Math.random()*800, Math.random()*600, 'diamond');
+    dot.anchor.setTo(0.5, 0.5);
+    dots.push(dot);
+  }
+
+  for(var i=0; i < count; i++){
+    createDot();
+  }
+
+}
