@@ -1,4 +1,7 @@
-console.log("Hello");
+//= require ./phaser.min.js
+//= require ./board.js
+//= require ./characters.js
+//= require ./hotkeys.js
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
