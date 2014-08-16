@@ -2,15 +2,12 @@
 //= require ./board.js
 //= require ./characters.js
 //= require ./hotkeys.js
+//= require ./images.js
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
-  game.load.image('ghost', '/ghost.png');
-  game.load.image('person', '/person.png');
-  game.load.image('star', '/star.png');
-  game.load.image('firstaid', '/firstaid.png');
-  game.load.image('diamond', '/diamond.png');
+  loadImages();
 }
 
 var characters = []; //Pacman + All Ghosts
