@@ -3,10 +3,7 @@ console.log("Hello");
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
-  game.load.image('ghost', '/ghost.png');
-  game.load.image('person', '/person.png');
-  game.load.image('star', '/star.png');
-  game.load.image('platform', '/firstaid.png');
+  imageLoad();
 }
 
 var characters = [];
@@ -25,8 +22,6 @@ function create() {
   createGhosts();
   createHotkeys();
 
-  //  Enable physics for sprites, make world boundaries.
-  game.physics.arcade.enable(characters);
   characters.forEach(function(item) { item.body.collideWorldBounds = true; });
 
   key1.onDown.add(function() { setUserControl(ghosts, 1) });

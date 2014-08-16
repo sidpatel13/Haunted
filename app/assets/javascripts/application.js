@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require ./phaser.min.js
 //= require ./chat.js
+//= require ./images.js
 //= require ./board.js
 //= require ./characters.js
 //= require ./hotkeys.js
