@@ -1,33 +1,30 @@
 function createBoard() {
 
-  group = game.add.group();
-  group.enableBody = true;
-  group.physicsBodyType = Phaser.Physics.ARCADE;
+  walls = game.add.group();
+  walls.enableBody = true;
+  walls.physicsBodyType = Phaser.Physics.ARCADE;
 
-  var c = group.create(game.rnd.integerInRange(100, 770), game.rnd.integerInRange(0, 570), 'veggies', game.rnd.integerInRange(0, 35));
+  var c = walls.create(200, 200, 'firstaid');
   c.name = 'veg';
   c.body.immovable = true;
 
-  // platforms = game.add.group();
-  // platforms.enableBody = true;
+  for (var i=0; i < 25; i++) {
 
-  // for (var i=0; i < 25; i++) {
+    //top border
+    wall = walls.create(0+i*32, 0, 'firstaid');
+    wall.body.immovable = true;
 
-  //   //top border
-  //   ledge = platforms.create(0+i*32, 0, 'platform');
-  //   ledge.body.immovable = true;
+    //left border
+    wall = walls.create(0, 25+i*20, 'firstaid');
+    wall.scale.setTo(1.5, 0.75);
+    wall.body.immovable = true;
 
-  //   //left border
-  //   ledge = platforms.create(0, 25+i*20, 'platform');
-  //   ledge.scale.setTo(1.5, 0.75);
-  //   ledge.body.immovable = true;
+    //right border
+    wall = walls.create(750, 30+i*20, 'firstaid');
+    wall.scale.setTo(1.5, 0.75);
+    wall.body.immovable = true;
 
-  //   //right border
-  //   ledge = platforms.create(750, 30+i*20, 'platform');
-  //   ledge.scale.setTo(1.5, 0.75);
-  //   ledge.body.immovable = true;
-
-  // }
+  }
 
   // for (var i=0; i < 2; i++) {
   //    //top right box (near border)
