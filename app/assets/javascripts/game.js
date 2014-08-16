@@ -9,7 +9,7 @@ function preload() {
   game.load.image('ghost', '/ghost.png');
   game.load.image('person', '/person.png');
   game.load.image('star', '/star.png');
-  game.load.image('platform', '/firstaid.png');
+  game.load.image('firstaid', '/firstaid.png');
   game.load.image('diamond', '/diamond.png');
 }
 
@@ -27,6 +27,7 @@ var livesText;
 var key1, key2, key3, key4;
 var starOne;
 var starTwo;
+var group;
 
 function create() {
 
@@ -34,7 +35,7 @@ function create() {
 
   createBoard();
   createPerson();
-  createGhosts();
+  //createGhosts();
   createHotkeys();
   createTeleport();
   createDots(10);
@@ -54,10 +55,22 @@ function create() {
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+
+  cursors = game.input.keyboard.createCursorKeys();
+
+
 } // End create()
 
 
 function update() {
+
+  game.physics.arcade.collide(person, walls, collisionHandler, null, this);
+  //game.physics.arcade.collide(group, group);
+
+  function collisionHandler(person, veg) {
+
+  }
+
 
   game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
   game.physics.arcade.overlap(person, dots, eatDot, null, this);
@@ -73,41 +86,30 @@ function update() {
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
-      if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-        character.x -= 4;
-        returnCoordinates(character);
-      }
-      else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-        character.x += 4;
-        returnCoordinates(character);
-      }
-      else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-        character.y -= 4;
-        returnCoordinates(character);
-      }
-      else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-        character.y += 4;
-        returnCoordinates(character);
+      if (cursors.left.isDown){
+        person.body.velocity.x = -200;
+        person.body.velocity.y = 0;
+      } else if (cursors.right.isDown){
+        person.body.velocity.x = 200;
+        person.body.velocity.y = 0;
+      } else if (cursors.up.isDown){
+        person.body.velocity.y = -200;
+        person.body.velocity.x = 0;
+      } else if (cursors.down.isDown) {
+        person.body.velocity.y = 200;
+        person.body.velocity.x = 0;
       }
     }
   });
 
-  // Ghost random
-  // ghosts.forEach(function(item) {
-  //     if (item.body.enable == false) {
-  //       item.body.velocity.x = 100;
-  //     }
-  // });
 }
 
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
-  //console.log(coordinates);
   return coordinates;
 }
 
 function loseLife (person, ghosts) {
-
   person.kill();
   lives--;
   livesText.text = 'lives: ' + lives;
