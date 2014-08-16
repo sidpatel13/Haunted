@@ -78,3 +78,13 @@ function createDots(count) {
   }
 
 }
+
+function createTeleport() {
+  star1 = game.add.sprite(10, game.world.height - 300, 'star');
+  star2 = game.add.sprite(790, game.world.height - 300, 'star');
+  star1.anchor.setTo(0.5, 0.5);
+  star2.anchor.setTo(0.5, 0.5);
+}
+
+
+
