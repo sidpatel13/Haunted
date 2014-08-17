@@ -120,8 +120,9 @@ function eatGhosts (person, ghosts) {
 }
 
 function gameOver (winner) {
-  //Give user and opponent modal to restart / congratulate winner
-  console.log("game over winner: " + winner);
+  if (lives === 0) {
+    aler
+  }
 }
 
 function teleportOne (person, starOne) {
@@ -133,5 +134,3 @@ function teleportTwo (person, starTwo) {
   person.kill();
   person.reset(56,300);
 }
-
-
