@@ -1,20 +1,18 @@
-console.log("Hello");
+//= require ./phaser.min.js
+//= require ./board.js
+//= require ./characters.js
+//= require ./hotkeys.js
+//= require ./images.js
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
-  game.load.image('ghost', '/ghost.png');
-  game.load.image('person', '/person.png');
-  game.load.image('star', '/star.png');
-  game.load.image('platform', '/firstaid.png');
-}
+  loadImages();
+};
 
-var characters = [];
-var person;
-var ghosts = [];
-var ghost1, ghost2, ghost3, ghost4;
-var key1, key2, key3, key4;
-var platforms;
+var characters = [], dots = [], ghosts = [];
+var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, key1, key2, key3, key4, starOne, starTwo, group;
+var score = 0, maxScore = 20, lives = 3;
 
 function create() {
 
@@ -24,16 +22,29 @@ function create() {
   createPerson();
   createGhosts();
   createHotkeys();
+  createTeleport();
+  createDots(10);
 
   //  Enable physics for sprites, make world boundaries.
-  game.physics.enable(characters);
-  game.physics.enable(platforms);
-  characters.forEach(function(item) { item.body.collideWorldBounds = true; });
 
-  key1.onDown.add(function() { setUserControl(ghosts, 1) });
-  key2.onDown.add(function() { setUserControl(ghosts, 2) });
-  key3.onDown.add(function() { setUserControl(ghosts, 3) });
-  key4.onDown.add(function() { setUserControl(ghosts, 4) });
+  var gamePhysicsArray = [characters, dots, starOne, starTwo];
+  for (var i = 0; i < gamePhysicsArray.length; i++) {
+    game.physics.arcade.enable(gamePhysicsArray[i]);
+  }
+
+  characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
+
+  //might want to refactor this and use cursor keys
+  key1.onDown.add( function() { setUserControl(ghosts, 1) } );
+  key2.onDown.add( function() { setUserControl(ghosts, 2) } );
+  key3.onDown.add( function() { setUserControl(ghosts, 3) } );
+  key4.onDown.add( function() { setUserControl(ghosts, 4) } );
+
+  scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+
+  cursors = game.input.keyboard.createCursorKeys();
+
 
 } // End create()
 
@@ -43,25 +54,40 @@ function update() {
   game.physics.arcade.collide(person, platforms);
 
 
+  game.physics.arcade.collide(person, walls, collisionHandler, null, this);
+  //game.physics.arcade.collide(group, group);
+
+  function collisionHandler(person, veg) {
+
+  }
+
+
   game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  game.physics.arcade.overlap(person, dots, eatDot, null, this);
+  game.physics.arcade.overlap(person, starOne, teleportOne, null, this);
+  game.physics.arcade.overlap(person, starTwo, teleportTwo, null, this);
+
+  if (person.powerUp == true){ // there is no attrb for powerUp yet)
+    game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
+  }
+  else {
+    game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  }
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
-      if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-        character.x -= 4;
-        returnCoordinates(character);
-      }
-      else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-        character.x += 4;
-        returnCoordinates(character);
-      }
-      else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-        character.y -= 4;
-        returnCoordinates(character);
-      }
-      else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-        character.y += 4;
-        returnCoordinates(character);
+      if (cursors.left.isDown){
+        person.body.velocity.x = -200;
+        person.body.velocity.y = 0;
+      } else if (cursors.right.isDown){
+        person.body.velocity.x = 200;
+        person.body.velocity.y = 0;
+      } else if (cursors.up.isDown){
+        person.body.velocity.y = -200;
+        person.body.velocity.x = 0;
+      } else if (cursors.down.isDown) {
+        person.body.velocity.y = 200;
+        person.body.velocity.x = 0;
       }
     }
 
@@ -69,24 +95,50 @@ function update() {
 
   });
 
-  // Ghost random
-  // ghosts.forEach(function(item) {
-  //     if (item.body.enable == false) {
-  //       item.body.velocity.x = 100;
-  //     }
-  // });
 }
 
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
-  console.log(coordinates);
   return coordinates;
-}
-
-function gameOver () {
-  // ghost eats pac OR checks to see if if .count equals 0
 }
 
 function loseLife (person, ghosts) {
   person.kill();
+  lives--;
+  livesText.text = 'lives: ' + lives;
+  if (lives === 0) {
+    gameOver("Player 2");
+  } else {
+    person.reset(100, 100);
+  }
 }
+
+function eatDot (person, dots) {
+  dots.kill();
+  score++;
+  scoreText.text = 'score: ' + score;
+  if (score === maxScore) {
+    gameOver("Player 1");
+  }
+}
+
+function eatGhosts (person, ghosts) {
+  ghosts.kill();
+}
+
+function gameOver (winner) {
+  //Give user and opponent modal to restart / congratulate winner
+  console.log("game over winner: " + winner);
+}
+
+function teleportOne (person, starOne) {
+  person.kill();
+  person.reset(746,300);
+}
+
+function teleportTwo (person, starTwo) {
+  person.kill();
+  person.reset(56,300);
+}
+
+

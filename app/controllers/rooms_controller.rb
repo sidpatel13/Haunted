@@ -9,5 +9,10 @@ class RoomsController < ApplicationController
   def show
     @room_session = params[:room_session]
   end
+
+  def one_wall
+    @js = "one_wall"
+    render :show
+  end
   
 end
