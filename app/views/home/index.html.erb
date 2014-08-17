@@ -1,17 +1,21 @@
-<h1>Haunted</h1>
+<div id="fade">
 
-<div class="modal" id="welcome">
+  <h1>Haunted</h1>
 
- <%= form_for :user do |f| %>
-    <h2>welcome</h2>
-    
-    what is your name?<br>
-    
-    <%= f.text_field :name %><br>
-    
-    or <%= link_to "sign up / sign in"%><br><br>
-    
-    <%= button_to "New Game", rooms_path, :class =>"button", method: :get %>
-<% end %>
+  <div class="modal" id="welcome">
+
+   <%= form_for :user do |f| %>
+      <h2>welcome</h2>
+      
+      what is your name?<br>
+      
+      <%= f.text_field :name %><br>
+      
+      or <%= link_to "sign up / sign in"%><br><br>
+      
+      <%= button_to "New Game", rooms_path, :class =>"button", method: :get %>
+  <% end %>
+
+  </div>
 
 </div>

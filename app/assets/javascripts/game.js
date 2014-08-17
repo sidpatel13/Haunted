@@ -35,7 +35,7 @@ function create() {
 
   createBoard();
   createPerson();
-  //createGhosts();
+  createGhosts();
   createHotkeys();
   createTeleport();
   createDots(10);
