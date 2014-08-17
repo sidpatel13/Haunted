@@ -93,6 +93,3 @@ function createTeleport() {
   starTwo.anchor.setTo(0.5, 0.5);
   starTwo.scale.setTo(1,1);
 }
-
-
-
