@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+@import url(http://fonts.googleapis.com/css?family=Iceland);
 
 body {
   color: white;
@@ -9,14 +9,15 @@ body {
 }
 
 h1 {
-  font-family: 'Press Start 2P';
-  font-size: 50px;
+  font-family: 'Iceland';
+  font-size: 100px;
   letter-spacing: 5px;
-  padding: 40px;
+  padding: 30px;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 4px 4px purple;
 }
+
 
 h2 {
   text-transform: lowercase;
