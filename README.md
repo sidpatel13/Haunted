@@ -22,3 +22,4 @@ Haunted
   * [Day 1](http://juliusjung.info/blog/2014/08/14/haunted-day-1/)
   * [Day 2](http://juliusjung.info/blog/2014/08/14/haunted-day-2/)
   * [Day 3](http://juliusjung.info/blog/2014/08/15/haunted-day-3/)
+  * [Day 4](http://juliusjung.info/blog/2014/08/16/haunted-day-4/)
