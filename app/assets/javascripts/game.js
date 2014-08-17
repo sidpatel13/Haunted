@@ -2,32 +2,17 @@
 //= require ./board.js
 //= require ./characters.js
 //= require ./hotkeys.js
+//= require ./images.js
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
-  game.load.image('ghost', '/ghost.png');
-  game.load.image('person', '/person.png');
-  game.load.image('star', '/star.png');
-  game.load.image('firstaid', '/firstaid.png');
-  game.load.image('diamond', '/diamond.png');
-}
+  loadImages();
+};
 
-var characters = []; //Pacman + All Ghosts
-var ghosts = []; //All Ghosts
-var person; //Pacman
-var ghost1, ghost2, ghost3, ghost4; //Individual Ghosts
-var dots = []; //All Dots
-var platforms;
-var score = 0;
-var maxScore = 20;
-var scoreText;
-var lives = 3;
-var livesText;
-var key1, key2, key3, key4;
-var starOne;
-var starTwo;
-var group;
+var characters = [], dots = [], ghosts = [];
+var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, key1, key2, key3, key4, starOne, starTwo, group;
+var score = 0, maxScore = 20, lives = 3;
 
 function create() {
 
@@ -41,17 +26,18 @@ function create() {
   createDots(10);
 
   //  Enable physics for sprites, make world boundaries.
-  game.physics.arcade.enable(characters);
-  game.physics.arcade.enable(dots);
-  game.physics.arcade.enable(starOne);
-  game.physics.arcade.enable(starTwo);
+  var gamePhysicsArray = [characters, dots, starOne, starTwo];
+  for (var i = 0; i < gamePhysicsArray.length; i++) {
+    game.physics.arcade.enable(gamePhysicsArray[i]);
+  }
 
-  characters.forEach(function(character) { character.body.collideWorldBounds = true; });
+  characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
 
-  key1.onDown.add(function() { setUserControl(ghosts, 1) });
-  key2.onDown.add(function() { setUserControl(ghosts, 2) });
-  key3.onDown.add(function() { setUserControl(ghosts, 3) });
-  key4.onDown.add(function() { setUserControl(ghosts, 4) });
+  //might want to refactor this and use cursor keys
+  key1.onDown.add( function() { setUserControl(ghosts, 1) } );
+  key2.onDown.add( function() { setUserControl(ghosts, 2) } );
+  key3.onDown.add( function() { setUserControl(ghosts, 3) } );
+  key4.onDown.add( function() { setUserControl(ghosts, 4) } );
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
