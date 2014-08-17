@@ -1,15 +1,21 @@
 body {
+  color: white;
   font-family: Courier;
+  background-image: url('/background.jpg');
+  background-size: cover no-repeat;
 }
 
 h1 {
+  font-size: 50px;
   letter-spacing: 10px;
-  padding: 50px;
+  padding: 40px;
   text-align: center;
   text-transform: uppercase;
+  text-shadow: 2px 2px 2px black;
 }
 
 h2 {
+  text-shadow: 2px 2px 2px black;
   text-align: center;
 }
 
@@ -19,58 +25,44 @@ h3 {
   padding: 0px;
 }
 
-.modal {
-  margin: auto;
-  width: 400px;
-  border: 1px solid black;
-}
-
-form {
-  text-align: center; 
-  line-height: 50px;
-}
-
-input {
-  line-height: 20px;
-  width: 50%;
-}
-
-.button {
-  margin-bottom: 30px;
-  width: 30%;
-  color: white;
-  padding: 7px;
-  border: 1px solid;
-  font-family: Courier;
-  font-size: 1em;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  background-color: indigo;
-}
-
 canvas {
   position: fixed;
-  height:80%;
-  top: 2%;
-  left: 2%;  
+  top: 0%;
+  left: 0%;
+  width: 70%; 
+  height: 100%;
 }
 
+/* Chat */
+
 #chat-widget {
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
-  width: 300px;
-  top: 2%;
-  right: 2%;
+  width: 30%;
+  height: 100%;
+  top: 0%;
+  right: 0%;
   text-align: left;
 }
 
 #chat-form {
   font-family: Courier;
   text-align: left;
-  margin-top: 20px;
 }
 
-input {
+#chat-widget input {
+  margin-left: 10px;
+  margin-right: 0px;
   font-family: Courier;
   font-size: 1em;
+}
+
+#user-name {
+  display: none;
+}
+
+#msg-input {
+  width: 70%;
 }
 
 #send {
@@ -82,7 +74,59 @@ input {
   font-size: 1em;
 }
 
-/* Front page links; to be deleted */
+/* Homepage */
+
+#welcome {
+  margin: auto;
+  width: 400px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#welcome a:link, a:visited {
+  padding: 10px;
+  color: white;
+}
+
+#welcome a:hover {
+  padding: 10px;
+  background-color: indigo;
+  border: 1px solid white;
+}
+
+#welcome form {
+  text-align: center; 
+  line-height: 50px;
+}
+
+#welcome input {
+  line-height: 20px;
+  width: 50%;
+}
+
+#welcome .button {
+  margin-bottom: 30px;
+  width: 30%;
+  color: white;
+  padding: 7px;
+  border: 1px solid;
+  font-family: Courier;
+  font-size: 1em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: indigo;
+}
+
+.modal.sign_up_sign_in {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 300px;
+  margin-left: -250px;
+  margin-top: -150px;
+}
+
+/* to be deleted */
 
 ul.hmenu {
   display: none;
