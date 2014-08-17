@@ -1,13 +1,17 @@
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
 body {
   color: white;
   font-family: Courier;
+  background-color: black;
   background-image: url('/background.jpg');
   background-size: cover no-repeat;
 }
 
 h1 {
+  font-family: 'Press Start 2P';
   font-size: 50px;
-  letter-spacing: 10px;
+  letter-spacing: 5px;
   padding: 40px;
   text-align: center;
   text-transform: uppercase;
@@ -15,6 +19,7 @@ h1 {
 }
 
 h2 {
+  text-transform: lowercase;
   text-shadow: 2px 2px 2px black;
   text-align: center;
 }
