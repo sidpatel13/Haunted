@@ -5,5 +5,30 @@ ul.hmenu {
 }
 
 ul.hmenu li {
-  display: inline;  
+  display: inline;
+  visibility: hidden;  
+}
+
+
+/* courtesy cassie */
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 50px;
+}
+
+.modal {
+  margin: auto;
+  width: 400px;
+  border: 1px solid black;
+}
+
+form {
+  text-align: center; 
+  line-height: 50px;
+}
+
+.button {
+  margin-bottom: 30px;
 }
