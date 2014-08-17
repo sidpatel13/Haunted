@@ -14,14 +14,16 @@
   <% end %>
 
   <%= csrf_meta_tags %>
-
 </head>
 <body>
-  <ul class="hmenu">
-    <%= render 'devise/menu/registration_items' %>
-    <%= render 'devise/menu/login_items' %>
-  </ul>
-<%= yield %>
+
+  <div id="container">
+    <ul class="hmenu">
+      <%= render 'devise/menu/registration_items' %>
+      <%= render 'devise/menu/login_items' %>
+    </ul>
+    <%= yield %>
+  </div id="container">
 
 </body>
 </html>

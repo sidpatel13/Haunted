@@ -1,18 +1,11 @@
-<h1> Pac Man </h1>
-
 <input type="hidden" id="room-session" value="<%= @room_session %>">
 
-<input type="radio" name="player" id="pacman">Pacman<br>
-<input type="radio" name="player" id="ghost">Ghost<br>
-
 <div id="chat-widget">
+  <h3>Haunted</h3>
+  <h2>Chat</h2>
   <div id="msg-output"></div>
   <form id="chat-form">
-    <label>User Name</label>
-    <input type="text" id="user-name"></input> <br>
-
-    <label>Message</label>
-    <input type="text" id="msg-input"></input>
-    <input type="submit" id="send" value="send"></input>
+    <input type="text" id="msg-input" placeholder="Message">
+    <input type="submit" id="send" value="send">
   </form>
 </div>
