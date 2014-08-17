@@ -9,6 +9,7 @@
   <% if request.original_url != "http://localhost:3000/" %>
   <%= javascript_include_tag (@js or 'application'), 'data-turbolinks-track' => true %>
   <% else %>
+  <script language="JavaScript" type = "text/Javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
   <% end %>
 
