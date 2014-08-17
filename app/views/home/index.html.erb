@@ -1,1 +1,15 @@
-<h1>Home page</h1>
+<h1>Haunted</h1>
+
+<dialog class="modal" id="welcome">
+
+<h2>Welcome</h2>
+
+ <%= form_for :user do |f| %>
+    What is your name?<br><br>
+    <%= f.text_field :name %><br><br>
+    or sign in<br><br>
+    <%= button_to "New Game", rooms_path, :class =>"button", method: :get %>
+
+  <% end %>
+
+</dialog>
