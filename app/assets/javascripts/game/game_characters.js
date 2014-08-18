@@ -33,14 +33,3 @@ gameCharacters.createGhosts = function() {
   ghosts.push(ghost1, ghost2, ghost3, ghost4);
   characters.push(ghost1, ghost2, ghost3, ghost4);
 }
-
-
-gameCharacters.setUserControl = function(ghosts, ghostNumber) {
-  for(var i = 0; i < ghosts.length; i++) {
-    if (i === (ghostNumber -1)) {
-      ghosts[i].userControl = true;
-    } else {
-      ghosts[i].userControl = false;
-    }
-  }
-}
