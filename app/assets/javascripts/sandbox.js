@@ -19,8 +19,8 @@ $(document).ready(function() {
   var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
   function preload() {
-    game.load.image('phaser', '/person.png');
-    game.load.spritesheet('veggies', '/star.png', 32, 32);
+    game.load.image('phaser', '/images/person.png');
+    game.load.spritesheet('veggies', '/images/star.png', 32, 32);
   }
 
   var sprite;
