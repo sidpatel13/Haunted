@@ -1,4 +1,4 @@
-board = {}
+var board = {}
 
 board.createBoard = function() {
   walls = game.add.group();

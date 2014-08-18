@@ -3,7 +3,6 @@
 //= require game/game_characters.js
 //= require game/controls.js
 //= require game/images.js
-//= require game/game_pieces.js
 //= require game/features.js
 
 var game = new Phaser.Game( 833, 715, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
