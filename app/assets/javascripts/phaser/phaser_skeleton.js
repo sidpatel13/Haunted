@@ -14,6 +14,7 @@ function preload() {
 
   game.load.tilemap('map', '/fartedshartpart.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/deserttile.png');
+  game.load.audio('music', '/music.mp3');
 };
 
 var characters = [], dots = [], ghosts = [], powerUp = [];
@@ -26,18 +27,26 @@ var score = 0, maxScore = 20, lives = 4, ghost_lives = 4, dot_count = 10, powerU
 var map;
 var layer;
 var cursors;
+var music;
 // var a;
+
+//
+
 
 //create sprites (game icons) to be used during game play
 function create() {
+  music = game.add.audio('music');
+  music.play();
+  features.changeMusicVolume();
+
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // game.physics.startSystem(Phaser.Physics.P2JS);
 
-map = game.add.tilemap('map');
-map.addTilesetImage('Desert');
-layer = map.createLayer('Ground');
+  map = game.add.tilemap('map');
+  map.addTilesetImage('Desert');
+  layer = map.createLayer('Ground');
 
-layer.resizeWorld();
+  layer.resizeWorld();
 
 // var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
 // collisionLayer = map.createLayer('ObjectLayer'); //no work :(
