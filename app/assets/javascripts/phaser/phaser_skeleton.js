@@ -13,7 +13,7 @@ function preload() {
   loadImages();
 };
 
-var characters = [], dots = [], ghosts = [];
+var characters = [], dots = [], ghosts = [], powerUp = [];
 var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, key1, key2, key3, key4, starOne, starTwo, group;
 var score = 0, maxScore = 20, lives = 3;
 
@@ -28,11 +28,12 @@ function create() {
   gameCharacters.createGhosts();
   controls.createHotkeys();
   gamePieces.createTeleport();
+  gamePieces.createPowerUp();
   gamePieces.createMultipleDots(10);
 
   //  Enable physics for sprites, make world boundaries.
 
-  var gamePhysicsArray = [characters, dots, starOne, starTwo];
+  var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
   for (var i = 0; i < gamePhysicsArray.length; i++) {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
@@ -58,20 +59,11 @@ function create() {
 //create in game functionality such as collisions and updating locations of sprites
 function update() {
 
-  // game.physics.overlap(person.sprite, platforms, collisionHandler, null, this);
-  game.physics.arcade.collide(person, platforms);
-
-
-  game.physics.arcade.collide(person, walls, collisionHandler, null, this);
-  //game.physics.arcade.collide(group, group);
-
-  function collisionHandler(person, veg) {
-
-  }
-
+  game.physics.arcade.collide(person, walls);
 
   game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
   game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
+  game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
 
