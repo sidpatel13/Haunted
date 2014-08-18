@@ -8,11 +8,9 @@
 
 var game = new Phaser.Game( 833, 715, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
-//preload images to use as icons in the game
 function preload() {
   loadImages();
-
-  game.load.tilemap('map', '/fartedshartpart.json', null, Phaser.Tilemap.TILED_JSON);
+  game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
   game.load.audio('music', '/music.mp3');
 };
@@ -28,9 +26,6 @@ var map;
 var layer;
 var cursors;
 var music;
-// var a;
-
-//
 
 features.changeMusicVolume();
 
