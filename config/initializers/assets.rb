@@ -11,4 +11,3 @@ Rails.application.config.assets.precompile += %w( main.js )
 Rails.application.config.assets.precompile += %w( sandbox.js )
 Rails.application.config.assets.precompile += %w( vex.css )
 Rails.application.config.assets.precompile += %w( vex-theme-wireframe.css )
-

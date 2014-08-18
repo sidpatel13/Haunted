@@ -1,7 +1,7 @@
 <%= javascript_include_tag "main.js" %>
 
 <script>
-  vex.dialog.alert('Send your friend this url to play!<br><input id="game-url" type="text" placeholder="<%=request.original_url%>"></input>');
+  vex.dialog.alert('Send your friend this url to play!<br><input id="game-url" type="text" value="<%=request.original_url%>"></input>');
 </script>
 
 <input type="hidden" id="room-session" value="<%= @room_session %>">
