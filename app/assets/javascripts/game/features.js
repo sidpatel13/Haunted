@@ -25,9 +25,14 @@ features.eatDot = function(person, dots) {
   scoreText.text = 'score: ' + score;
   dots.kill();
   score++;
-  if (score === maxScore) {
-    features.gameOver("Player 1");
-  }
+}
+
+features.powerUp = function(person, powerUp) {
+  console.log("fahia bones himself")
+  score += 5;
+  scoreText.text = 'score: ' + score;
+  powerUp.kill();
+  person.powerUp = true;
 }
 
 features.gameOver = function(winner) {
@@ -42,3 +47,4 @@ features.returnCoordinates = function(sprite) {
   var coordinates = [sprite.x, sprite.y];
   return coordinates;
 };
+
