@@ -36,4 +36,9 @@ features.gameOver = function(winner) {
 
 features.eatGhosts = function(person, ghosts) {
   ghosts.kill();
-}
+};
+
+features.returnCoordinates = function(sprite) {
+  var coordinates = [sprite.x, sprite.y];
+  return coordinates;
+};

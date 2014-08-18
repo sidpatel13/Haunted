@@ -104,10 +104,3 @@ function update() {
   });
 
 }
-
-
-
-function returnCoordinates(sprite) {
-  var coordinates = [sprite.x, sprite.y];
-  return coordinates;
-}
