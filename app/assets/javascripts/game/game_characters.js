@@ -33,4 +33,3 @@ gameCharacters.createGhosts = function() {
   ghosts.push(ghost1, ghost2, ghost3, ghost4);
   characters.push(ghost1, ghost2, ghost3, ghost4);
 }
-

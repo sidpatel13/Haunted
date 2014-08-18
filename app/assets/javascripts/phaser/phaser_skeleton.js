@@ -89,6 +89,8 @@ function update() {
         character.body.velocity.y = 200;
         character.body.velocity.x = 0;
       }
+    } else {
+      game.physics.arcade.moveToObject(character, person, 60);
     }
 
     livesText.text = 'lives: ' + lives;
