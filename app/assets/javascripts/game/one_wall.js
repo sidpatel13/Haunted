@@ -1,105 +1,122 @@
 //= require phaser/phaser.min.js
-//= require game/board.js
+
 //= require game/game_characters.js
 //= require game/controls.js
 //= require game/images.js
 //= require game/game_pieces.js
 //= require game/features.js
 
-var game = new Phaser.Game(833, 715, Phaser.AUTO, 'phaser-game', { preload: preload, create: create, update: update, render: render});
+var game = new Phaser.Game( 833, 715, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
+//preload images to use as icons in the game
 function preload() {
-  game.load.tilemap('map', '/fart.json', null, Phaser.Tilemap.TILED_JSON);
-  // game.load.image('grassdirt', '/grass-tiles-2-small.png');
-  // game.load.image('shrooms', '/littleshrooms_0.png');
+  loadImages();
+
+  game.load.tilemap('map', '/fartedshartpart.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/deserttile.png');
-  // game.load.image('person', '/person.png');
+};
 
-}
-
+var characters = [], dots = [], ghosts = [], powerUp = [], keys = [];
+var key1, key2, key3, key4;
+var person, ghost1, ghost2, ghost3, ghost4;
+var platforms;
+var scoreText, livesText, starOne, starTwo;
+var score = 0, maxScore = 20, lives = 4, ghost_lives = 4, dot_count = 10, powerUp_count = 1;
 var map;
 var layer;
-// var person;
 var cursors;
+var a;
 
-
+//create sprites (game icons) to be used during game play
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
-  // game.stage.backgroundColor = '90EE90'
-  map = game.add.tilemap('map');
-  map.addTilesetImage('Desert');
+  game.physics.startSystem(Phaser.Physics.P2JS);
 
-var tile = map.getTileWorldXY(x, y, undefined, undefined, 'objectlayer1 ');
-  if(tile != null)
-  {
-     // the tileset index
-     var index = map.getTilesetIndex('your-tileset-name-in-json');
-     // null = no such tileset
-     if(index != null)
-     {
-        var tileset = map.tilesets[index];
-        // finally you can grab the props of your tile - mind that Phaser.Tile.index starts with 1; however tileProperties start with 0;
-        var tileProps = tileset.tileProperties[tile.index-1];
-     }
+map = game.add.tilemap('map');
+map.addTilesetImage('Desert');
+layer = map.createLayer('Ground');
+
+layer.resizeWorld();
+
+var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
+// collisionLayer = map.createLayer('ObjectLayer'); //no work :(
+// this.game.physics.p2.convertCollisionObjects(map, visualLayer, collisionLayer);
+
+  // map = game.add.tilemap('map');
+  // map.addTilesetImage('Desert');
+
+  // layer = map.createLayer('Ground');
+  // collisionLayer = map.createLayer('ObjectLayer');
+
+
+
+  // var tile = map.getTileWorldXY(x, y, undefined, undefined, 'ObjectLayer1');
+  // // null = not such tile under x/y
+  //   if(tile != null){
+  //  // the tileset index
+  //   var index = map.getTilesetIndex('Desert');
+  //  // null = no such tileset
+  //     if(index != null){
+  //       var tileset = map.tilesets[index];
+  //       // finally you can grab the props of your tile - mind that Phaser.Tile.index starts with 1; however tileProperties start with 0;
+  //       var tileProps = tileset.tileProperties[tile.index-1];
+  //     }
+  //   }
+
+  // createBoard();
+  controls.createHotkeys();
+  gameCharacters.createPerson();
+  gameCharacters.createGhosts();
+  gamePieces.createTeleport();
+  gamePieces.createPowerUp();
+  gamePieces.createMultipleDots(dot_count);
+
+  //  Enable physics for sprites, make world boundaries.
+
+  var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
+
+  for (var i = 0; i < gamePhysicsArray.length; i++) {
+    game.physics.arcade.enable(gamePhysicsArray[i]);
   }
-  // map.setCollisionBetween(13, 14);
-  // map.setCollisionBetween(39, 40);
-  // map.setCollisionBetween(65, 66);
-  // map.setCollisionBetween(91, 92);
-  // map.setCollisionBetween(117, 118);
-  // map.setCollisionBetween(143, 144);
 
-  // map.setCollision(118);
+  for (var i = 0; i < characters.length; i++) {
+    characters[i].body.collideWorldBounds = true;
+  }
 
-  layer = map.createLayer('Ground');
-  layer.resizeWorld();
+  for (var i = 0; i < keys.length; i ++) {
+    keys[i].onDown.add( function() { gameCharacters.setUserControl(ghosts, i + 1) } );
+  }
 
-  person = game.add.sprite(40, 40, 'person');
-  person.anchor.setTo(0.5, 0.5);
-  person.scale.setTo(0.3,.3);
-
-  game.physics.arcade.enable(person);
-  person.body.collideWorldBounds = true;
-
-  // map.addTilesetImage('tree');
-
-
+  livesText = game.add.text(680, 550, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
+  scoreText = game.add.text(32, 550, 'score:' + score, { font: "20px Arial", fill: "#ffffff", align: "left" });
 
   cursors = game.input.keyboard.createCursorKeys();
 
 
-
-  // console.log(layer)
-
-  // console.log(map)
-  // map.addTilesetImage('shrooms');
-  //
-  // map.addTilesetImage('tree');
-  // layer = map.createLayer('grasslevel');
-  // layer2 = map.createLayer('treeandshroomlevel');
-  // layer3 = map.createLayer('toplevel');
-  // game.resizeWorld();
-  // map.setCollisionBetween(0, 100)
-
 }
 
+//create in game functionality such as collisions and updating locations of sprites
 function update() {
-  game.physics.arcade.collide(person, layer);
 
-  // if (cursors.up.isUp){
-  //   person.body.velocity.y = 150;
-  // }
-  // else if (cursors.left.isLeft){
-  //   person.body.velocity.x = -150;
-  // }
-  // else if (cursors.right.isRight){
-  //   person.body.velocity.x = 150;
-  // }
-  // else if (cursors.down.isDown){
-  //   person.body.velocity.y = -150
-  // }
+  // game.physics.arcade.collide(person, walls);
+  // game.physics.arcade.collide(person, layer);
+  // game.physics.arcade.collide(person, collisionLayer);
 
-  if (cursors.left.isDown){
+
+  game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
+  game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
+  game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
+  game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
+  if (person.powerUp === true){
+    game.physics.arcade.overlap(person, ghosts, features.eatGhosts, null, this);
+  }
+  else {
+    game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
+  }
+
+  characters.forEach(function(character) {
+    if (character.userControl === true) {
+      if (cursors.left.isDown){
         person.body.velocity.x = -200;
         person.body.velocity.y = 0;
       } else if (cursors.right.isDown){
@@ -112,89 +129,11 @@ function update() {
         person.body.velocity.y = 200;
         person.body.velocity.x = 0;
       }
+    }
+
+    livesText.text = 'lives: ' + lives;
+    scoreText.text = 'score: ' + score;
+
+  });
+
 }
-
-
-
-// var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
-
-// function preload() {
-
-//     game.load.image('phaser', 'assets/sprites/phaser-dude.png');
-//     game.load.spritesheet('veggies', 'assets/sprites/fruitnveg32wh37.png', 32, 32);
-
-// }
-
-// var sprite;
-// var group;
-// var cursors;
-
-// function create() {
-
-//     game.physics.startSystem(Phaser.Physics.ARCADE);
-
-//     game.stage.backgroundColor = '#2d2d2d';
-
-//     //  This example will check Sprite vs. Group collision
-
-//     sprite = game.add.sprite(32, 200, 'phaser');
-//     sprite.name = 'phaser-dude';
-
-//     game.physics.enable(sprite, Phaser.Physics.ARCADE);
-
-//     group = game.add.group();
-//     group.enableBody = true;
-//     group.physicsBodyType = Phaser.Physics.ARCADE;
-
-//         var c = group.create(game.rnd.integerInRange(100, 770), game.rnd.integerInRange(0, 570), 'veggies', game.rnd.integerInRange(0, 35));
-//         c.name = 'veg';
-//         c.body.immovable = true;
-
-
-
-//     cursors = game.input.keyboard.createCursorKeys();
-
-// }
-
-// function update() {
-
-//     game.physics.arcade.collide(sprite, group, collisionHandler, null, this);
-//     game.physics.arcade.collide(group, group);
-
-//     sprite.body.velocity.x = 0;
-//     sprite.body.velocity.y = 0;
-
-//     if (cursors.left.isDown)
-//     {
-//         sprite.body.velocity.x = -200;
-//     }
-//     else if (cursors.right.isDown)
-//     {
-//         sprite.body.velocity.x = 200;
-//     }
-
-//     if (cursors.up.isDown)
-//     {
-//         sprite.body.velocity.y = -200;
-//     }
-//     else if (cursors.down.isDown)
-//     {
-//         sprite.body.velocity.y = 200;
-//     }
-
-// }
-
-// function collisionHandler (player, veg) {
-
-//     //  If the player collides with the chillis then they get eaten :)
-//     //  The chilli frame ID is 17
-
-//     if (veg.frame == 17)
-//     {
-//         veg.kill();
-//     }
-
-// }
-
-/////////////////////////
-

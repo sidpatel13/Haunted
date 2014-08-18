@@ -2,7 +2,7 @@ var gameCharacters = {};
 
 gameCharacters.createPerson = function() {
   person = game.add.sprite(100, game.world.height - 150, 'person');
-  person.scale.setTo(0.5, 0.5);
+  person.scale.setTo(0.4, 0.4);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = true;
   person.powerUp = false;

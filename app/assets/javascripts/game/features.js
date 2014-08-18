@@ -2,12 +2,14 @@ var features = {};
 
 features.teleportOne = function(person, starOne) {
   person.kill();
-  person.reset(746,300);
+  person.reset(790,358);
+  person.body.velocity.x = -200;
 };
 
 features.teleportTwo = function(person, starTwo) {
   person.kill();
-  person.reset(56,300);
+  person.reset(40,358);
+  person.body.velocity.x = 200;
 };
 
 features.loseLife = function(person, ghosts) {
