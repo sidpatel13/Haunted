@@ -23,7 +23,7 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   createBoard();
-  createPerson();
+  gamePieces.createPerson();
   createGhosts();
   createHotkeys();
   createTeleport();

@@ -1,7 +1,9 @@
 // var character = {};
 // character.createPerson
 
-function createPerson() {
+var gamePieces = {};
+
+gamePieces.createPerson = function() {
   person = game.add.sprite(100, game.world.height - 150, 'person');
   person.scale.setTo(0.5, 0.5);
   person.anchor.setTo(0.5, 0.5);
