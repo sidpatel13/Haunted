@@ -5,14 +5,15 @@
     <div id="welcome">
 
       <%= form_for :user do |f| %>
-        
         <h2>welcome</h2>
-        
+
         what is your name?<br>
         
         <%= f.text_field :name %><br>
         
-        or <%= link_to "sign up / sign in", root_path, :class => "sign_up_sign_in" %><br><br>
+        or<br>
+
+        <%= link_to "sign up / sign in", new_user_session_path, :id => "registration" %><br><br>
         
         <%= button_to "New Game", rooms_path, :class =>"button", method: :get %>
       <% end %>
@@ -21,11 +22,9 @@
 
     <br>
 
-    <div class="modal sign_up_sign_in">
+    <div class="modal registration">
       Test
     </div>
 
-    <div id="transparent_background">
-    </div>
 
 </div>
