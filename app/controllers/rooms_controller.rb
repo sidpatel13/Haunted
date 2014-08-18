@@ -8,12 +8,10 @@ class RoomsController < ApplicationController
 
   def show
     @room_session = params[:room_session]
-    @show_game = true
   end
 
   def sandbox
-    @js = "sandbox"
-    @show_game = true
+    @sandbox = true
     render :show
   end
 

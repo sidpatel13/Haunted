@@ -1,4 +1,8 @@
-<%= javascript_include_tag "main.js" %>
+<% if @sandbox %>
+  <%= javascript_include_tag "sandbox.js" %>
+<% else %>
+  <%= javascript_include_tag "main.js" %>
+<% end %>
 
 <script>
   vex.dialog.alert('Send your friend this url to play!<br><input id="game-url" type="text" value="<%=request.original_url%>"></input>');
