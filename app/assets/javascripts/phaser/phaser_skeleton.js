@@ -72,8 +72,8 @@ function update() {
 
   game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
   game.physics.arcade.overlap(person, dots, eatDot, null, this);
-  game.physics.arcade.overlap(person, starOne, teleportOne, null, this);
-  game.physics.arcade.overlap(person, starTwo, teleportTwo, null, this);
+  game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
+  game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
 
   if (person.powerUp == true){ // there is no attrb for powerUp yet)
     game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
@@ -130,13 +130,5 @@ function gameOver (winner) {
   console.log("game over winner: " + winner);
 }
 
-function teleportOne(person, starOne) {
-  person.kill();
-  person.reset(746,300);
-};
 
-function teleportTwo(person, starTwo) {
-  person.kill();
-  person.reset(56,300);
-};
 

@@ -10,3 +10,13 @@ features.loseLife = function(person, ghosts) {
     person.reset(100, 100);
   }
 };
+
+features.teleportOne = function(person, starOne) {
+  person.kill();
+  person.reset(746,300);
+};
+
+features.teleportTwo = function(person, starTwo) {
+  person.kill();
+  person.reset(56,300);
+};
