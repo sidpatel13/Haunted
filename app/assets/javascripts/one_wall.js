@@ -1,19 +1,51 @@
 //= require ./phaser.min.js
+//= require jquery
+//= require jquery_ujs
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+$(document).ready(function() {
+    // Setup
+    //var roomSession = $("#room-session").val();
+    var roomSession = "one_wall";
 
-function preload() {
+    if (typeof roomSession !== "undefined") {
+      var firebase = new firebaseSetup(roomSession);
+    }
 
-    game.load.image('phaser', 'assets/sprites/phaser-dude.png');
-    game.load.spritesheet('veggies', 'assets/sprites/fruitnveg32wh37.png', 32, 32);
+    // Recieve a message
+    firebase.game.on("child_changed", updateCoordinates);
 
-}
+    function sendCoordinates(sprite) {
+      firebase.game.push({
+        message : {
+          sprite: sprite,
+          x_coordinates: sprite.x,
+          y_coordinates: sprite.y,
+          timestamp: Firebase.ServerValue.TIMESTAMP
+        }
+      });
+    }
 
-var sprite;
-var group;
-var cursors;
+    function updateCoordinates() {}
 
-function create() {
+  function firebaseSetup(roomSession) {
+    this.ref = new Firebase("https://haunted.firebaseio.com/");
+    this.room = this.ref.child(roomSession);
+    this.chat = this.room.child("chat");
+    this.game = this.room.child("game");
+  }
+
+  var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+
+  function preload() {
+    game.load.image('phaser', '/person.png');
+    game.load.spritesheet('veggies', '/star.png', 32, 32);
+  }
+
+  var sprite;
+  var group;
+  var cursors;
+
+  function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -30,17 +62,17 @@ function create() {
     group.enableBody = true;
     group.physicsBodyType = Phaser.Physics.ARCADE;
 
-        var c = group.create(game.rnd.integerInRange(100, 770), game.rnd.integerInRange(0, 570), 'veggies', game.rnd.integerInRange(0, 35));
-        c.name = 'veg';
-        c.body.immovable = true;
+    var c = group.create(game.rnd.integerInRange(100, 770), game.rnd.integerInRange(0, 570), 'veggies', game.rnd.integerInRange(0, 35));
+    c.name = 'veg';
+    c.body.immovable = true;
 
 
 
     cursors = game.input.keyboard.createCursorKeys();
 
-}
+  }
 
-function update() {
+  function update() {
 
     game.physics.arcade.collide(sprite, group, collisionHandler, null, this);
     game.physics.arcade.collide(group, group);
@@ -50,32 +82,29 @@ function update() {
 
     if (cursors.left.isDown)
     {
-        sprite.body.velocity.x = -200;
+      sprite.body.velocity.x = -200;
     }
     else if (cursors.right.isDown)
     {
-        sprite.body.velocity.x = 200;
+      sprite.body.velocity.x = 200;
     }
 
     if (cursors.up.isDown)
     {
-        sprite.body.velocity.y = -200;
+      sprite.body.velocity.y = -200;
     }
     else if (cursors.down.isDown)
     {
-        sprite.body.velocity.y = 200;
+      sprite.body.velocity.y = 200;
     }
 
-}
+  }
 
-function collisionHandler (player, veg) {
-
-    //  If the player collides with the chillis then they get eaten :)
-    //  The chilli frame ID is 17
-
-    if (veg.frame == 17)
-    {
-        veg.kill();
-    }
-
-}
+  function collisionHandler (player, veg) { 
+    //console.log(player.position.x);
+    firebase.game.set({
+      player_x : player.position.x,
+      player_y : player.position.y
+    });
+  }
+});
