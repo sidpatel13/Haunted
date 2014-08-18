@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Haunted</title>
+  
   <script src="https://cdn.firebase.com/js/client/1.0.19/firebase.js"></script>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  
+  <%= stylesheet_link_tag 'application', 'vex', 'vex-theme-os', media: 'all', 'data-turbolinks-track' => true %>
 
   <!-- Need to change way to identify homepage -->
   <% if request.original_url != "http://localhost:3000/" %>
@@ -12,6 +14,9 @@
   <script language="JavaScript" type = "text/Javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
   <% end %>
+
+  <script src="/assets/vex.combined.min.js"></script>
+  <script>vex.defaultOptions.className = 'vex-theme-os';</script>
 
   <%= csrf_meta_tags %>
 </head>
