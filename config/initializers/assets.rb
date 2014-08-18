@@ -8,5 +8,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( home.js )
 Rails.application.config.assets.precompile += %w( vex.css )
-Rails.application.config.assets.precompile += %w( vex-theme-os.css )
+Rails.application.config.assets.precompile += %w( vex-theme-wireframe.css )
 Rails.application.config.assets.precompile += %w( one_wall.js )
