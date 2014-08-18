@@ -1,5 +1,5 @@
-//= require firebase.js
 //= require vendor/phaser.min.js
+//= require firebase.js
 //= require game/board.js
 //= require game/game_characters.js
 //= require game/controls.js
@@ -7,9 +7,10 @@
 //= require game/features.js
 
 $(document).ready(function() {
+  console.log("This happend first");
   var roomSession = $("#room-session").val();
   if (typeof roomSession !== "undefined") {
-    var fb = new firebase.firebaseSetup(roomSession);
+    fb = new firebase.firebaseSetup(roomSession);
   }
 
   // Recieve a message
@@ -45,6 +46,7 @@ var map;
 var layer;
 var cursors;
 var music;
+var fb;
 
 features.changeMusicVolume();
 
@@ -124,6 +126,26 @@ function update() {
   game.physics.arcade.collide(person, walls);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
+
+  if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
+    fb.game.set({
+      player: {
+        x : person.position.x,
+        y : person.position.y
+      }
+    });
+  }
+
+  fb.game.on("child_changed", function(snapshot) {
+    var x = snapshot.val().x
+    var y = snapshot.val().y
+    updatePerson(x, y)
+  });
+
+  function updatePerson(x, y) {
+    person.x = x;
+    person.y = y;
+  }
 
 
   for (var i = 0; i < ghosts.length; i++) {

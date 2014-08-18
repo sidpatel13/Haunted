@@ -11,6 +11,8 @@ gameCharacters.createPerson = function() {
   person.animations.add('left', [38, 39], 0, true);
   person.animations.add('up', [52, 53], 0, true);
   person.powerUp = false;
+  person.lastx = person.x;
+  person.lasty = person.y;
   characters.push(person);
 }
 
