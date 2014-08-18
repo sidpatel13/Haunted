@@ -35,12 +35,14 @@ gameCharacters.createGhosts = function() {
 }
 
 
-gameCharacters.setUserControl = function(ghosts, ghostNumber) {
-  for(var i = 0; i < ghosts.length; i++) {
-    if (i === (ghostNumber -1)) {
-      ghosts[i].userControl = true;
-    } else {
-      ghosts[i].userControl = false;
-    }
-  }
-}
+// gameCharacters.setUserControl = function(ghosts, ghostNumber) {
+//   for(var i = 0; i < ghosts.length; i++) {
+//     if (i === (ghostNumber - 1)) {
+//       ghosts[i].userControl = true;
+//     } else {
+//       ghosts[i].userControl = false;
+//     }
+//   }
+// }
+
+
