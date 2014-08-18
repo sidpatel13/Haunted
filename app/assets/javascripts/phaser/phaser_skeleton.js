@@ -4,8 +4,6 @@
 //= require game/hotkeys.js
 //= require game/images.js
 
-//= require_tree ./game
-
 var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update } );
 
 
