@@ -3,10 +3,15 @@ function createImage(name) {
   game.load.image(name, location)
 }
 
+function createSpritesheet(name, num) {
+  var location = "./" + name + ".png";
+  game.load.spritesheet(name, location, num, num)
+}
+
 function loadImages() {
   createImage("ghost");
-  createImage("person");
   createImage("star");
   createImage("firstaid");
   createImage("diamond");
+  createSpritesheet("sprites", 32);
 };
