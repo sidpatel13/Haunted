@@ -11,7 +11,7 @@ gamePieces.createTeleport = function() {
 }
 
 gamePieces.createOneDot = function() {
-    dot = game.add.sprite(Math.random()*800, Math.random()*600, 'diamond');
+    dot = game.add.sprite(Math.random()*700, Math.random()*500, 'diamond');
     dot.anchor.setTo(0.5, 0.5);
     dots.push(dot);
 };
@@ -23,7 +23,7 @@ gamePieces.createMultipleDots = function(count) {
 };
 
 gamePieces.createPowerUp = function() {
-  cherry = game.add.sprite(250, 200, 'star');
+  cherry = game.add.sprite(Math.random()*700, Math.random()*500, 'star');
   cherry.anchor.setTo(0.5, 0.5);
   powerUp.push(cherry);
 };
