@@ -9,4 +9,4 @@ function loadImages() {
   createImage("star");
   createImage("firstaid");
   createImage("diamond");
-}
+};

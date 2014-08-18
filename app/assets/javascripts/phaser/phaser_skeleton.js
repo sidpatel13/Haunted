@@ -1,7 +1,7 @@
 //= require phaser/phaser.min.js
 //= require game/board.js
 //= require game/game_pieces.js
-//= require game/hotkeys.js
+//= require game/controls.js
 //= require game/images.js
 
 var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update } );
@@ -24,7 +24,7 @@ function create() {
   createBoard();
   gamePieces.createPerson();
   gamePieces.createGhosts();
-  createHotkeys();
+  controls.createHotkeys();
   createTeleport();
   createDots(10);
 
