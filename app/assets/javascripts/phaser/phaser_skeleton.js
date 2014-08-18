@@ -74,7 +74,7 @@ function create() {
   //   }
 
 
-  createBoard();
+  board.createBoard();
   controls.createHotkeys();
   gameCharacters.createPerson();
   gameCharacters.createGhosts();
