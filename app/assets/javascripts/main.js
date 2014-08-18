@@ -1,2 +1,2 @@
-//= require ./firebase.js
+//= require firebase/firebase.js
 //= require ./game.js

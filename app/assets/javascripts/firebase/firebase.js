@@ -1,5 +1,5 @@
-//= require ./firebase_chat.js
-//= require ./firebase_game.js
+//= require firebase/firebase_chat.js
+//= require firebase/firebase_game.js
 
 $(document).ready(function() {
 
