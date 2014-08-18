@@ -1,8 +1,9 @@
 //= require phaser/phaser.min.js
 //= require game/board.js
-//= require game/game_pieces.js
+//= require game/game_characters.js
 //= require game/controls.js
 //= require game/images.js
+//= require game/game_pieces.js
 
 var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update } );
 
@@ -22,11 +23,11 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   createBoard();
-  gamePieces.createPerson();
-  gamePieces.createGhosts();
+  gameCharacters.createPerson();
+  gameCharacters.createGhosts();
   controls.createHotkeys();
-  createTeleport();
-  createDots(10);
+  gamePieces.createTeleport();
+  gamePieces.createMultipleDots(10);
 
   //  Enable physics for sprites, make world boundaries.
 
@@ -38,10 +39,10 @@ function create() {
   characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
 
   //might want to refactor this and use cursor keys
-  key1.onDown.add( function() { gamePieces.setUserControl(ghosts, 1) } );
-  key2.onDown.add( function() { gamePieces.setUserControl(ghosts, 2) } );
-  key3.onDown.add( function() { gamePieces.setUserControl(ghosts, 3) } );
-  key4.onDown.add( function() { gamePieces.setUserControl(ghosts, 4) } );
+  key1.onDown.add( function() { gameCharacters.setUserControl(ghosts, 1) } );
+  key2.onDown.add( function() { gameCharacters.setUserControl(ghosts, 2) } );
+  key3.onDown.add( function() { gameCharacters.setUserControl(ghosts, 3) } );
+  key4.onDown.add( function() { gameCharacters.setUserControl(ghosts, 4) } );
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
@@ -55,6 +56,7 @@ function create() {
 
 //create in game functionality such as collisions and updating locations of sprites
 function update() {
+
   // game.physics.overlap(person.sprite, platforms, collisionHandler, null, this);
   game.physics.arcade.collide(person, platforms);
 
@@ -136,14 +138,13 @@ function gameOver (winner) {
   console.log("game over winner: " + winner);
 }
 
-function teleportOne (person, starOne) {
+function teleportOne(person, starOne) {
   person.kill();
   person.reset(746,300);
-}
+};
 
-function teleportTwo (person, starTwo) {
+function teleportTwo(person, starTwo) {
   person.kill();
   person.reset(56,300);
-}
-
+};
 
