@@ -6,6 +6,25 @@
 //= require game/images.js
 //= require game/features.js
 
+$(document).ready(function() {
+  var roomSession = $("#room-session").val();
+  if (typeof roomSession !== "undefined") {
+    var fb = new firebase.firebaseSetup(roomSession);
+  }
+
+  // Recieve a message
+  fb.chat.on("child_added", firebase.recieveMessage);
+
+  // Send a message
+  $("#chat-form").submit(function(event) {
+    event.preventDefault();
+    var name = $("#user-name").val()
+    var content = $("#msg-input").val()
+    $("#msg-input").val("");
+    firebase.sendMessage(fb, name, content);
+  });
+});
+
 var game = new Phaser.Game( 833, 715, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
 function preload() {

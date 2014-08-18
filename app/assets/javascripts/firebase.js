@@ -1,44 +1,13 @@
-$(document).ready(function() {
+var firebase = {}
 
-  // Setup
-  var roomSession = $("#room-session").val();
-  if (typeof roomSession !== "undefined") {
-    var firebase = new firebaseSetup(roomSession);
-  }
-
-  // Recieve a message
-  firebase.chat.on("child_added", recieveMessage);
-
-  // Send a message
-  $("#chat-form").submit(function(event) {
-    event.preventDefault();
-    var name = $("#user-name").val()
-    var content = $("#msg-input").val()
-    $("#msg-input").val("");
-    sendMessage(firebase, name, content);
-  });
-
-  function sendCoordinates(sprite) {
-    firebase.game.push({
-      message : {
-        sprite: sprite,
-        x_coordinates: sprite.x,
-        y_coordinates: sprite.y,
-        timestamp: Firebase.ServerValue.TIMESTAMP
-      }
-    });
-  }
-
-});
-
-function firebaseSetup(roomSession) {
+firebase.firebaseSetup = function(roomSession) {
   this.ref = new Firebase("https://haunted.firebaseio.com/");
   this.room = this.ref.child(roomSession);
   this.chat = this.room.child("chat");
   this.game = this.room.child("game");
 }
 
-var recieveMessage = function(snapshot) {
+firebase.recieveMessage = function(snapshot) {
   var message = snapshot.val().message;
   var name = message.name;
   var content = message.content;
@@ -49,11 +18,22 @@ var recieveMessage = function(snapshot) {
   $("#msg-output").append(output);
 }
 
-var sendMessage = function(firebase, name, content) {
+firebase.sendMessage = function(firebase, name, content) {
   firebase.chat.push({
     message : {
       name: name,
       content: content,
+      timestamp: Firebase.ServerValue.TIMESTAMP
+    }
+  });
+}
+
+firebase.sendCoordinates = function(sprite) {
+  firebase.game.push({
+    message : {
+      sprite: sprite,
+      x_coordinates: sprite.x,
+      y_coordinates: sprite.y,
       timestamp: Firebase.ServerValue.TIMESTAMP
     }
   });
