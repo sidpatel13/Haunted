@@ -24,7 +24,6 @@ var cursors;
 //create sprites (game icons) to be used during game play
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
-
   createBoard();
   controls.createHotkeys();
   gameCharacters.createPerson();
@@ -79,15 +78,19 @@ function update() {
       if (cursors.left.isDown){
         character.body.velocity.x = -200;
         character.body.velocity.y = 0;
+        character.animations.play('left');
       } else if (cursors.right.isDown){
         character.body.velocity.x = 200;
         character.body.velocity.y = 0;
+        character.animations.play('right');
       } else if (cursors.up.isDown){
         character.body.velocity.y = -200;
         character.body.velocity.x = 0;
+        character.animations.play('up');
       } else if (cursors.down.isDown) {
         character.body.velocity.y = 200;
         character.body.velocity.x = 0;
+        character.animations.play('bottom');
       }
     } else {
       game.physics.arcade.moveToObject(character, person, 60);
