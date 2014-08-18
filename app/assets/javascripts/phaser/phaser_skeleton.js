@@ -48,7 +48,7 @@ function create() {
   }
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-  livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(680, 550, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
 
   cursors = game.input.keyboard.createCursorKeys();
 
@@ -62,13 +62,11 @@ function update() {
 
   game.physics.arcade.collide(person, walls);
 
-  game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
   game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-
-  if (person.powerUp == true){
+  if (person.powerUp === true){
     game.physics.arcade.overlap(person, ghosts, features.eatGhosts, null, this);
   }
   else {

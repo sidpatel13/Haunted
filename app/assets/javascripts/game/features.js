@@ -14,6 +14,7 @@ features.loseLife = function(person, ghosts) {
   lives--;
   livesText.text = 'lives: ' + lives;
   person.kill();
+
   if (lives === 0) {
     features.gameOver("Player 2");
   } else {
@@ -31,7 +32,7 @@ features.powerUp = function(person, powerUp) {
   score += 5;
   scoreText.text = 'score: ' + score;
   powerUp.kill();
-  setTimeout(function(){person.powerUp = true}, 10000);
+  person.powerUp = true;
 }
 
 features.gameOver = function(winner) {
@@ -39,7 +40,7 @@ features.gameOver = function(winner) {
 };
 
 features.eatGhosts = function(person, ghosts) {
-  ghosts.kill();
+    ghosts.kill();
 };
 
 features.returnCoordinates = function(sprite) {
