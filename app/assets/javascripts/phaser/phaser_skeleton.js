@@ -1,10 +1,10 @@
-//= require ./phaser.min.js
-//= require ./board.js
-//= require ./characters.js
-//= require ./hotkeys.js
-//= require ./images.js
+//= require phaser/phaser.min.js
+//= require game/board.js
+//= require game/characters.js
+//= require game/hotkeys.js
+//= require game/images.js
 
-var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update } );
 
 function preload() {
   loadImages();

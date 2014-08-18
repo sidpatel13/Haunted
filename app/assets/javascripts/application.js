@@ -1,4 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require ./main.js
+
+//= require firebase/firebase.js
+//= require phaser/phaser_skeleton.js
