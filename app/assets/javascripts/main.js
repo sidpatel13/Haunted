@@ -26,7 +26,20 @@ $(document).ready(function() {
   });
 });
 
-var game = new Phaser.Game( 833, 715, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
+// Constants
+CANVAS_WIDTH = 833;
+CANVAS_HEIGHT = 715;
+CANVAS_OFFSET = 100;
+
+SCORE = 0;
+MAX_SCORE = 20;
+LIVES = 3;
+GHOST_LIVES = 3;
+DOT_COUNT = 10;
+POWERUP_COUNT = 1;
+
+
+var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
 function preload() {
   loadImages();
@@ -35,12 +48,19 @@ function preload() {
   //game.load.audio('music', '/music.mp3');
 };
 
+// Declare Variables
+var score = SCORE;
+var maxScore = MAX_SCORE;
+var lives = LIVES;
+var ghostLives = GHOST_LIVES;
+var dotCount = DOT_COUNT;
+var powerUpCount = POWERUP_COUNT;
+
 var characters = [], dots = [], ghosts = [], powerUp = [];
 var key1, key2, key3, key4;
 var person, ghost1, ghost2, ghost3, ghost4;
 var platforms;
 var scoreText, livesText, starOne, starTwo;
-var score = 0, maxScore = 20, lives = 4, ghost_lives = 4, dot_count = 10, powerUp_count = 1;
 
 var map;
 var layer;
@@ -52,43 +72,16 @@ features.changeMusicVolume();
 
 //create sprites (game icons) to be used during game play
 function create() {
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+
   music = game.add.audio('music');
   music.play();
 
-  game.physics.startSystem(Phaser.Physics.ARCADE);
-  // game.physics.startSystem(Phaser.Physics.P2JS);
-
   map = game.add.tilemap('map');
   map.addTilesetImage('Desert');
+
   layer = map.createLayer('Ground');
-
   layer.resizeWorld();
-
-// var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
-// collisionLayer = map.createLayer('ObjectLayer'); //no work :(
-// this.game.physics.p2.convertCollisionObjects(map, visualLayer, collisionLayer);
-
-  // map = game.add.tilemap('map');
-  // map.addTilesetImage('Desert');
-
-  // layer = map.createLayer('Ground');
-  // collisionLayer = map.createLayer('ObjectLayer');
-
-
-
-  // var tile = map.getTileWorldXY(x, y, undefined, undefined, 'ObjectLayer1');
-  // // null = not such tile under x/y
-  //   if(tile != null){
-  //  // the tileset index
-  //   var index = map.getTilesetIndex('Desert');
-  //  // null = no such tileset
-  //     if(index != null){
-  //       var tileset = map.tilesets[index];
-  //       // finally you can grab the props of your tile - mind that Phaser.Tile.index starts with 1; however tileProperties start with 0;
-  //       var tileProps = tileset.tileProperties[tile.index-1];
-  //     }
-  //   }
-
 
   board.createBoard();
   controls.createHotkeys();
@@ -96,7 +89,7 @@ function create() {
   gameCharacters.createGhosts();
   board.createTeleport();
   board.createPowerUp();
-  board.createMultipleDots(dot_count);
+  board.createMultipleDots(dotCount);
 
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
 
@@ -113,40 +106,56 @@ function create() {
   key3.onDown.add( function() { controls.setUserControl(3) } );
   key4.onDown.add( function() { controls.setUserControl(4) } );
 
-  livesText = game.add.text(680, 550, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
-  scoreText = game.add.text(32, 550, 'score:' + score, { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(CANVAS_WIDTH - CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
+  scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "#ffffff", align: "left" });
 
   cursors = game.input.keyboard.createCursorKeys();
 
 }
 
-//create in game functionality such as collisions and updating locations of sprites
 function update() {
 
   game.physics.arcade.collide(person, walls);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
-  if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
+  setTimeout(sendCoordinates(), 1000);
+  function sendCoordinates() {
     fb.game.set({
       player: {
         x : person.position.x,
         y : person.position.y
+      },
+      ghost1 : {
+        x : ghost1.position.x,
+        y : ghost1.position.y
       }
     });
   }
+  // if ((person.x !== person.lastx) || (person.y !== person.lasty ) || (ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty)) {
+  //   fb.game.set({
+  //     player: {
+  //       x : person.position.x,
+  //       y : person.position.y
+  //     },
+  //     ghost1 : {
+  //       x : ghost1.position.x,
+  //       y : ghost1.position.y
+  //     }
+  //   });
+  // }
 
   fb.game.on("child_changed", function(snapshot) {
-    var x = snapshot.val().x
-    var y = snapshot.val().y
-    updatePerson(x, y)
+    // var x = snapshot.val().x
+    // var y = snapshot.val().y
+    // updatePerson(x, y)
+    console.log(snapshot.val());
   });
 
   function updatePerson(x, y) {
     person.x = x;
     person.y = y;
   }
-
 
   for (var i = 0; i < ghosts.length; i++) {
     game.physics.arcade.collide(ghosts[i], walls);
@@ -155,12 +164,7 @@ function update() {
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-  if (person.powerUp === true){
-    game.physics.arcade.overlap(person, ghosts, features.eatGhosts, null, this);
-  }
-  else {
-    game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
-  }
+  game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
