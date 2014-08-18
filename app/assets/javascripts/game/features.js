@@ -25,22 +25,22 @@ features.loseLife = function(person, ghosts) {
 
 features.eatDot = function(person, dots) {
   score++;
-  dot_count--;
+  dotCount--;
   dots.kill();
 
-  if (dot_count === 0 && powerUp_count === 0) {
+  if (dotCount === 0 && powerUpCount === 0) {
     features.gameOver("Player 1");
   }
 }
 
 features.powerUp = function(person, powerUp) {
   score += 5;
-  powerUp_count--;
+  powerUpCount--;
   powerUp.kill();
   person.powerUp = true;
   setTimeout(function(){person.powerUp = false}, 5000);
 
-  if (dot_count === 0 && powerUp_count === 0) {
+  if (dotCount === 0 && powerUpCount === 0) {
     features.gameOver("Player 1");
   }
 }
@@ -50,24 +50,27 @@ features.gameOver = function(winner) {
 };
 
 features.eatGhosts = function(person, ghosts) {
-    ghost_lives--;
+    ghostLives--;
     ghosts.kill();
 
-    if (ghost_lives === 0) {
+    if (ghostLives === 0) {
       features.gameOver("Player 1");
     }
 };
 
-features.returnCoordinates = function(sprite) {
-  var coordinates = [sprite.x, sprite.y];
-  return coordinates;
-};
-
+features.pacMeetsGhost = function(person, ghosts) {
+  if (person.powerUp === true){
+    features.eatGhosts(person, ghosts);
+  }
+  else {
+    features.loseLife(person, ghosts);
+  }
+}
 
 features.changeMusicVolume = function() {
-    if (pointer.y < 300){
-        music.volume += 0.1;
-    } else {
-        music.volume -= 0.1;
-    }
+    // if (pointer.y < 300){
+    //     music.volume += 0.1;
+    // } else {
+    //     music.volume -= 0.1;
+    // }
 };
