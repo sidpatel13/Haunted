@@ -13,20 +13,20 @@ function preload() {
   loadImages();
 };
 
-var characters = [], dots = [], ghosts = [], powerUp = [];
-var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, key1, key2, key3, key4, starOne, starTwo, group;
-var score = 0, maxScore = 20, lives = 3;
+var characters = [], dots = [], ghosts = [], powerUp = [], keys = [];
+var key1, key2, key3, key4;
+var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, starOne, starTwo, group;
+var score = 0, maxScore = 20, lives = 4;
 
 
 //create sprites (game icons) to be used during game play
 function create() {
-
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   createBoard();
+  controls.createHotkeys();
   gameCharacters.createPerson();
   gameCharacters.createGhosts();
-  controls.createHotkeys();
   gamePieces.createTeleport();
   gamePieces.createPowerUp();
   gamePieces.createMultipleDots(10);
@@ -34,17 +34,18 @@ function create() {
   //  Enable physics for sprites, make world boundaries.
 
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
+
   for (var i = 0; i < gamePhysicsArray.length; i++) {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
 
-  characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
+  for (var i = 0; i < characters.length; i++) {
+    characters[i].body.collideWorldBounds = true;
+  }
 
-  //might want to refactor this and use cursor keys
-  key1.onDown.add( function() { gameCharacters.setUserControl(ghosts, 1) } );
-  key2.onDown.add( function() { gameCharacters.setUserControl(ghosts, 2) } );
-  key3.onDown.add( function() { gameCharacters.setUserControl(ghosts, 3) } );
-  key4.onDown.add( function() { gameCharacters.setUserControl(ghosts, 4) } );
+  for (var i = 0; i < keys.length; i ++) {
+    keys[i].onDown.add( function() { gameCharacters.setUserControl(ghosts, i + 1) } );
+  }
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
@@ -67,7 +68,7 @@ function update() {
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
 
-  if (person.powerUp == true){ // there is no attrb for powerUp yet)
+  if (person.powerUp == true){
     game.physics.arcade.overlap(person, ghosts, features.eatGhosts, null, this);
   }
   else {
