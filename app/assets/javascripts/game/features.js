@@ -33,6 +33,7 @@ features.powerUp = function(person, powerUp) {
   scoreText.text = 'score: ' + score;
   powerUp.kill();
   person.powerUp = true;
+  setTimeout(function(){person.powerUp = false}, 8000);
 }
 
 features.gameOver = function(winner) {
