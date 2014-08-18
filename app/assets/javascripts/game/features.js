@@ -21,6 +21,15 @@ features.loseLife = function(person, ghosts) {
   }
 };
 
+features.eatDot = function(person, dots) {
+  scoreText.text = 'score: ' + score;
+  dots.kill();
+  score++;
+  if (score === maxScore) {
+    features.gameOver("Player 1");
+  }
+}
+
 features.gameOver = function(winner) {
   alert("game over winner: " + winner);
 };

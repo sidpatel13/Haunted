@@ -71,7 +71,7 @@ function update() {
 
 
   game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
-  game.physics.arcade.overlap(person, dots, eatDot, null, this);
+  game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
 
@@ -110,15 +110,6 @@ function update() {
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
   return coordinates;
-}
-
-function eatDot (person, dots) {
-  dots.kill();
-  score++;
-  scoreText.text = 'score: ' + score;
-  if (score === maxScore) {
-    gameOver("Player 1");
-  }
 }
 
 function eatGhosts (person, ghosts) {
