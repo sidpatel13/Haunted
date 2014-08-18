@@ -36,7 +36,7 @@ canvas {
   min-width: 800px;
   top: 0%;
   left: 0%;
-  width: 70%; 
+  width: 70%;
   height: 100%;
 }
 
@@ -47,7 +47,7 @@ canvas {
   font-size: 1em;
   line-height: 30px;
   margin-top: 30px;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
 }
 
 /* Sidebar */
@@ -131,7 +131,7 @@ canvas {
 }
 
 #welcome form {
-  text-align: center; 
+  text-align: center;
   line-height: 50px;
 }
 
@@ -154,7 +154,7 @@ canvas {
 
 
 #devise {
-  list-style: none; 
+  list-style: none;
   margin-bottom: 20px;
   padding: 0;
 }

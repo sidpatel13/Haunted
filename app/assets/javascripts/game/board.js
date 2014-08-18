@@ -10,19 +10,19 @@ function createBoard() {
 
   for (var i=0; i < 25; i++) {
 
-    //top border
-    wall = walls.create(0+i*32, 0, 'firstaid');
-    wall.body.immovable = true;
+    // //top border
+    // wall = walls.create(0+i*32, 0, 'firstaid');
+    // wall.body.immovable = true;
 
-    //left border
-    wall = walls.create(0, 25+i*20, 'firstaid');
-    wall.scale.setTo(1.5, 0.75);
-    wall.body.immovable = true;
+    // //left border
+    // wall = walls.create(0, 25+i*20, 'firstaid');
+    // wall.scale.setTo(1.5, 0.75);
+    // wall.body.immovable = true;
 
-    //right border
-    wall = walls.create(750, 30+i*20, 'firstaid');
-    wall.scale.setTo(1.5, 0.75);
-    wall.body.immovable = true;
+    // //right border
+    // wall = walls.create(750, 30+i*20, 'firstaid');
+    // wall.scale.setTo(1.5, 0.75);
+    // wall.body.immovable = true;
 
   }
 

@@ -1,5 +1,5 @@
 //= require phaser/phaser.min.js
-//= require game/board.js
+
 //= require game/game_characters.js
 //= require game/controls.js
 //= require game/images.js
@@ -16,22 +16,21 @@ function preload() {
   game.load.image('Desert', '/deserttile.png');
 };
 
-var characters = [], dots = [], ghosts = [], powerUp = [];
+var characters = [], dots = [], ghosts = [], powerUp = [], keys = [];
 var key1, key2, key3, key4;
 var person, ghost1, ghost2, ghost3, ghost4;
 var platforms;
 var scoreText, livesText, starOne, starTwo;
 var score = 0, maxScore = 20, lives = 4, ghost_lives = 4, dot_count = 10, powerUp_count = 1;
-
 var map;
 var layer;
 var cursors;
-// var a;
+var a;
 
 //create sprites (game icons) to be used during game play
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
-  // game.physics.startSystem(Phaser.Physics.P2JS);
+  game.physics.startSystem(Phaser.Physics.P2JS);
 
 map = game.add.tilemap('map');
 map.addTilesetImage('Desert');
@@ -39,7 +38,7 @@ layer = map.createLayer('Ground');
 
 layer.resizeWorld();
 
-// var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
+var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
 // collisionLayer = map.createLayer('ObjectLayer'); //no work :(
 // this.game.physics.p2.convertCollisionObjects(map, visualLayer, collisionLayer);
 
@@ -64,14 +63,15 @@ layer.resizeWorld();
   //     }
   //   }
 
-
-  createBoard();
+  // createBoard();
   controls.createHotkeys();
   gameCharacters.createPerson();
   gameCharacters.createGhosts();
   gamePieces.createTeleport();
   gamePieces.createPowerUp();
   gamePieces.createMultipleDots(dot_count);
+
+  //  Enable physics for sprites, make world boundaries.
 
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
 
@@ -83,29 +83,26 @@ layer.resizeWorld();
     characters[i].body.collideWorldBounds = true;
   }
 
-  key1.onDown.add( function() { controls.setUserControl(1) } );
-  key2.onDown.add( function() { controls.setUserControl(2) } );
-  key3.onDown.add( function() { controls.setUserControl(3) } );
-  key4.onDown.add( function() { controls.setUserControl(4) } );
+  for (var i = 0; i < keys.length; i ++) {
+    keys[i].onDown.add( function() { gameCharacters.setUserControl(ghosts, i + 1) } );
+  }
 
   livesText = game.add.text(680, 550, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
   scoreText = game.add.text(32, 550, 'score:' + score, { font: "20px Arial", fill: "#ffffff", align: "left" });
 
   cursors = game.input.keyboard.createCursorKeys();
 
+
 }
 
 //create in game functionality such as collisions and updating locations of sprites
 function update() {
 
-  game.physics.arcade.collide(person, walls);
+  // game.physics.arcade.collide(person, walls);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
 
-  for (var i = 0; i < ghosts.length; i++) {
-    game.physics.arcade.collide(ghosts[i], walls);
-  }
   game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
@@ -120,24 +117,18 @@ function update() {
   characters.forEach(function(character) {
     if (character.userControl === true) {
       if (cursors.left.isDown){
-        character.body.velocity.x = -200;
-        character.body.velocity.y = 0;
-        character.animations.play('left');
+        person.body.velocity.x = -200;
+        person.body.velocity.y = 0;
       } else if (cursors.right.isDown){
-        character.body.velocity.x = 200;
-        character.body.velocity.y = 0;
-        character.animations.play('right');
+        person.body.velocity.x = 200;
+        person.body.velocity.y = 0;
       } else if (cursors.up.isDown){
-        character.body.velocity.y = -200;
-        character.body.velocity.x = 0;
-        character.animations.play('up');
+        person.body.velocity.y = -200;
+        person.body.velocity.x = 0;
       } else if (cursors.down.isDown) {
-        character.body.velocity.y = 200;
-        character.body.velocity.x = 0;
-        character.animations.play('bottom');
+        person.body.velocity.y = 200;
+        person.body.velocity.x = 0;
       }
-    } else {
-      game.physics.arcade.moveToObject(character, person, 60);
     }
 
     livesText.text = 'lives: ' + lives;

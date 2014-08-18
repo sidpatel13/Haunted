@@ -8,14 +8,14 @@
         <h2>welcome</h2>
 
         what is your name?<br>
-        
+
         <%= f.text_field :name %><br>
-        
+
         or<br>
 
         <div id="devise"><%= render 'devise/menu/registration_items' %>/
         <%= render 'devise/menu/login_items' %></div>
-          
+
         <%= button_to "New Game", rooms_path, :class =>"button", method: :get %>
       <% end %>
 
