@@ -2,6 +2,8 @@
 //= require jquery
 //= require jquery_ujs
 
+console.log("Hello");
+
 $(document).ready(function() {
     // Setup
     //var roomSession = $("#room-session").val();
@@ -39,6 +41,8 @@ $(document).ready(function() {
 
     sprite = game.add.sprite(32, 200, 'phaser');
     sprite.name = 'phaser-dude';
+    sprite.lastx = sprite.x;
+    sprite.lasty = sprite.y;
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
@@ -61,6 +65,17 @@ $(document).ready(function() {
 
     sprite.body.velocity.x = 0;
     sprite.body.velocity.y = 0;
+
+    //console.log(sprite.x);
+
+    if ((sprite.x !== sprite.lastx) || (sprite.y !== sprite.lasty )) {
+      firebase.game.set({
+        player: {
+          x : sprite.position.x,
+          y : sprite.position.y
+        }
+      });
+    }
 
     if (cursors.left.isDown)
     {
@@ -95,7 +110,7 @@ $(document).ready(function() {
     sprite.y = y;
   }
 
-  function collisionHandler (player, veg) { 
+  function collisionHandler (player, veg) {
     //console.log(player.position.x);
     firebase.game.set({
       player: {
