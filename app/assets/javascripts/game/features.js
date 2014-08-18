@@ -11,9 +11,9 @@ features.teleportTwo = function(person, starTwo) {
 };
 
 features.loseLife = function(person, ghosts) {
+  lives--;
   livesText.text = 'lives: ' + lives;
   person.kill();
-  lives--;
   if (lives === 0) {
     features.gameOver("Player 2");
   } else {
@@ -22,17 +22,16 @@ features.loseLife = function(person, ghosts) {
 };
 
 features.eatDot = function(person, dots) {
+  score++;
   scoreText.text = 'score: ' + score;
   dots.kill();
-  score++;
 }
 
 features.powerUp = function(person, powerUp) {
-  console.log("fahia bones himself")
   score += 5;
   scoreText.text = 'score: ' + score;
   powerUp.kill();
-  person.powerUp = true;
+  setTimeout(function(){person.powerUp = true}, 10000);
 }
 
 features.gameOver = function(winner) {
