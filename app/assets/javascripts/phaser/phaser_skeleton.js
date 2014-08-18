@@ -1,5 +1,5 @@
 //= require phaser/phaser.min.js
-
+//= require game/board.js
 //= require game/game_characters.js
 //= require game/controls.js
 //= require game/images.js
@@ -22,20 +22,16 @@ var person, ghost1, ghost2, ghost3, ghost4;
 var platforms;
 var scoreText, livesText, starOne, starTwo;
 var score = 0, maxScore = 20, lives = 4, ghost_lives = 4, dot_count = 10, powerUp_count = 1;
-<<<<<<< HEAD
+
 var map;
 var layer;
 var cursors;
-var a;
-=======
-var cursors;
->>>>>>> cc3535c3763cfe1d7fe601b8557ed10d187df888
+// var a;
 
 //create sprites (game icons) to be used during game play
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
-<<<<<<< HEAD
-  game.physics.startSystem(Phaser.Physics.P2JS);
+  // game.physics.startSystem(Phaser.Physics.P2JS);
 
 map = game.add.tilemap('map');
 map.addTilesetImage('Desert');
@@ -43,7 +39,7 @@ layer = map.createLayer('Ground');
 
 layer.resizeWorld();
 
-var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
+// var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
 // collisionLayer = map.createLayer('ObjectLayer'); //no work :(
 // this.game.physics.p2.convertCollisionObjects(map, visualLayer, collisionLayer);
 
@@ -102,7 +98,7 @@ var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
 //create in game functionality such as collisions and updating locations of sprites
 function update() {
 
-  // game.physics.arcade.collide(person, walls);
+  game.physics.arcade.collide(person, walls);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
