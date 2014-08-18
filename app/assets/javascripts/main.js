@@ -7,7 +7,6 @@
 //= require game/features.js
 
 $(document).ready(function() {
-  console.log("This happend first");
   var roomSession = $("#room-session").val();
   if (typeof roomSession !== "undefined") {
     fb = new firebase.firebaseSetup(roomSession);
@@ -119,21 +118,8 @@ function update() {
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
-  // setTimeout(sendCoordinates(), 1000);
-  // function sendCoordinates() {
-  //   fb.game.set({
-  //     player: {
-  //       x : person.position.x,
-  //       y : person.position.y
-  //     },
-  //     ghost1 : {
-  //       x : ghost1.position.x,
-  //       y : ghost1.position.y
-  //     }
-  //   });
-  // }
   if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
-    fb.player.set({
+    fb.person.set({
       x : person.position.x,
       y : person.position.y
     });
@@ -146,17 +132,15 @@ function update() {
     });
   }
 
-  fb.game.on("child_changed", function(snapshot) {
-    var x = snapshot.val().x
-    var y = snapshot.val().y
-    //updatePerson(x, y)
-    //console.log(snapshot.val());
+  fb.person.on("value", function(snapshot) {
+    person.x = snapshot.val().x
+    person.y = snapshot.val().y
   });
 
-  function updatePerson(x, y) {
-    person.x = x;
-    person.y = y;
-  }
+  fb.ghost1.on("value", function(snapshot) {
+    ghost1.x = snapshot.val().x
+    ghost1.y = snapshot.val().y
+  });
 
   for (var i = 0; i < ghosts.length; i++) {
     game.physics.arcade.collide(ghosts[i], walls);
