@@ -6,17 +6,20 @@ vex.dialog.alert('Send your friend this url to play!<br><input id="game-url" typ
 
 <div id="chat-widget">
   <div id="panel">
-    <button id="instructions">Instructions</button>
+    <button id="instructions-button">Instructions</button>
     
     <script>
-      $("#instructions").click(function(){
+      $("#instructions-button").click(function(){
         vex.dialog.alert('Game instructions go here.');
       });
     </script>
 
-    <button id="dashboard">Dashboard</button>
+    <button id="dashboard-button">Dashboard</button>
   </div>
+
+  <h3>Chat</h3>
   <div id="msg-output"></div>
+  
   <form id="chat-form">
     <input type="text" id="user-name"></input> <br>
     <input type="text" id="msg-input" placeholder="Message"></input>
