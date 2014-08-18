@@ -14,5 +14,5 @@ class RoomsController < ApplicationController
     @js = "one_wall"
     render :show
   end
-  
+
 end
