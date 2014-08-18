@@ -14,6 +14,7 @@ function preload() {
 
   game.load.tilemap('map', '/fartedshartpart.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/deserttile.png');
+  game.load.audio('music', '/music.mp3');
 };
 
 var characters = [], dots = [], ghosts = [], powerUp = [];
@@ -26,10 +27,25 @@ var score = 0, maxScore = 20, lives = 4, ghost_lives = 4, dot_count = 10, powerU
 var map;
 var layer;
 var cursors;
+var music;
 // var a;
+function changeVolume(pointer) {
+    if (pointer.y < 300)
+    {
+        music.volume += 0.1;
+    }
+    else
+    {
+        music.volume -= 0.1;
+    }
+
+}
 
 //create sprites (game icons) to be used during game play
 function create() {
+  music = game.add.audio('music');
+  music.play();
+
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // game.physics.startSystem(Phaser.Physics.P2JS);
 
