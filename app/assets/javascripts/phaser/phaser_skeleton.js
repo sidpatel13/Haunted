@@ -78,9 +78,9 @@ function create() {
   controls.createHotkeys();
   gameCharacters.createPerson();
   gameCharacters.createGhosts();
-  gamePieces.createTeleport();
-  gamePieces.createPowerUp();
-  gamePieces.createMultipleDots(dot_count);
+  board.createTeleport();
+  board.createPowerUp();
+  board.createMultipleDots(dot_count);
 
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
 

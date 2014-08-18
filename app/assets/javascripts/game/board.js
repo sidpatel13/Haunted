@@ -1,6 +1,6 @@
 board = {}
-board.createBoard = function() {
 
+board.createBoard = function() {
   walls = game.add.group();
   walls.enableBody = true;
   walls.physicsBodyType = Phaser.Physics.ARCADE;
@@ -9,6 +9,35 @@ board.createBoard = function() {
   c.name = 'veg';
   c.body.immovable = true;
 }
+
+board.createTeleport = function() {
+  starOne = game.add.sprite(10, game.world.height/2, 'star');
+  starOne.anchor.setTo(0.5, 0.5);
+  starOne.scale.setTo(1,1);
+
+  starTwo = game.add.sprite(825, game.world.height/2, 'star');
+  starTwo.anchor.setTo(0.5, 0.5);
+  starTwo.scale.setTo(1,1);
+}
+
+board.createOneDot = function() {
+    dot = game.add.sprite(Math.random()*700, Math.random()*500, 'diamond');
+    dot.anchor.setTo(0.5, 0.5);
+    dots.push(dot);
+};
+
+board.createMultipleDots = function(count) {
+    for(var i = 0; i < count; i++){
+    board.createOneDot();
+  }
+};
+
+board.createPowerUp = function() {
+  cherry = game.add.sprite(Math.random()*700, Math.random()*500, 'star');
+  cherry.anchor.setTo(0.5, 0.5);
+  powerUp.push(cherry);
+};
+
 // for (var i=0; i < 25; i++) {
 
   // //top border
