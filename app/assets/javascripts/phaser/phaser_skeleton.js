@@ -76,7 +76,7 @@ function update() {
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
 
   if (person.powerUp == true){ // there is no attrb for powerUp yet)
-    game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
+    game.physics.arcade.overlap(person, ghosts, features.eatGhosts, null, this);
   }
   else {
     game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
@@ -111,12 +111,3 @@ function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
   return coordinates;
 }
-
-function eatGhosts (person, ghosts) {
-  ghosts.kill();
-}
-
-
-
-
-

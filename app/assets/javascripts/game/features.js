@@ -33,3 +33,7 @@ features.eatDot = function(person, dots) {
 features.gameOver = function(winner) {
   alert("game over winner: " + winner);
 };
+
+features.eatGhosts = function(person, ghosts) {
+  ghosts.kill();
+}
