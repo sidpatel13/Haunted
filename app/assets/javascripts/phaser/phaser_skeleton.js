@@ -32,12 +32,12 @@ var music;
 
 //
 
+features.changeMusicVolume();
 
 //create sprites (game icons) to be used during game play
 function create() {
   music = game.add.audio('music');
   music.play();
-  features.changeMusicVolume();
 
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // game.physics.startSystem(Phaser.Physics.P2JS);
