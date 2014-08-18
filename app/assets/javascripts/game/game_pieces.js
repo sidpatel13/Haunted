@@ -21,3 +21,9 @@ gamePieces.createMultipleDots = function(count) {
     gamePieces.createOneDot();
   }
 };
+
+gamePieces.createPowerUp = function() {
+  cherry = game.add.sprite(250, 200, 'star');
+  cherry.anchor.setTo(0.5, 0.5);
+  powerUp.push(cherry);
+};
