@@ -152,25 +152,14 @@ canvas {
   background-color: indigo;
 }
 
-.modal.registration {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  height: 300px;
-  margin-left: -250px;
-  margin-top: -150px;
-}
 
-/* to be deleted */
-
-ul.hmenu {
+#devise {
   list-style: none; 
-  margin: 0 0 2em;
+  margin-bottom: 20px;
   padding: 0;
 }
 
-ul.hmenu li {
+#devise li {
+  text-transform: lowercase;
   display: inline;
 }
