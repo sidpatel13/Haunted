@@ -57,7 +57,7 @@ $(document).ready(function() {
 
   function update() {
 
-    game.physics.arcade.collide(sprite, group, collisionHandler, null, this);
+    //game.physics.arcade.collide(sprite, group, collisionHandler, null, this);
     game.physics.arcade.collide(group, group);
 
     sprite.body.velocity.x = 0;
