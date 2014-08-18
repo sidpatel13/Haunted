@@ -1,4 +1,4 @@
-//= require ./phaser.min.js
+//= require phaser/phaser.min.js
 //= require jquery
 //= require jquery_ujs
 
@@ -93,8 +93,8 @@ $(document).ready(function() {
   });
 
   function updatePerson(x, y) {
-    sprite.body.x = x;
-    sprite.body.y = y;
+    sprite.x = x;
+    sprite.y = y;
   }
 
   function collisionHandler (player, veg) { 
