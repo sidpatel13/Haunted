@@ -15,9 +15,10 @@ function preload() {
 
 var characters = [], dots = [], ghosts = [], powerUp = [], keys = [];
 var key1, key2, key3, key4;
-var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, starOne, starTwo, group;
-var score = 0, maxScore = 20, lives = 4;
-
+var person, ghost1, ghost2, ghost3, ghost4;
+var platforms;
+var scoreText, livesText, starOne, starTwo;
+var score = 0, maxScore = 20, lives = 4, ghost_lives = 4, dot_count = 10, powerUp_count = 1;
 
 //create sprites (game icons) to be used during game play
 function create() {
@@ -29,7 +30,7 @@ function create() {
   gameCharacters.createGhosts();
   gamePieces.createTeleport();
   gamePieces.createPowerUp();
-  gamePieces.createMultipleDots(10);
+  gamePieces.createMultipleDots(dot_count);
 
   //  Enable physics for sprites, make world boundaries.
 
@@ -47,28 +48,24 @@ function create() {
     keys[i].onDown.add( function() { gameCharacters.setUserControl(ghosts, i + 1) } );
   }
 
-  scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-  livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(680, 550, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
+  scoreText = game.add.text(32, 550, 'score:' + score, { font: "20px Arial", fill: "#ffffff", align: "left" });
 
   cursors = game.input.keyboard.createCursorKeys();
 
 
-} // End create()
-
-
+}
 
 //create in game functionality such as collisions and updating locations of sprites
 function update() {
 
   game.physics.arcade.collide(person, walls);
 
-  game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
   game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-
-  if (person.powerUp == true){
+  if (person.powerUp === true){
     game.physics.arcade.overlap(person, ghosts, features.eatGhosts, null, this);
   }
   else {
@@ -92,7 +89,8 @@ function update() {
       }
     }
 
-    // game.physics.arcade.collide(person.sprite, platforms);
+    livesText.text = 'lives: ' + lives;
+    scoreText.text = 'score: ' + score;
 
   });
 

@@ -1,6 +1,3 @@
-// var character = {};
-// character.createPerson
-
 var gameCharacters = {};
 
 gameCharacters.createPerson = function() {
@@ -13,10 +10,6 @@ gameCharacters.createPerson = function() {
 }
 
 gameCharacters.createGhosts = function() {
-
-  //ghosts = game.add.group();
-  //ghosts.enableBody = true;
-
   ghost1 = game.add.sprite(100, game.world.height - 100, 'ghost');
   ghost1.anchor.setTo(0.5, 0.5);
   ghost1.scale.setTo(2,2);
