@@ -5,6 +5,8 @@ firebase.firebaseSetup = function(roomSession) {
   this.room = this.ref.child(roomSession);
   this.chat = this.room.child("chat");
   this.game = this.room.child("game");
+  this.player = this.game.child("player");
+  this.ghost1 = this.game.child("ghost1");
 }
 
 firebase.recieveMessage = function(snapshot) {

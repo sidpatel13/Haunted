@@ -1,8 +1,7 @@
 var gameCharacters = {};
 
 gameCharacters.createPerson = function() {
-
-  person = game.add.sprite(100, game.world.height - 150, 'sprites');
+  person = game.add.sprite(0, 0, 'sprites');
   person.scale.setTo(1.2, 1.2);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = true;

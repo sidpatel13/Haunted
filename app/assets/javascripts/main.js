@@ -33,7 +33,7 @@ CANVAS_OFFSET = 100;
 
 SCORE = 0;
 MAX_SCORE = 20;
-LIVES = 3;
+LIVES = 100;
 GHOST_LIVES = 3;
 DOT_COUNT = 10;
 POWERUP_COUNT = 1;
@@ -119,20 +119,8 @@ function update() {
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
-  setTimeout(sendCoordinates(), 1000);
-  function sendCoordinates() {
-    fb.game.set({
-      player: {
-        x : person.position.x,
-        y : person.position.y
-      },
-      ghost1 : {
-        x : ghost1.position.x,
-        y : ghost1.position.y
-      }
-    });
-  }
-  // if ((person.x !== person.lastx) || (person.y !== person.lasty ) || (ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty)) {
+  // setTimeout(sendCoordinates(), 1000);
+  // function sendCoordinates() {
   //   fb.game.set({
   //     player: {
   //       x : person.position.x,
@@ -144,12 +132,25 @@ function update() {
   //     }
   //   });
   // }
+  if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
+    fb.player.set({
+      x : person.position.x,
+      y : person.position.y
+    });
+  }
+
+  if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
+    fb.ghost1.set({
+      x : ghost1.position.x,
+      y : ghost1.position.y
+    });
+  }
 
   fb.game.on("child_changed", function(snapshot) {
-    // var x = snapshot.val().x
-    // var y = snapshot.val().y
-    // updatePerson(x, y)
-    console.log(snapshot.val());
+    var x = snapshot.val().x
+    var y = snapshot.val().y
+    //updatePerson(x, y)
+    //console.log(snapshot.val());
   });
 
   function updatePerson(x, y) {
