@@ -1,2 +1,2 @@
-//= require ./firebase.js
-//= require ./game.js
+//= require firebase/firebase.js
+//= require phaser/phaser_skeleton.js

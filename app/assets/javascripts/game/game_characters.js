@@ -1,20 +1,16 @@
-// var character = {};
-// character.createPerson
+var gameCharacters = {};
 
-function createPerson() {
+gameCharacters.createPerson = function() {
   person = game.add.sprite(100, game.world.height - 150, 'person');
   person.scale.setTo(0.5, 0.5);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = true;
+  person.powerUp = false;
   characters.push(person);
 }
 
-function createGhosts() {
-
-  //ghosts = game.add.group();
-  //ghosts.enableBody = true;
-
-  ghost1 = game.add.sprite(100, game.world.height - 150, 'ghost');
+gameCharacters.createGhosts = function() {
+  ghost1 = game.add.sprite(100, game.world.height - 100, 'ghost');
   ghost1.anchor.setTo(0.5, 0.5);
   ghost1.scale.setTo(2,2);
   ghost1.isControlled = true;
@@ -38,8 +34,9 @@ function createGhosts() {
   characters.push(ghost1, ghost2, ghost3, ghost4);
 }
 
-function setUserControl(ghosts, ghostNumber) {
-  for(var i=0; i < ghosts.length; i++) {
+
+gameCharacters.setUserControl = function(ghosts, ghostNumber) {
+  for(var i = 0; i < ghosts.length; i++) {
     if (i === (ghostNumber -1)) {
       ghosts[i].userControl = true;
     } else {

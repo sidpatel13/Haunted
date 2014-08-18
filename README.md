@@ -1,4 +1,4 @@
-Haunted 
+Haunted
 =======
 
 > Did you know the original name of Pac-man was Puck-man? You would think it's because Pac-Man looks like a yellow hockey puck, but actually it comes from the Japanese phrase paku-paku which means to flap ones mouth open and closed. They changed it over here because Puck-Man is too easy to vandalize. You know, scratch out the P and turn it into an F or whatever?
@@ -22,3 +22,4 @@ Haunted
   * [Day 1](http://juliusjung.info/blog/2014/08/14/haunted-day-1/)
   * [Day 2](http://juliusjung.info/blog/2014/08/14/haunted-day-2/)
   * [Day 3](http://juliusjung.info/blog/2014/08/15/haunted-day-3/)
+  * [Day 4](http://juliusjung.info/blog/2014/08/16/haunted-day-4/)
