@@ -125,10 +125,7 @@ function eatGhosts (person, ghosts) {
   ghosts.kill();
 }
 
-function gameOver (winner) {
-  //Give user and opponent modal to restart / congratulate winner
-  console.log("game over winner: " + winner);
-}
+
 
 
 
