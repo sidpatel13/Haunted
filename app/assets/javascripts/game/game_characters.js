@@ -8,6 +8,7 @@ gameCharacters.createPerson = function() {
   person.scale.setTo(0.5, 0.5);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = true;
+  person.powerUp = false;
   characters.push(person);
 }
 
