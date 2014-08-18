@@ -62,3 +62,12 @@ features.returnCoordinates = function(sprite) {
   var coordinates = [sprite.x, sprite.y];
   return coordinates;
 };
+
+
+features.changeMusicVolume = function() {
+    if (pointer.y < 300){
+        music.volume += 0.1;
+    } else {
+        music.volume -= 0.1;
+    }
+};

@@ -29,31 +29,24 @@ var layer;
 var cursors;
 var music;
 // var a;
-function changeVolume(pointer) {
-    if (pointer.y < 300)
-    {
-        music.volume += 0.1;
-    }
-    else
-    {
-        music.volume -= 0.1;
-    }
 
-}
+//
+
 
 //create sprites (game icons) to be used during game play
 function create() {
   music = game.add.audio('music');
   music.play();
+  features.changeMusicVolume();
 
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // game.physics.startSystem(Phaser.Physics.P2JS);
 
-map = game.add.tilemap('map');
-map.addTilesetImage('Desert');
-layer = map.createLayer('Ground');
+  map = game.add.tilemap('map');
+  map.addTilesetImage('Desert');
+  layer = map.createLayer('Ground');
 
-layer.resizeWorld();
+  layer.resizeWorld();
 
 // var a = game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
 // collisionLayer = map.createLayer('ObjectLayer'); //no work :(
