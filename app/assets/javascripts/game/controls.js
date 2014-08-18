@@ -5,6 +5,15 @@ controls.createHotkeys = function() {
   key2 = game.input.keyboard.addKey(Phaser.Keyboard.TWO);
   key3 = game.input.keyboard.addKey(Phaser.Keyboard.THREE);
   key4 = game.input.keyboard.addKey(Phaser.Keyboard.FOUR);
+}
 
-  keys.push(key1, key2, key3, key4);
+
+controls.setUserControl = function(ghostNumber) {
+  for(var i = 0; i < ghosts.length; i++) {
+    if (i === (ghostNumber - 1)) {
+      ghosts[i].userControl = true;
+    } else {
+      ghosts[i].userControl = false;
+    }
+  }
 }
