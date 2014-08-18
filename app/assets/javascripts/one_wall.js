@@ -11,22 +11,6 @@ $(document).ready(function() {
       var firebase = new firebaseSetup(roomSession);
     }
 
-    // Recieve a message
-    firebase.game.on("child_changed", updateCoordinates);
-
-    function sendCoordinates(sprite) {
-      firebase.game.push({
-        message : {
-          sprite: sprite,
-          x_coordinates: sprite.x,
-          y_coordinates: sprite.y,
-          timestamp: Firebase.ServerValue.TIMESTAMP
-        }
-      });
-    }
-
-    function updateCoordinates() {}
-
   function firebaseSetup(roomSession) {
     this.ref = new Firebase("https://haunted.firebaseio.com/");
     this.room = this.ref.child(roomSession);
@@ -100,11 +84,26 @@ $(document).ready(function() {
 
   }
 
+  firebase.game.on("child_changed", function(snapshot) {
+    console.log("Hello");
+    console.log(snapshot.val());
+    var x = snapshot.val().x
+    var y = snapshot.val().y
+    updatePerson(x, y)
+  });
+
+  function updatePerson(x, y) {
+    sprite.body.x = x;
+    sprite.body.y = y;
+  }
+
   function collisionHandler (player, veg) { 
     //console.log(player.position.x);
     firebase.game.set({
-      player_x : player.position.x,
-      player_y : player.position.y
+      player: {
+        x : player.position.x,
+        y : player.position.y
+      }
     });
   }
 });
