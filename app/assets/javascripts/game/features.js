@@ -44,7 +44,7 @@ features.powerUp = function(person, powerUp) {
 }
 
 features.gameOver = function(winner) {
-  alert("game over winner: " + winner);
+  alert("Winner: " + winner);
 };
 
 features.eatGhosts = function(person, ghosts) {
