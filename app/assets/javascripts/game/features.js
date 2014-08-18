@@ -12,7 +12,6 @@ features.teleportTwo = function(person, starTwo) {
 
 features.loseLife = function(person, ghosts) {
   lives--;
-  livesText.text = 'lives: ' + lives;
   person.kill();
 
   if (lives === 0) {
@@ -24,16 +23,24 @@ features.loseLife = function(person, ghosts) {
 
 features.eatDot = function(person, dots) {
   score++;
-  scoreText.text = 'score: ' + score;
+  dot_count--;
   dots.kill();
+
+  if (dot_count === 0 && powerUp_count === 0) {
+    features.gameOver("Player 1");
+  }
 }
 
 features.powerUp = function(person, powerUp) {
   score += 5;
-  scoreText.text = 'score: ' + score;
+  powerUp_count--;
   powerUp.kill();
   person.powerUp = true;
-  setTimeout(function(){person.powerUp = false}, 8000);
+  setTimeout(function(){person.powerUp = false}, 5000);
+
+  if (dot_count === 0 && powerUp_count === 0) {
+    features.gameOver("Player 1");
+  }
 }
 
 features.gameOver = function(winner) {
@@ -41,11 +48,15 @@ features.gameOver = function(winner) {
 };
 
 features.eatGhosts = function(person, ghosts) {
+    ghost_lives--;
     ghosts.kill();
+
+    if (ghost_lives === 0) {
+      features.gameOver("Player 1");
+    }
 };
 
 features.returnCoordinates = function(sprite) {
   var coordinates = [sprite.x, sprite.y];
   return coordinates;
 };
-
