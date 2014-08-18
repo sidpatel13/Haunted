@@ -23,6 +23,12 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  background-color: white;
+  margin: 0px;
+  padding: 10px;
+}
+
 /* Game */
 
 canvas {
@@ -61,7 +67,9 @@ canvas {
 }
 
 #chat-widget {
-  background: rgba(0, 0, 0, 0.5);
+  color: black;
+  background-color: white;
+  /*background: rgba(0, 0, 0, 0.5);*/
   position: fixed;
   width: 30%;
   height: 100%;
@@ -71,6 +79,7 @@ canvas {
 }
 
 #chat-form {
+  background-color: white;
   font-family: Helvetica;
   text-align: left;
 }
@@ -87,10 +96,13 @@ canvas {
 }
 
 #msg-input {
+  background-color: white;
   width: 70%;
 }
 
 #msg-output {
+  padding-left: 10px;
+  background-color: white;
   width: 100%;
   height: 200px;
   overflow: auto;
@@ -105,7 +117,7 @@ canvas {
   font-size: 1em;
 }
 
-/* Homepage */
+/*Homepage*/ 
 
 #welcome {
   margin: auto;
@@ -134,7 +146,7 @@ canvas {
   color: white;
   padding: 7px;
   border: 1px solid;
-  font-family: Courier;
+  font-family: Helvetica;
   font-size: 1em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   background-color: indigo;
