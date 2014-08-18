@@ -6,7 +6,6 @@
 
 var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update } );
 
-
 //preload images to use as icons in the game
 function preload() {
   loadImages();
