@@ -4,8 +4,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: p
 
 function preload() {
 
-    game.load.image('phaser', 'assets/sprites/phaser-dude.png');
-    game.load.spritesheet('veggies', 'assets/sprites/fruitnveg32wh37.png', 32, 32);
+    game.load.image('phaser', '/dude.png');
+    game.load.spritesheet('veggies', '/star.png', 32, 32);
 
 }
 
@@ -33,8 +33,6 @@ function create() {
         var c = group.create(game.rnd.integerInRange(100, 770), game.rnd.integerInRange(0, 570), 'veggies', game.rnd.integerInRange(0, 35));
         c.name = 'veg';
         c.body.immovable = true;
-
-
 
     cursors = game.input.keyboard.createCursorKeys();
 
