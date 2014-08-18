@@ -1,10 +1,10 @@
 function createImage(name) {
-  var location = "./" + name + ".png";
+  var location = "/images/" + name + ".png";
   game.load.image(name, location)
 }
 
 function createSpritesheet(name, num) {
-  var location = "./" + name + ".png";
+  var location = "/images/" + name + ".png";
   game.load.spritesheet(name, location, num, num)
 }
 
