@@ -5,7 +5,7 @@
 console.log("Hello");
 
 $(document).ready(function() {
-    // Setup
+
     //var roomSession = $("#room-session").val();
     var roomSession = "one_wall";
 
@@ -37,8 +37,6 @@ $(document).ready(function() {
 
     game.stage.backgroundColor = '#2d2d2d';
 
-    //  This example will check Sprite vs. Group collision
-
     sprite = game.add.sprite(32, 200, 'phaser');
     sprite.name = 'phaser-dude';
     sprite.lastx = sprite.x;
@@ -54,10 +52,7 @@ $(document).ready(function() {
     c.name = 'veg';
     c.body.immovable = true;
 
-
-
     cursors = game.input.keyboard.createCursorKeys();
-
   }
 
   function update() {
@@ -112,13 +107,4 @@ $(document).ready(function() {
     sprite.y = y;
   }
 
-  function collisionHandler (player, veg) {
-    //console.log(player.position.x);
-    firebase.game.set({
-      player: {
-        x : player.position.x,
-        y : player.position.y
-      }
-    });
-  }
 });
