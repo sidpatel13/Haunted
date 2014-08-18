@@ -24,7 +24,7 @@ function create() {
 
   createBoard();
   gamePieces.createPerson();
-  createGhosts();
+  gamePieces.createGhosts();
   createHotkeys();
   createTeleport();
   createDots(10);

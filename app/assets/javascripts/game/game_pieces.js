@@ -11,7 +11,7 @@ gamePieces.createPerson = function() {
   characters.push(person);
 }
 
-function createGhosts() {
+gamePieces.createGhosts = function() {
 
   //ghosts = game.add.group();
   //ghosts.enableBody = true;
@@ -39,6 +39,7 @@ function createGhosts() {
   ghosts.push(ghost1, ghost2, ghost3, ghost4);
   characters.push(ghost1, ghost2, ghost3, ghost4);
 }
+
 
 function setUserControl(ghosts, ghostNumber) {
   for(var i=0; i < ghosts.length; i++) {
