@@ -1,11 +1,11 @@
 gamePieces = {};
 
 gamePieces.createTeleport = function() {
-  starOne = game.add.sprite(10, game.world.height - 300, 'star');
+  starOne = game.add.sprite(10, game.world.height/2, 'star');
   starOne.anchor.setTo(0.5, 0.5);
   starOne.scale.setTo(1,1);
 
-  starTwo = game.add.sprite(790, game.world.height - 300, 'star');
+  starTwo = game.add.sprite(825, game.world.height/2, 'star');
   starTwo.anchor.setTo(0.5, 0.5);
   starTwo.scale.setTo(1,1);
 }

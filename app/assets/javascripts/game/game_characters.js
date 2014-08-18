@@ -1,8 +1,9 @@
 var gameCharacters = {};
 
 gameCharacters.createPerson = function() {
+
   person = game.add.sprite(100, game.world.height - 150, 'sprites');
-  person.scale.setTo(1.5, 1.5);
+  person.scale.setTo(1.2, 1.2);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = true;
   person.animations.add('right', [10, 11], 0, true);
@@ -16,7 +17,7 @@ gameCharacters.createPerson = function() {
 gameCharacters.createGhosts = function() {
   ghost1 = game.add.sprite(100, game.world.height - 100, 'sprites');
   ghost1.anchor.setTo(0.5, 0.5);
-  ghost1.scale.setTo(1.5,1.5);
+  ghost1.scale.setTo(1.2,1.2);
   ghost1.isControlled = true;
   ghost1.animations.add('right', [0, 1], 0, true);
   ghost1.animations.add('bottom', [14, 15], 0, true);
@@ -25,7 +26,7 @@ gameCharacters.createGhosts = function() {
 
   ghost2 = game.add.sprite(200, game.world.height - 150, 'sprites');
   ghost2.anchor.setTo(0.5, 0.5);
-  ghost2.scale.setTo(1.5,1.5);
+  ghost2.scale.setTo(1.2,1.2);
   ghost2.isControlled = true;
   ghost2.animations.add('right', [2, 3], 0, true);
   ghost2.animations.add('bottom', [16, 17], 0, true);
@@ -34,7 +35,7 @@ gameCharacters.createGhosts = function() {
 
   ghost3 = game.add.sprite(300, game.world.height - 150, 'sprites');
   ghost3.anchor.setTo(0.5, 0.5);
-  ghost3.scale.setTo(1.5,1.5);
+  ghost3.scale.setTo(1.2,1.2);
   ghost3.isControlled = true;
   ghost3.animations.add('right', [4, 5], 0, true);
   ghost3.animations.add('bottom', [18, 19], 0, true);
@@ -43,7 +44,7 @@ gameCharacters.createGhosts = function() {
 
   ghost4 = game.add.sprite(400, game.world.height - 150, 'sprites');
   ghost4.anchor.setTo(0.5, 0.5);
-  ghost4.scale.setTo(1.5,1.5);
+  ghost4.scale.setTo(1.2,1.2);
   ghost4.isControlled = true;
   ghost4.animations.add('right', [6, 7], 0, true);
   ghost4.animations.add('bottom', [20, 21], 0, true);
