@@ -38,10 +38,10 @@ function create() {
   characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
 
   //might want to refactor this and use cursor keys
-  key1.onDown.add( function() { setUserControl(ghosts, 1) } );
-  key2.onDown.add( function() { setUserControl(ghosts, 2) } );
-  key3.onDown.add( function() { setUserControl(ghosts, 3) } );
-  key4.onDown.add( function() { setUserControl(ghosts, 4) } );
+  key1.onDown.add( function() { gamePieces.setUserControl(ghosts, 1) } );
+  key2.onDown.add( function() { gamePieces.setUserControl(ghosts, 2) } );
+  key3.onDown.add( function() { gamePieces.setUserControl(ghosts, 3) } );
+  key4.onDown.add( function() { gamePieces.setUserControl(ghosts, 4) } );
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
