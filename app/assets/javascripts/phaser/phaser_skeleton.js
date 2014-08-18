@@ -1,6 +1,6 @@
 //= require phaser/phaser.min.js
 //= require game/board.js
-//= require game/characters.js
+//= require game/game_pieces.js
 //= require game/hotkeys.js
 //= require game/images.js
 
