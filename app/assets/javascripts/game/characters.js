@@ -1,13 +1,23 @@
 // var character = {};
 // character.createPerson
 
-function createPerson() {
-  person = game.add.sprite(100, game.world.height - 150, 'person');
+var gamePieces = {};
+
+gamePieces.createPerson = function() {
+  var person = game.add.sprite(100, game.world.height - 150, 'person');
   person.scale.setTo(0.5, 0.5);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = true;
-  characters.push(person);
+  characters.all.push(person);
 }
+
+// function createPerson() {
+//   person = game.add.sprite(100, game.world.height - 150, 'person');
+//   person.scale.setTo(0.5, 0.5);
+//   person.anchor.setTo(0.5, 0.5);
+//   person.userControl = true;
+//   characters.push(person);
+// }
 
 function createGhosts() {
 

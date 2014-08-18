@@ -6,7 +6,6 @@
 
 var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update } );
 
-
 //preload images to use as icons in the game
 function preload() {
   loadImages();
@@ -16,14 +15,13 @@ var characters = [], dots = [], ghosts = [];
 var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, key1, key2, key3, key4, starOne, starTwo, group;
 var score = 0, maxScore = 20, lives = 3;
 
-
 //create sprites (game icons) to be used during game play
 function create() {
 
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   createBoard();
-  createPerson();
+  gamePieces.createPerson();
   createGhosts();
   createHotkeys();
   createTeleport();
