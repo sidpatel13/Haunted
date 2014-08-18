@@ -4,6 +4,7 @@
 //= require game/controls.js
 //= require game/images.js
 //= require game/game_pieces.js
+//= require game/features.js
 
 var game = new Phaser.Game( 800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update } );
 
@@ -69,7 +70,7 @@ function update() {
   }
 
 
-  game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+  game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
   game.physics.arcade.overlap(person, dots, eatDot, null, this);
   game.physics.arcade.overlap(person, starOne, teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, teleportTwo, null, this);
@@ -78,7 +79,7 @@ function update() {
     game.physics.arcade.overlap(person, ghosts, eatGhosts, null, this);
   }
   else {
-    game.physics.arcade.overlap(person, ghosts, loseLife, null, this);
+    game.physics.arcade.overlap(person, ghosts, features.loseLife, null, this);
   }
 
   characters.forEach(function(character) {
@@ -104,20 +105,11 @@ function update() {
 
 }
 
+
+
 function returnCoordinates(sprite) {
   var coordinates = [sprite.x, sprite.y];
   return coordinates;
-}
-
-function loseLife (person, ghosts) {
-  person.kill();
-  lives--;
-  livesText.text = 'lives: ' + lives;
-  if (lives === 0) {
-    gameOver("Player 2");
-  } else {
-    person.reset(100, 100);
-  }
 }
 
 function eatDot (person, dots) {
