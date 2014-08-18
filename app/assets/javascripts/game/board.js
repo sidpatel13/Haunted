@@ -38,6 +38,7 @@ board.createPowerUp = function() {
   powerUp.push(cherry);
 };
 
+// HARDCODED WALLS
 // for (var i=0; i < 25; i++) {
 
   // //top border
@@ -97,6 +98,4 @@ board.createPowerUp = function() {
 //   ledge = platforms.create(100, i*25+100, 'platform');
 //   ledge.scale.setTo(1.5, 0.75);
 //   ledge.body.immovable = true;
-
 // }
-
