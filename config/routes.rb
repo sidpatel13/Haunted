@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   post '/', to: 'rooms#generate'
   get '/rooms', to: 'rooms#generate'
   get '/:room_session', to: 'rooms#show'
-  get '/rooms/one_wall', to: 'rooms#one_wall'
+  get '/rooms/sandbox', to: 'rooms#sandbox'
 end

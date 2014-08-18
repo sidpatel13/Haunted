@@ -1,8 +1,4 @@
-//= require phaser/phaser.min.js
-//= require jquery
-//= require jquery_ujs
-
-console.log("Hello");
+//= require vendor/phaser.min.js
 
 $(document).ready(function() {
 

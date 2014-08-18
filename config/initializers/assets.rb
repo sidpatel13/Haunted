@@ -7,6 +7,8 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( home.js )
+Rails.application.config.assets.precompile += %w( main.js )
+Rails.application.config.assets.precompile += %w( sandbox.js )
 Rails.application.config.assets.precompile += %w( vex.css )
 Rails.application.config.assets.precompile += %w( vex-theme-wireframe.css )
-Rails.application.config.assets.precompile += %w( one_wall.js )
+
