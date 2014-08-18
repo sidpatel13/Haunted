@@ -8,7 +8,7 @@ function createBoard() {
   c.name = 'veg';
   c.body.immovable = true;
 
-  for (var i=0; i < 25; i++) {
+  // for (var i=0; i < 25; i++) {
 
     // //top border
     // wall = walls.create(0+i*32, 0, 'firstaid');
@@ -24,7 +24,7 @@ function createBoard() {
     // wall.scale.setTo(1.5, 0.75);
     // wall.body.immovable = true;
 
-  }
+  // }
 
   // for (var i=0; i < 2; i++) {
   //    //top right box (near border)
