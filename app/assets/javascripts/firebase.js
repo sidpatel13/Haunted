@@ -1,6 +1,3 @@
-//= require firebase/firebase_chat.js
-//= require firebase/firebase_game.js
-
 $(document).ready(function() {
 
   // Setup
@@ -39,4 +36,25 @@ function firebaseSetup(roomSession) {
   this.room = this.ref.child(roomSession);
   this.chat = this.room.child("chat");
   this.game = this.room.child("game");
+}
+
+var recieveMessage = function(snapshot) {
+  var message = snapshot.val().message;
+  var name = message.name;
+  var content = message.content;
+  var user = ((name === "Rootul") ? "me" : "you"); //Set Rootul to user.name
+  var output = "<div class='message " + user + "'>";
+        output += "<span>" + content + "</span>";
+        output += "</div>";
+  $("#msg-output").append(output);
+}
+
+var sendMessage = function(firebase, name, content) {
+  firebase.chat.push({
+    message : {
+      name: name,
+      content: content,
+      timestamp: Firebase.ServerValue.TIMESTAMP
+    }
+  });
 }
