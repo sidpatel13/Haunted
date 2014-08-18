@@ -1,7 +1,12 @@
+function createImage(name) {
+  var location = "./" + name + ".png";
+  game.load.image(name, location)
+}
+
 function loadImages() {
-  game.load.image('ghost', './ghost.png');
-  game.load.image('person', './person.png');
-  game.load.image('star', './star.png');
-  game.load.image('firstaid', './firstaid.png');
-  game.load.image('diamond', './diamond.png');
+  createImage("ghost");
+  createImage("person");
+  createImage("star");
+  createImage("firstaid");
+  createImage("diamond");
 }
