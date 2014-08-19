@@ -160,3 +160,11 @@ canvas {
 #devise li {
   display: inline;
 }
+
+/*Avatar modal*/
+.image {
+  padding:5px;
+  height:15%;
+  width:15%;
+}
+
