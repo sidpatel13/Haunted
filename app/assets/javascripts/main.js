@@ -60,6 +60,16 @@ $(document).ready(function() {
     });
   }
 
+  fb.pause.on("value", function(snapshot) {
+    game.paused = snapshot.val();
+  });
+
+  fb.player2.on("value", function(snapshot) {
+    if (snapshot.val()) {
+      fb.pause.set(false);
+    }
+  });
+
   urlModal();
 });
 
@@ -69,10 +79,8 @@ CANVAS_HEIGHT = 715;
 CANVAS_OFFSET = 60;
 
 SCORE = 0;
-MAX_SCORE = 20;
+MAX_SCORE = 10;
 LIVES = 100;
-GHOST_LIVES = 3;
-DOT_COUNT = 10;
 POWERUP_COUNT = 1;
 player1 = false;
 player2 = false;
@@ -89,11 +97,7 @@ function preload() {
 
 // Declare Variables
 var score = SCORE;
-var maxScore = MAX_SCORE;
 var lives = LIVES;
-var ghostLives = GHOST_LIVES;
-var dotCount = DOT_COUNT;
-var powerUpCount = POWERUP_COUNT;
 
 var characters = [], dots = [], ghosts = [], powerUp = [];
 var key1, key2, key3, key4;
@@ -112,6 +116,8 @@ features.changeMusicVolume();
 //create sprites (game icons) to be used during game play
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
+
+  fb.pause.set(true);
 
   music = game.add.audio('music');
   // music.play(); commented out so no music plays
@@ -145,7 +151,7 @@ function create() {
   gameCharacters.createGhosts();
   board.createTeleport();
   board.createPowerUp();
-  board.createMultipleDots(dotCount);
+  board.createMultipleDots(MAX_SCORE);
 
 
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
@@ -170,9 +176,9 @@ function create() {
 }
 
 function update() {
+ //features.togglePause();
   game.physics.arcade.collide(person,layer);
- features.togglePause();
- console.log(fb.player1);
+  // console.log(fb.player1);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
   game.physics.arcade.collide(person, walls);
@@ -189,12 +195,29 @@ function update() {
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
 
-  fb.pause.on("value", function(snapshot) {
-    game.paused = snapshot.val();
-  });
+  var movePlayer = function(character) {
+    if (cursors.left.isDown){
+      character.body.velocity.x = -200;
+      character.body.velocity.y = 0;
+      character.animations.play('left');
+    } else if (cursors.right.isDown){
+      character.body.velocity.x = 200;
+      character.body.velocity.y = 0;
+      character.animations.play('right');
+    } else if (cursors.up.isDown){
+      character.body.velocity.y = -200;
+      character.body.velocity.x = 0;
+      character.animations.play('up');
+    } else if (cursors.down.isDown) {
+      character.body.velocity.y = 200;
+      character.body.velocity.x = 0;
+      character.animations.play('bottom');
+    }
+  }
 
   if (currentPlayer === "player1") {
     person.userControl = true;
+    movePlayer(person);
     if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
       fb.person.set({
         x : person.position.x,
@@ -206,24 +229,10 @@ function update() {
       ghost1.x = snapshot.val().x
       ghost1.y = snapshot.val().y
     });
-
-    // fb.ghost2.on("value", function(snapshot) {
-    //   ghost2.x = snapshot.val().x
-    //   ghost2.y = snapshot.val().y
-    // });
-
-    // fb.ghost3.on("value", function(snapshot) {
-    //   ghost3.x = snapshot.val().x
-    //   ghost3.y = snapshot.val().y
-    // });
-
-    // fb.ghost4.on("value", function(snapshot) {
-    //   ghost4.x = snapshot.val().x
-    //   ghost4.y = snapshot.val().y
-    // });
   }
 
   if (currentPlayer === "player2") {
+    movePlayer(ghost1);
     if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
       fb.ghost1.set({
         x : ghost1.position.x,
@@ -231,57 +240,9 @@ function update() {
       });
     }
 
-    // if ((ghost2.x !== ghost2.lastx) || (ghost2.y !== ghost2.lasty )) {
-    //   fb.ghost2.set({
-    //     x : ghost2.position.x,
-    //     y : ghost2.position.y
-    //   });
-    // }
-
-    // if ((ghost3.x !== ghost3.lastx) || (ghost3.y !== ghost3.lasty )) {
-    //   fb.ghost3.set({
-    //     x : ghost3.position.x,
-    //     y : ghost3.position.y
-    //   });
-    // }
-
-    // if ((ghost4.x !== ghost4.lastx) || (ghost4.y !== ghost4.lasty )) {
-    //   fb.ghost4.set({
-    //     x : ghost4.position.x,
-    //     y : ghost4.position.y
-    //   });
-    // }
-
     fb.person.on("value", function(snapshot) {
       person.x = snapshot.val().x
       person.y = snapshot.val().y
     });
   }
-
-  characters.forEach(function(character) {
-    if (character.userControl === true) {
-      if (cursors.left.isDown){
-        character.body.velocity.x = -200;
-        character.body.velocity.y = 0;
-        character.animations.play('left');
-      } else if (cursors.right.isDown){
-        character.body.velocity.x = 200;
-        character.body.velocity.y = 0;
-        character.animations.play('right');
-      } else if (cursors.up.isDown){
-        character.body.velocity.y = -200;
-        character.body.velocity.x = 0;
-        character.animations.play('up');
-      } else if (cursors.down.isDown) {
-        character.body.velocity.y = 200;
-        character.body.velocity.x = 0;
-        character.animations.play('bottom');
-      }
-    } else {
-      game.physics.arcade.moveToObject(character, person, 60);
-    }
-
-  });
-
 }
-
