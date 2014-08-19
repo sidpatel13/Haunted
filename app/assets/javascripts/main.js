@@ -68,6 +68,8 @@ LIVES = 100;
 GHOST_LIVES = 3;
 DOT_COUNT = 10;
 POWERUP_COUNT = 1;
+player1 = false;
+player2 = false;
 currentPlayer = false;
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
@@ -145,6 +147,8 @@ function create() {
 }
 
 function update() {
+
+ features.togglePause();
 
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
@@ -253,3 +257,4 @@ function update() {
   });
 
 }
+
