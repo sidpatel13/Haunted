@@ -1,5 +1,10 @@
 var gameCharacters = {};
 
+gameCharacters.createCharacters = function() {
+  gameCharacters.createPersion();
+  gameCharacters.createGhost();
+}
+
 gameCharacters.createPerson = function() {
   person = game.add.sprite(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 'sprites');
   person.scale.setTo(1.2, 1.2);
@@ -15,7 +20,7 @@ gameCharacters.createPerson = function() {
   characters.push(person);
 }
 
-gameCharacters.createGhosts = function() {
+gameCharacters.createGhost = function() {
   ghost1 = game.add.sprite(CANVAS_WIDTH * Math.random(), CANVAS_HEIGHT * Math.random(), 'sprites');
   ghost1.anchor.setTo(0.5, 0.5);
   ghost1.scale.setTo(1.2,1.2);

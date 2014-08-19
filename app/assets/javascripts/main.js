@@ -111,8 +111,6 @@ var cursors;
 var music;
 var fb;
 
-features.changeMusicVolume();
-
 //create sprites (game icons) to be used during game play
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -128,11 +126,8 @@ function create() {
   map.setCollision(38);
   layer.resizeWorld();
   controls.createHotkeys();
-  gameCharacters.createPerson();
-  gameCharacters.createGhosts();
-  board.createTeleport();
-  board.createPowerUp();
-  board.createApples();
+  gameCharacters.createCharacters();
+  board.createBoard();
 
   var gamePhysicsArray = [characters, apples, powerUp, starOne, starTwo];
 

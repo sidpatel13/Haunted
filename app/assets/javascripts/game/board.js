@@ -1,5 +1,12 @@
 var board = {}
 
+board.createBoard = function() {
+  board.createTeleport();
+  board.createApples();
+  board.createPowerUp();
+  board.createSpeedUp();
+}
+
 board.createTeleport = function() {
   starOne = game.add.sprite(10, game.world.height/2, 'star');
   starOne.anchor.setTo(0.5, 0.5);
@@ -34,4 +41,10 @@ board.createPowerUp = function() {
   cherry = game.add.sprite(CANVAS_WIDTH - 65, 250, 'star');
   cherry.anchor.setTo(0.5, 0.5);
   powerUp.push(cherry);
+}
+
+board.createSpeedUp = function() {
+  speed = game.add.sprite(CANVAS_WIDTH - 200, CANVAS_HEIGHT - 200, 'star');
+  speed.anchor.setTo(0.5, 0.5);
+  powerUp.push(speed);
 }
