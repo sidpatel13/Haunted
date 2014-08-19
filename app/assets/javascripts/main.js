@@ -23,6 +23,21 @@ $(document).ready(function() {
     $("#msg-input").val("");
     firebase.sendMessage(fb, name, content);
   });
+
+  $("#instructions-button").click(function(){
+    vex.dialog.alert('Game instructions go here.');
+  });
+
+  $("#player1-button").click(function(){
+    player1 = true;
+    player2 = false;
+  });
+
+  $("#player2-button").click(function(){
+    player1 = false;
+    player2 = true;
+  });
+
 });
 
 // Constants
@@ -36,6 +51,8 @@ LIVES = 100;
 GHOST_LIVES = 3;
 DOT_COUNT = 10;
 POWERUP_COUNT = 1;
+player1 = false;
+player2 = false;
 
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
@@ -118,29 +135,33 @@ function update() {
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
-  if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
-    fb.person.set({
-      x : person.position.x,
-      y : person.position.y
+  if (player1) {
+    if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
+      fb.person.set({
+        x : person.position.x,
+        y : person.position.y
+      });
+    }
+
+    fb.ghost1.on("value", function(snapshot) {
+      ghost1.x = snapshot.val().x
+      ghost1.y = snapshot.val().y
     });
   }
 
-  if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
-    fb.ghost1.set({
-      x : ghost1.position.x,
-      y : ghost1.position.y
+  if (player2) {
+    if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
+      fb.ghost1.set({
+        x : ghost1.position.x,
+        y : ghost1.position.y
+      });
+    }
+
+    fb.person.on("value", function(snapshot) {
+      person.x = snapshot.val().x
+      person.y = snapshot.val().y
     });
   }
-
-  fb.person.on("value", function(snapshot) {
-    person.x = snapshot.val().x
-    person.y = snapshot.val().y
-  });
-
-  fb.ghost1.on("value", function(snapshot) {
-    ghost1.x = snapshot.val().x
-    ghost1.y = snapshot.val().y
-  });
 
   for (var i = 0; i < ghosts.length; i++) {
     game.physics.arcade.collide(ghosts[i], walls);
