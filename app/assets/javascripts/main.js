@@ -57,7 +57,6 @@ DOT_COUNT = 10;
 POWERUP_COUNT = 1;
 currentPlayer = false;
 
-
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
 function preload() {
@@ -135,6 +134,18 @@ function create() {
 function update() {
 
   game.physics.arcade.collide(person, walls);
+  game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
+  game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
+  game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
+  game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
+  game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
+
+  for (var i = 0; i < ghosts.length; i++) {
+    game.physics.arcade.collide(ghosts[i], walls);
+  }
+
+  livesText.text = 'lives: ' + lives;
+  scoreText.text = 'score: ' + score;
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
@@ -168,15 +179,6 @@ function update() {
     });
   }
 
-  for (var i = 0; i < ghosts.length; i++) {
-    game.physics.arcade.collide(ghosts[i], walls);
-  }
-  game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
-  game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
-  game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
-  game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-  game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
-
   characters.forEach(function(character) {
     if (character.userControl === true) {
       if (cursors.left.isDown){
@@ -199,9 +201,6 @@ function update() {
     } else {
       game.physics.arcade.moveToObject(character, person, 60);
     }
-
-    livesText.text = 'lives: ' + lives;
-    scoreText.text = 'score: ' + score;
 
   });
 
