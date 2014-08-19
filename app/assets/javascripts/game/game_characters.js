@@ -1,7 +1,7 @@
 var gameCharacters = {};
 
 gameCharacters.createPerson = function() {
-  person = game.add.sprite(0, 0, 'sprites');
+  person = game.add.sprite(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 'sprites');
   person.scale.setTo(1.2, 1.2);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = false;
@@ -16,7 +16,7 @@ gameCharacters.createPerson = function() {
 }
 
 gameCharacters.createGhosts = function() {
-  ghost1 = game.add.sprite(100, game.world.height - 100, 'sprites');
+  ghost1 = game.add.sprite(CANVAS_WIDTH * Math.random(), CANVAS_HEIGHT * Math.random(), 'sprites');
   ghost1.anchor.setTo(0.5, 0.5);
   ghost1.scale.setTo(1.2,1.2);
   ghost1.userControl = true;
@@ -26,42 +26,6 @@ gameCharacters.createGhosts = function() {
   ghost1.animations.add('up', [42, 43], 0, true);
   ghost1.lastx = ghost1.x;
   ghost1.lasty = ghost1.y;
-
-  // ghost2 = game.add.sprite(200, game.world.height - 150, 'sprites');
-  // ghost2.anchor.setTo(0.5, 0.5);
-  // ghost2.scale.setTo(1.2,1.2);
-  // ghost2.userControl = false;
-  // ghost2.animations.add('right', [2, 3], 0, true);
-  // ghost2.animations.add('bottom', [16, 17], 0, true);
-  // ghost2.animations.add('left', [30, 31], 0, true);
-  // ghost2.animations.add('up', [44, 45], 0, true);
-  // ghost2.lastx = ghost2.x;
-  // ghost2.lasty = ghost2.y;
-
-  // ghost3 = game.add.sprite(300, game.world.height - 150, 'sprites');
-  // ghost3.anchor.setTo(0.5, 0.5);
-  // ghost3.scale.setTo(1.2,1.2);
-  // ghost3.userControl = false;
-  // ghost3.animations.add('right', [4, 5], 0, true);
-  // ghost3.animations.add('bottom', [18, 19], 0, true);
-  // ghost3.animations.add('left', [32, 33], 0, true);
-  // ghost3.animations.add('up', [46, 47], 0, true);
-  // ghost3.lastx = ghost3.x;
-  // ghost3.lasty = ghost3.y;
-
-  // ghost4 = game.add.sprite(400, game.world.height - 150, 'sprites');
-  // ghost4.anchor.setTo(0.5, 0.5);
-  // ghost4.scale.setTo(1.2,1.2);
-  // ghost4.userControl = false;
-  // ghost4.animations.add('right', [6, 7], 0, true);
-  // ghost4.animations.add('bottom', [20, 21], 0, true);
-  // ghost4.animations.add('left', [34, 35], 0, true);
-  // ghost4.animations.add('up', [48, 49], 0, true);
-  // ghost4.lastx = ghost4.x;
-  // ghost4.lasty = ghost4.y;
-
-  // ghosts.push(ghost1, ghost2, ghost3, ghost4);
-  // characters.push(ghost1, ghost2, ghost3, ghost4);
 
   ghosts.push(ghost1);
   characters.push(ghost1);
