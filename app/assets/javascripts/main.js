@@ -78,9 +78,10 @@ $(document).ready(function() {
     ],
      callback: function(value) {
 
-      test = game.add.sprite(100, 100, value);
-      test.scale.setTo(0.2, 0.2);
-      test.anchor.setTo(0.5, 0.5);
+      avatar = game.add.sprite(100, 100, value);
+      avatar.scale.setTo(0.2, 0.2);
+      avatar.anchor.setTo(0.5, 0.5);
+      characters.push(avatar)
      }
   });
 
@@ -193,6 +194,7 @@ function create() {
 function update() {
  //features.togglePause();
   game.physics.arcade.collide(person,layer);
+  game.physics.arcade.collide(avatar, layer);
   // console.log(fb.player1);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
