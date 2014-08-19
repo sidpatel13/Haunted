@@ -14,35 +14,4 @@ body {
   background-size: cover;
 }
 
-h1 {
-  font-family: 'Iceland';
-  font-size: 100px;
-  letter-spacing: 5px;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 4px 4px purple;
-}
-
-h1:hover {
-  text-shadow: 0 0 10px #fff,
-             0 0 20px #fff,
-             0 0 30px #fff,
-             0 0 40px #ff00de,
-             0 0 70px #ff00de,
-             0 0 80px #ff00de,
-             0 0 100px #ff00de,
-             0 0 150px #ff00de;
-}
-
-h2 {
-  text-shadow: 2px 2px 2px black;
-  text-align: center;
-}
-
-h3 {
-  background: rgba(255, 255, 255, 0.8);
-  margin: 0px;
-  padding: 10px;
-}
-
 
