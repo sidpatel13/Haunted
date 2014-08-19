@@ -125,6 +125,7 @@ function create() {
   board.createPowerUp();
   board.createMultipleDots(dotCount);
 
+
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
 
   for (var i = 0; i < gamePhysicsArray.length; i++) {
@@ -143,14 +144,13 @@ function create() {
   livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
   scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
 
-  cursors = game.input.keyboard.createCursorKeys();
-
+  cursors = game.input.keyboard.createCursorKeys(); 
 }
 
 function update() {
 
  features.togglePause();
-
+ console.log(fb.player1);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
   game.physics.arcade.collide(person, walls);
