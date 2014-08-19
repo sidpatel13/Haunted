@@ -124,9 +124,6 @@ function create() {
   person.body.collideWorldBounds = true;
   ghost1.body.collideWorldBounds = true;
 
-  livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
-  scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
-
   cursors = game.input.keyboard.createCursorKeys();
 }
 
