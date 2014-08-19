@@ -167,6 +167,10 @@ function update() {
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
 
+  fb.pause.on("value", function(snapshot) {
+    game.paused = snapshot.val();
+  });
+
   if (currentPlayer === "player1") {
     person.userControl = true;
     if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
