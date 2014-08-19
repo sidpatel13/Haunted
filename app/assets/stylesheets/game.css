@@ -62,11 +62,11 @@ h3 {
   font-family: 'Avenir';
   color: white;
   padding: 10px;
-  border: 0px;
+  border: 2px solid white;
   letter-spacing: 2px;
   font-size: 1.2em;
   background-color: indigo;
-  margin: 10px;
+  margin: 20px;
 }
 
 #chat-widget {
