@@ -79,7 +79,7 @@ function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
-  //game.load.audio('music', '/music.mp3');
+  game.load.audio('music', '/music.mp3');
 };
 
 // Declare Variables
@@ -109,13 +109,30 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   music = game.add.audio('music');
-  music.play();
+  // music.play(); commented out so no music plays
 
   map = game.add.tilemap('map');
   map.addTilesetImage('Desert');
-
   layer = map.createLayer('Ground');
+  map.setCollision(38);
+
+
+  // console.log(layerObjects)
+
+  // console.log(map)
+  // collisionLayer = map.createLayer('ObjectLayer'); //no work :(
+  // console.log(map.height)
+  // this.game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
+
+
+
+
   layer.resizeWorld();
+
+
+
+
+
 
   board.createBoard();
   controls.createHotkeys();
@@ -144,11 +161,11 @@ function create() {
   livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
   scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
 
-  cursors = game.input.keyboard.createCursorKeys(); 
+  cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update() {
-
+  game.physics.arcade.collide(person,layer);
  features.togglePause();
  console.log(fb.player1);
   // game.physics.arcade.collide(person, layer);
@@ -159,6 +176,7 @@ function update() {
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
   game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
+
 
   for (var i = 0; i < ghosts.length; i++) {
     game.physics.arcade.collide(ghosts[i], walls);
