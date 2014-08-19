@@ -2,7 +2,6 @@
 //= require firebase.js
 //= require game/board.js
 //= require game/game_characters.js
-//= require game/controls.js
 //= require game/images.js
 //= require game/features.js
 
@@ -80,8 +79,7 @@ CANVAS_OFFSET = 60;
 
 SCORE = 0;
 MAX_SCORE = 10;
-LIVES = 100;
-POWERUP_COUNT = 1;
+LIVES = 3;
 player1 = false;
 player2 = false;
 currentPlayer = false;
@@ -98,20 +96,17 @@ function preload() {
 // Declare Variables
 var score = SCORE;
 var lives = LIVES;
-
 var characters = [], apples = [], ghosts = [], powerUp = [];
 var key1, key2, key3, key4;
 var person, ghost1, ghost2, ghost3, ghost4;
 var platforms;
 var scoreText, livesText, starOne, starTwo;
-
 var map;
 var layer;
 var cursors;
 var music;
 var fb;
 
-//create sprites (game icons) to be used during game play
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
