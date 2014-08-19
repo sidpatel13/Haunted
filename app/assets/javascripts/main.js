@@ -31,7 +31,7 @@ $(document).ready(function() {
 
   $("#aboutus-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog <a href="https://github.com/red-spotted-newts-2014/haunted">here</a>!');
+    vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog @ https://github.com/red-spotted-newts-2014/haunted !');
   });
 
   var urlModal = function() {
