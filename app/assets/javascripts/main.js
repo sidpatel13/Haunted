@@ -60,7 +60,7 @@ $(document).ready(function() {
 // Constants
 CANVAS_WIDTH = 833;
 CANVAS_HEIGHT = 715;
-CANVAS_OFFSET = 100;
+CANVAS_OFFSET = 60;
 
 SCORE = 0;
 MAX_SCORE = 20;
@@ -137,8 +137,8 @@ function create() {
   key3.onDown.add( function() { controls.setUserControl(3) } );
   key4.onDown.add( function() { controls.setUserControl(4) } );
 
-  livesText = game.add.text(CANVAS_WIDTH - CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
-  scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
+  scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
 
   cursors = game.input.keyboard.createCursorKeys();
 
