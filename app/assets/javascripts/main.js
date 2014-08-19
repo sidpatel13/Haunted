@@ -41,6 +41,7 @@ $(document).ready(function() {
     vex.dialog.buttons.YES.text = 'Player1';
     vex.dialog.buttons.NO.text = 'Player2';
     vex.dialog.confirm({
+      message: "Choose:",
       callback: function(value) {
         if (value) {
           currentPlayer = "player1";
@@ -177,11 +178,31 @@ function update() {
   }
 
   if (currentPlayer === "player2") {
-    ghost1.userControl = true;
     if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
       fb.ghost1.set({
         x : ghost1.position.x,
         y : ghost1.position.y
+      });
+    }
+
+    if ((ghost2.x !== ghost2.lastx) || (ghost2.y !== ghost2.lasty )) {
+      fb.ghost2.set({
+        x : ghost2.position.x,
+        y : ghost2.position.y
+      });
+    }
+
+    if ((ghost3.x !== ghost3.lastx) || (ghost3.y !== ghost3.lasty )) {
+      fb.ghost3.set({
+        x : ghost3.position.x,
+        y : ghost3.position.y
+      });
+    }
+
+    if ((ghost4.x !== ghost4.lastx) || (ghost4.y !== ghost4.lasty )) {
+      fb.ghost4.set({
+        x : ghost4.position.x,
+        y : ghost4.position.y
       });
     }
 
