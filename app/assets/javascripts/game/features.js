@@ -58,9 +58,9 @@ features.pacMeetsGhost = function(person, ghosts) {
 }
 
 features.changeMusicVolume = function() {
-  if (pointer.y < 300){
-      music.volume += 0.1;
-  } else {
-      music.volume -= 0.1;
-  }
+  // if (pointer.y < 300){
+  //     music.volume += 0.1;
+  // } else {
+  //     music.volume -= 0.1;
+  // }
 };
