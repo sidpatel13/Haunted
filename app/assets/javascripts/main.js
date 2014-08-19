@@ -28,20 +28,32 @@ $(document).ready(function() {
     vex.dialog.alert('Game instructions go here.');
   });
 
-  $("#player1-button").click(function(){
-    // player1 = true;
-    // player2 = false;
-    currentPlayer = "player1";
-    fb.player1.set(true);
-  });
+  var urlModal = function() {
+    vex.dialog.alert({
+      message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
+      callback: function() {
+        confirmPlayerModal();
+      }
+    });
+  }
 
-  $("#player2-button").click(function(){
-    // player1 = false;
-    // player2 = true;
-    currentPlayer = "player2";
-    fb.player2.set(true);
-  });
+  var confirmPlayerModal = function() {
+    vex.dialog.buttons.YES.text = 'Player1';
+    vex.dialog.buttons.NO.text = 'Player2';
+    vex.dialog.confirm({
+      callback: function(value) {
+        if (value) {
+          currentPlayer = "player1";
+          fb.player1.set(true);
+        } else {
+          currentPlayer = "player2";
+          fb.player2.set(true);
+        }
+      }
+    });
+  }
 
+  urlModal();
 });
 
 // Constants
@@ -133,6 +145,8 @@ function create() {
 
 function update() {
 
+  // game.physics.arcade.collide(person, layer);
+  // game.physics.arcade.collide(person, collisionLayer);
   game.physics.arcade.collide(person, walls);
   game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
@@ -146,8 +160,6 @@ function update() {
 
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
-  // game.physics.arcade.collide(person, layer);
-  // game.physics.arcade.collide(person, collisionLayer);
 
   if (currentPlayer === "player1") {
     person.userControl = true;

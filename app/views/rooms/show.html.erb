@@ -1,15 +1,9 @@
-<script>
-  vex.dialog.alert('Send your friend this url to play!<br><input id="game-url" type="text" value="<%=request.original_url%>"></input>');
-</script>
-
 <input type="hidden" id="room-session" value="<%= @room_session %>">
 
 <div id="chat-widget">
   <div id="panel">
     <button id="instructions-button">Instructions</button>
     <button id="aboutus-button">About Us</button>
-    <button id="player1-button">Player 1</button>
-    <button id="player2-button">Player 2</button>
   </div>
 
 

@@ -43,8 +43,7 @@ canvas {
 #game-url {
   width: 100%;
   font-family: Helvetica;
-  letter-spacing: 2px;
-  font-size: 1em;
+  font-size: 0.8em;
   line-height: 30px;
   margin-top: 30px;
   margin-bottom: 20px;
