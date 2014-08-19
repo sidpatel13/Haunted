@@ -1,12 +1,17 @@
 #welcome {
   margin: auto;
   width: 400px;
-  background: rgba(0, 0, 0, 0.5);
+  font-size: 1.1em;
+  font-style: bold;
+  background: rgba(255, 255, 255, 0.2);
+  padding-top: 10px;
+  text-shadow: 2px 2px 2px indigo;
 }
 
 #welcome a:link, a:visited {
   padding: 10px;
   color: white;
+  text-shadow: 2px 2px 2px indigo;
 }
 
 #welcome form {
