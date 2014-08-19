@@ -12,7 +12,7 @@ function loadImages() {
   createImage("ghost");
   createImage("star");
   createImage("firstaid");
-  createImage("diamond");
+  createImage("apple");
   createSpritesheet("sprites", 32);
   createImage("johnny_bravo");
   createImage("dexter");

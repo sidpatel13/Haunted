@@ -21,26 +21,22 @@ board.createTeleport = function() {
 }
 
 board.createOneDot = function() {
-
-  for (var i = 45; i <= 800; i += 57) {
-    dot = game.add.sprite(i, 53, 'diamond');
-    dot.anchor.setTo(0.5, 0.5);
-    dots.push(dot);
-  }
-
-};
+  dot = game.add.sprite(100, 100, 'apple');
+  dot.anchor.setTo(0.5, 0.5);
+  dots.push(dot);
+}
 
 board.createMultipleDots = function(count) {
-    for(var i = 0; i < count; i++){
+  for(var i = 0; i < count; i++){
     board.createOneDot();
   }
-};
+}
 
 board.createPowerUp = function() {
   cherry = game.add.sprite(Math.random()*700, Math.random()*500, 'star');
   cherry.anchor.setTo(0.5, 0.5);
   powerUp.push(cherry);
-};
+}
 
 // HARDCODED WALLS
 // for (var i=0; i < 25; i++) {

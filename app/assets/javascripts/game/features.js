@@ -19,34 +19,28 @@ features.loseLife = function(person, ghosts) {
   if (lives === 0) {
     features.gameOver("Player 2");
   } else {
-    person.reset(100, 100);
+    person.reset(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
   }
 };
 
 features.eatDot = function(person, dots) {
   score++;
-  dotCount--;
   dots.kill();
 
-  if (dotCount === 0 && powerUpCount === 0) {
+  if (score === MAX_SCORE) {
     features.gameOver("Player 1");
   }
 }
 
 features.powerUp = function(person, powerUp) {
-  score += 5;
-  powerUpCount--;
   powerUp.kill();
   person.powerUp = true;
   setTimeout(function(){person.powerUp = false}, 5000);
-
-  if (dotCount === 0 && powerUpCount === 0) {
-    features.gameOver("Player 1");
-  }
 }
 
 features.gameOver = function(winner) {
-  alert("Winner: " + winner);
+  alert("Game Over. " + winner + " wins!");
+  location.reload();
 };
 
 features.eatGhosts = function(person, ghosts) {
@@ -79,10 +73,8 @@ features.changeMusicVolume = function() {
 features.togglePause = function () {
   document.onkeydown = function (e) {
     if(e.which == 80) {
-      game.paused = true;
       fb.pause.set(true);
     } else if (e.which == 82) {
-      game.paused = false;
       fb.pause.set(false);
     }
   }
