@@ -55,6 +55,17 @@ $(document).ready(function() {
     });
   }
 
+  fb.pause.on("value", function(snapshot) {
+    console.log("Pause changed");
+    game.paused = snapshot.val();
+  });
+
+  fb.player2.on("value", function(snapshot) {
+    if (snapshot.val()) {
+      fb.pause.set(false);
+    }
+  });
+
   urlModal();
 });
 
@@ -108,6 +119,8 @@ features.changeMusicVolume();
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
+  fb.pause.set(true);
+
   music = game.add.audio('music');
   music.play();
 
@@ -149,7 +162,7 @@ function create() {
 
 function update() {
 
- features.togglePause();
+ //features.togglePause();
 
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
@@ -166,10 +179,6 @@ function update() {
 
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
-
-  fb.pause.on("value", function(snapshot) {
-    game.paused = snapshot.val();
-  });
 
   if (currentPlayer === "player1") {
     person.userControl = true;
