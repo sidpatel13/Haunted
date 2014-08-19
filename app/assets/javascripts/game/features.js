@@ -75,7 +75,7 @@ features.changeMusicVolume = function() {
     // }
 };
 
-var pauseModal = function () {
+features.pauseModal = function () {
   if (game.paused == true) {
     vex.dialog.alert({
       message: "Game paused!<br>Hit R to resume"
@@ -86,11 +86,12 @@ var pauseModal = function () {
 
 features.togglePause = function () {
   document.onkeydown = function (e) {
-    console.log("goodbye")
     if(e.which == 80) {
       game.paused = true;
+      fb.pause.set(true);
     } else if (e.which == 82) {
       game.paused = false;
+      fb.pause.set(false);
     }
   }
 }
