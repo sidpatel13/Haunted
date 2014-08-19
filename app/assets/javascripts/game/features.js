@@ -19,7 +19,7 @@ features.loseLife = function(person, ghosts) {
   if (lives === 0) {
     features.gameOver("Player 2");
   } else {
-    person.reset(100, 100);
+    person.reset(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
   }
 };
 
@@ -39,7 +39,8 @@ features.powerUp = function(person, powerUp) {
 }
 
 features.gameOver = function(winner) {
-  alert("Winner: " + winner);
+  alert("Game Over. " + winner + " wins!");
+  location.reload();
 };
 
 features.eatGhosts = function(person, ghosts) {
