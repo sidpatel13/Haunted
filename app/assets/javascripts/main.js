@@ -180,8 +180,29 @@ function update() {
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
 
+  var movePlayer = function(character) {
+    if (cursors.left.isDown){
+      character.body.velocity.x = -200;
+      character.body.velocity.y = 0;
+      character.animations.play('left');
+    } else if (cursors.right.isDown){
+      character.body.velocity.x = 200;
+      character.body.velocity.y = 0;
+      character.animations.play('right');
+    } else if (cursors.up.isDown){
+      character.body.velocity.y = -200;
+      character.body.velocity.x = 0;
+      character.animations.play('up');
+    } else if (cursors.down.isDown) {
+      character.body.velocity.y = 200;
+      character.body.velocity.x = 0;
+      character.animations.play('bottom');
+    }
+  }
+
   if (currentPlayer === "player1") {
     person.userControl = true;
+    movePlayer(person);
     if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
       fb.person.set({
         x : person.position.x,
@@ -196,6 +217,7 @@ function update() {
   }
 
   if (currentPlayer === "player2") {
+    movePlayer(ghost1);
     if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
       fb.ghost1.set({
         x : ghost1.position.x,
@@ -209,30 +231,28 @@ function update() {
     });
   }
 
-  characters.forEach(function(character) {
-    if (character.userControl === true) {
-      if (cursors.left.isDown){
-        character.body.velocity.x = -200;
-        character.body.velocity.y = 0;
-        character.animations.play('left');
-      } else if (cursors.right.isDown){
-        character.body.velocity.x = 200;
-        character.body.velocity.y = 0;
-        character.animations.play('right');
-      } else if (cursors.up.isDown){
-        character.body.velocity.y = -200;
-        character.body.velocity.x = 0;
-        character.animations.play('up');
-      } else if (cursors.down.isDown) {
-        character.body.velocity.y = 200;
-        character.body.velocity.x = 0;
-        character.animations.play('bottom');
-      }
-    } else {
-      game.physics.arcade.moveToObject(character, person, 60);
-    }
-
-  });
+  // characters.forEach(function(character) {
+  //   if (character.userControl === true) {
+  //     if (cursors.left.isDown){
+  //       character.body.velocity.x = -200;
+  //       character.body.velocity.y = 0;
+  //       character.animations.play('left');
+  //     } else if (cursors.right.isDown){
+  //       character.body.velocity.x = 200;
+  //       character.body.velocity.y = 0;
+  //       character.animations.play('right');
+  //     } else if (cursors.up.isDown){
+  //       character.body.velocity.y = -200;
+  //       character.body.velocity.x = 0;
+  //       character.animations.play('up');
+  //     } else if (cursors.down.isDown) {
+  //       character.body.velocity.y = 200;
+  //       character.body.velocity.x = 0;
+  //       character.animations.play('bottom');
+  //     }
+  //   } else {
+  //     game.physics.arcade.moveToObject(character, person, 60);
+  //   }
+  // });
 
 }
-
