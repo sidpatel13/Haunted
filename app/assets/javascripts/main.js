@@ -85,7 +85,6 @@ $(document).ready(function() {
      }
   });
 
-
   fb.pause.on("value", function(snapshot) {
     game.paused = snapshot.val();
   });

@@ -15,12 +15,3 @@ body {
 }
 
 
-#devise {
-  list-style: none;
-  margin-bottom: 20px;
-  padding: 0;
-}
-
-#devise li {
-  display: inline;
-}
