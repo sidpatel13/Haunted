@@ -1,0 +1,42 @@
+#welcome {
+  margin: auto;
+  width: 400px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#welcome a:link, a:visited {
+  padding: 10px;
+  color: white;
+}
+
+#welcome form {
+  text-align: center;
+  line-height: 50px;
+}
+
+#welcome input {
+  line-height: 20px;
+  width: 50%;
+}
+
+#welcome .button, input[type=submit] {
+  margin-bottom: 30px;
+  width: 30%;
+  color: white;
+  padding: 7px;
+  border: 1px solid;
+  font-family: Helvetica;
+  font-size: 1em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: indigo;
+}
+
+#devise {
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+#devise li {
+  display: inline;
+}
