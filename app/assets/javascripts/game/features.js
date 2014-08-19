@@ -23,9 +23,9 @@ features.loseLife = function(person, ghosts) {
   }
 };
 
-features.eatDot = function(person, dots) {
+features.eatApple = function(person, apples) {
   score++;
-  dots.kill();
+  apples.kill();
 
   if (score === MAX_SCORE) {
     features.gameOver("Player 1");
