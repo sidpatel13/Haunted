@@ -1,7 +1,7 @@
 //= require vendor/phaser.min.js
 //= require firebase.js
 //= require game/board.js
-//= require game/game_characters.js
+//= require game/characters.js
 //= require game/images.js
 //= require game/features.js
 
@@ -96,7 +96,7 @@ function preload() {
 // Declare Variables
 var score = SCORE;
 var lives = LIVES;
-var characters = [], apples = [], ghosts = [], powerUp = [];
+var apples = [], ghosts = [], powerUp = [];
 var key1, key2, key3, key4;
 var person, ghost1, ghost2, ghost3, ghost4;
 var platforms;
@@ -112,21 +112,17 @@ function create() {
 
   fb.pause.set(true);
 
-  music = game.add.audio('music');
-  // music.play(); commented out so no music plays
-
   board.createBoard();
-  gameCharacters.createCharacters();
+  characters.createCharacters();
 
-  var gamePhysicsArray = [characters, apples, powerUp, starOne, starTwo];
+  var gamePhysicsArray = [person, ghost1, apples, powerUp, starOne, starTwo];
 
   for (var i = 0; i < gamePhysicsArray.length; i++) {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
 
-  for (var i = 0; i < characters.length; i++) {
-    characters[i].body.collideWorldBounds = true;
-  }
+  person.body.collideWorldBounds = true;
+  ghost1.body.collideWorldBounds = true;
 
   livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
   scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });

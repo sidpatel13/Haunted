@@ -6,6 +6,12 @@ board.createBoard = function() {
   board.createApples();
   board.createPowerUp();
   board.createSpeedUp();
+  board.addMusic();
+}
+
+board.addMusic = function() {
+  music = game.add.audio('music');
+  music.play();
 }
 
 board.createMap = function() {

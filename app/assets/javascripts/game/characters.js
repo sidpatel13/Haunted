@@ -1,11 +1,11 @@
-var gameCharacters = {};
+var characters = {};
 
-gameCharacters.createCharacters = function() {
-  gameCharacters.createPerson();
-  gameCharacters.createGhost();
+characters.createCharacters = function() {
+  characters.createPerson();
+  characters.createGhost();
 }
 
-gameCharacters.createPerson = function() {
+characters.createPerson = function() {
   person = game.add.sprite(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 'sprites');
   person.scale.setTo(1.2, 1.2);
   person.anchor.setTo(0.5, 0.5);
@@ -17,10 +17,9 @@ gameCharacters.createPerson = function() {
   person.powerUp = false;
   person.lastx = person.x;
   person.lasty = person.y;
-  characters.push(person);
 }
 
-gameCharacters.createGhost = function() {
+characters.createGhost = function() {
   ghost1 = game.add.sprite(CANVAS_WIDTH * Math.random(), CANVAS_HEIGHT * Math.random(), 'sprites');
   ghost1.anchor.setTo(0.5, 0.5);
   ghost1.scale.setTo(1.2,1.2);
@@ -31,7 +30,4 @@ gameCharacters.createGhost = function() {
   ghost1.animations.add('up', [42, 43], 0, true);
   ghost1.lastx = ghost1.x;
   ghost1.lasty = ghost1.y;
-
-  ghosts.push(ghost1);
-  characters.push(ghost1);
 }
