@@ -134,7 +134,7 @@ function create() {
   // this.game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
 
   layer.resizeWorld();
-  board.createBoard();
+  //board.createBoard();
   controls.createHotkeys();
   gameCharacters.createPerson();
   gameCharacters.createGhosts();
@@ -164,21 +164,14 @@ function create() {
 }
 
 function update() {
- //features.togglePause();
+
   game.physics.arcade.collide(person,layer);
-  // console.log(fb.player1);
-  // game.physics.arcade.collide(person, layer);
-  // game.physics.arcade.collide(person, collisionLayer);
-  game.physics.arcade.collide(person, walls);
+  game.physics.arcade.collide(ghost1,layer);
   game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
   game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
-
-  for (var i = 0; i < ghosts.length; i++) {
-    game.physics.arcade.collide(ghosts[i], walls);
-  }
 
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;

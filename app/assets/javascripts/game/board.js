@@ -1,14 +1,14 @@
 var board = {}
 
-board.createBoard = function() {
-  walls = game.add.group();
-  walls.enableBody = true;
-  walls.physicsBodyType = Phaser.Physics.ARCADE;
+// board.createBoard = function() {
+//   walls = game.add.group();
+//   walls.enableBody = true;
+//   walls.physicsBodyType = Phaser.Physics.ARCADE;
 
-  var c = walls.create(200, 200, 'firstaid');
-  c.name = 'veg';
-  c.body.immovable = true;
-}
+//   var c = walls.create(200, 200, 'firstaid');
+//   c.name = 'veg';
+//   c.body.immovable = true;
+// }
 
 board.createTeleport = function() {
   starOne = game.add.sprite(10, game.world.height/2, 'star');
