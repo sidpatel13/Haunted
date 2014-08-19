@@ -21,9 +21,13 @@ board.createTeleport = function() {
 }
 
 board.createOneDot = function() {
-    dot = game.add.sprite(Math.random()*700, Math.random()*500, 'diamond');
+
+  for (var i = 45; i <= 800; i += 57) {
+    dot = game.add.sprite(i, 53, 'diamond');
     dot.anchor.setTo(0.5, 0.5);
     dots.push(dot);
+  }
+
 };
 
 board.createMultipleDots = function(count) {
