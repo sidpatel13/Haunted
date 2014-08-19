@@ -26,7 +26,12 @@ $(document).ready(function() {
 
   $("#instructions-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert('Here are the rules of the game.<br /><br /><b>Player1:</b><br /><i>Controls</i> - Move your character with the arrow keys.<br /><i>Objective</i> - Collect all dots and powerups, or eat all the ghosts. The choice is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which ghost you want to control by pressing numbers 1 through 4. Then, move your character with the arrow keys.<br /><i>Objective</i> - Eat the hero until the hero has no lives left.');
+    vex.dialog.alert('Here are the rules of the game.<br /><br /><b>Player1:</b><br /><i>Controls</i> - Move your character with the arrow keys.<br /><i>Objective</i> - Collect all dots and powerups, or eat all the ghosts. The choice is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which ghost you want to control by pressing numbers 1 through 4. Then, move your character with the arrow keys.<br /><i>Objective</i> - Eat the hero until the hero has no lives left.<br /><br />Need a moment? Press <b>P</b> to pause and <b>R</b> to resume.');
+  });
+
+  $("#aboutus-button").click(function(){
+    vex.dialog.buttons.YES.text = 'OK';
+    vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog <a href="https://github.com/red-spotted-newts-2014/haunted">here</a>!');
   });
 
   var urlModal = function() {
@@ -87,7 +92,7 @@ function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
-  //game.load.audio('music', '/music.mp3');
+  game.load.audio('music', '/music.mp3');
 };
 
 // Declare Variables
@@ -115,13 +120,30 @@ function create() {
   fb.pause.set(true);
 
   music = game.add.audio('music');
-  music.play();
+  // music.play(); commented out so no music plays
 
   map = game.add.tilemap('map');
   map.addTilesetImage('Desert');
-
   layer = map.createLayer('Ground');
+  map.setCollision(38);
+
+
+  // console.log(layerObjects)
+
+  // console.log(map)
+  // collisionLayer = map.createLayer('ObjectLayer'); //no work :(
+  // console.log(map.height)
+  // this.game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
+
+
+
+
   layer.resizeWorld();
+
+
+
+
+
 
   board.createBoard();
   controls.createHotkeys();
@@ -130,6 +152,7 @@ function create() {
   board.createTeleport();
   board.createPowerUp();
   board.createMultipleDots(MAX_SCORE);
+
 
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
 
@@ -150,13 +173,12 @@ function create() {
   scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
 
   cursors = game.input.keyboard.createCursorKeys();
-
 }
 
 function update() {
-
  //features.togglePause();
-
+  game.physics.arcade.collide(person,layer);
+  // console.log(fb.player1);
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
   game.physics.arcade.collide(person, walls);
