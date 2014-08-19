@@ -20,6 +20,8 @@ var score = 0;
 var lives = DEFAULT_LIVES;
 var apples = [];
 var cherry;
+var speedUp;
+var slowDown;
 var person;
 var ghost;
 var scoreText, livesText;
@@ -114,7 +116,7 @@ function create() {
   board.createBoard();
   characters.createCharacters();
 
-  var gamePhysicsArray = [person, ghost, apples, cherry, starOne, starTwo];
+  var gamePhysicsArray = [person, ghost, apples, cherry, speedUp, slowDown, starOne, starTwo];
 
   for (var i = 0; i < gamePhysicsArray.length; i++) {
     game.physics.arcade.enable(gamePhysicsArray[i]);
@@ -132,6 +134,10 @@ function update() {
   game.physics.arcade.collide(ghost,layer);
   game.physics.arcade.overlap(person, apples, features.eatApple, null, this);
   game.physics.arcade.overlap(person, cherry, features.cherry, null, this);
+  game.physics.arcade.overlap(person, speedUp, features.speedUp, null, this);
+  game.physics.arcade.overlap(person, slowDown, features.slowDown, null, this);
+  game.physics.arcade.overlap(ghost, speedUp, features.speedUp, null, this);
+  game.physics.arcade.overlap(ghost, slowDown, features.slowDown, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
   game.physics.arcade.overlap(person, ghost, features.pacMeetsGhost, null, this);
@@ -141,19 +147,19 @@ function update() {
 
   var movePlayer = function(character) {
     if (cursors.left.isDown){
-      character.body.velocity.x = -200;
+      character.body.velocity.x = -200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('left');
     } else if (cursors.right.isDown){
-      character.body.velocity.x = 200;
+      character.body.velocity.x = 200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('right');
     } else if (cursors.up.isDown){
-      character.body.velocity.y = -200;
+      character.body.velocity.y = -200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('up');
     } else if (cursors.down.isDown) {
-      character.body.velocity.y = 200;
+      character.body.velocity.y = 200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('bottom');
     }

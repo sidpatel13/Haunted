@@ -6,6 +6,7 @@ board.createBoard = function() {
   board.createApples();
   board.createCherry();
   board.createSpeedUp();
+  board.createSlowDown();
   board.addMusic();
   board.addScoreText();
   board.addLivesText();
@@ -67,6 +68,11 @@ board.createCherry = function() {
 }
 
 board.createSpeedUp = function() {
-  speed = game.add.sprite(CANVAS_WIDTH - 200, CANVAS_HEIGHT - 200, 'star');
-  speed.anchor.setTo(0.5, 0.5);
+  speedUp = game.add.sprite(CANVAS_WIDTH - 200, CANVAS_HEIGHT - 200, 'star');
+  speedUp.anchor.setTo(0.5, 0.5);
+}
+
+board.createSlowDown = function() {
+  slowDown = game.add.sprite(200, 200, 'star');
+  slowDown.anchor.setTo(0.5, 0.5);
 }
