@@ -193,21 +193,6 @@ function update() {
       ghost1.x = snapshot.val().x
       ghost1.y = snapshot.val().y
     });
-
-    // fb.ghost2.on("value", function(snapshot) {
-    //   ghost2.x = snapshot.val().x
-    //   ghost2.y = snapshot.val().y
-    // });
-
-    // fb.ghost3.on("value", function(snapshot) {
-    //   ghost3.x = snapshot.val().x
-    //   ghost3.y = snapshot.val().y
-    // });
-
-    // fb.ghost4.on("value", function(snapshot) {
-    //   ghost4.x = snapshot.val().x
-    //   ghost4.y = snapshot.val().y
-    // });
   }
 
   if (currentPlayer === "player2") {
@@ -217,27 +202,6 @@ function update() {
         y : ghost1.position.y
       });
     }
-
-    // if ((ghost2.x !== ghost2.lastx) || (ghost2.y !== ghost2.lasty )) {
-    //   fb.ghost2.set({
-    //     x : ghost2.position.x,
-    //     y : ghost2.position.y
-    //   });
-    // }
-
-    // if ((ghost3.x !== ghost3.lastx) || (ghost3.y !== ghost3.lasty )) {
-    //   fb.ghost3.set({
-    //     x : ghost3.position.x,
-    //     y : ghost3.position.y
-    //   });
-    // }
-
-    // if ((ghost4.x !== ghost4.lastx) || (ghost4.y !== ghost4.lasty )) {
-    //   fb.ghost4.set({
-    //     x : ghost4.position.x,
-    //     y : ghost4.position.y
-    //   });
-    // }
 
     fb.person.on("value", function(snapshot) {
       person.x = snapshot.val().x
