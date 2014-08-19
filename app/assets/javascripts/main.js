@@ -135,7 +135,7 @@ function update() {
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-  game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
+  game.physics.arcade.overlap(person, ghost1, features.pacMeetsGhost, null, this);
 
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
