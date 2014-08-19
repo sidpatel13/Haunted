@@ -29,13 +29,17 @@ $(document).ready(function() {
   });
 
   $("#player1-button").click(function(){
-    player1 = true;
-    player2 = false;
+    // player1 = true;
+    // player2 = false;
+    currentPlayer = "player1";
+    fb.player1.set(true);
   });
 
   $("#player2-button").click(function(){
-    player1 = false;
-    player2 = true;
+    // player1 = false;
+    // player2 = true;
+    currentPlayer = "player2";
+    fb.player2.set(true);
   });
 
 });
@@ -51,8 +55,7 @@ LIVES = 100;
 GHOST_LIVES = 3;
 DOT_COUNT = 10;
 POWERUP_COUNT = 1;
-player1 = false;
-player2 = false;
+currentPlayer = false;
 
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
@@ -135,7 +138,8 @@ function update() {
   // game.physics.arcade.collide(person, layer);
   // game.physics.arcade.collide(person, collisionLayer);
 
-  if (player1) {
+  if (currentPlayer === "player1") {
+    person.userControl = true;
     if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
       fb.person.set({
         x : person.position.x,
@@ -149,7 +153,8 @@ function update() {
     });
   }
 
-  if (player2) {
+  if (currentPlayer === "player2") {
+    ghost1.userControl = true;
     if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
       fb.ghost1.set({
         x : ghost1.position.x,
