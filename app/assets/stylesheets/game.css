@@ -21,29 +21,63 @@ canvas {
 
 /* Sidebar */
 
+h2 {
+  color: white;
+  font-family: 'Iceland';
+  font-size: 5.5em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+  text-shadow: 4px 4px purple;
+  margin-top: 35px;
+}
+
+h2:hover {
+  text-shadow: 0 0 10px #fff,
+             0 0 20px #fff,
+             0 0 30px #fff,
+             0 0 40px #ff00de,
+             0 0 70px #ff00de,
+             0 0 80px #ff00de,
+             0 0 100px #ff00de,
+             0 0 150px #ff00de;
+}
+
+h2 a:link, a:active, a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+h3 {
+  background: rgba(255, 255, 255, 0.8);
+  margin: 0px;
+  padding: 10px;
+}
+
 #panel {
   text-align: center;
 }
 
 #instructions-button, #aboutus-button {
   font-family: 'Avenir';
-  color: black;
-  padding: 7px;
-  border: 2px black solid;
-  font-size: 1em;
-  background-color: white;
+  color: white;
+  padding: 10px;
+  border: 0px;
+  letter-spacing: 2px;
+  font-size: 1.2em;
+  background-color: indigo;
   margin: 10px;
 }
 
 #chat-widget {
   color: black;
-  background: rgba(0, 0, 0, 0.5);
   position: fixed;
   width: 30%;
   height: 100%;
   top: 0%;
   right: 0%;
   text-align: left;
+  border-left: 2px white solid;
 }
 
 #chat {
