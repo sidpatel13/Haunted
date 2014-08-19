@@ -55,6 +55,31 @@ $(document).ready(function() {
     });
   }
 
+  vex.dialog.open({
+    message: 'Choose your avatar:<br><br><img class="image" src="images/dexter.png"><img class="image" src="images/johnny_bravo.png"><img class="image" src="images/All_3_eds.png">',
+    buttons: [
+      $.extend({}, vex.dialog.buttons.NO, { className: 'button1', text: 'Dexter', click: function($vexContent, event) {
+            $vexContent.data().vex.value = 'dexter';
+            vex.close($vexContent.data().vex.id);
+        }}),
+      $.extend({}, vex.dialog.buttons.NO, { className: 'button2', text: 'Johnny Bravo', click: function($vexContent, event) {
+            $vexContent.data().vex.value = 'johnny_bravo';
+            vex.close($vexContent.data().vex.id);
+        }}),
+      $.extend({}, vex.dialog.buttons.NO, { className: 'button3', text: "Ed Ed'n Eddy", click: function($vexContent, event) {
+            $vexContent.data().vex.value = 'All_3_eds';
+            vex.close($vexContent.data().vex.id);
+        }})
+    ],
+     callback: function(value) {
+
+      test = game.add.sprite(100, 100, value);
+      test.scale.setTo(0.2, 0.2);
+      test.anchor.setTo(0.5, 0.5);
+     }
+  });
+
+
   urlModal();
 });
 
@@ -75,11 +100,13 @@ currentPlayer = false;
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
+
+
 function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
-  //game.load.audio('music', '/music.mp3');
+
 };
 
 // Declare Variables
@@ -116,6 +143,7 @@ function create() {
 
   layer = map.createLayer('Ground');
   layer.resizeWorld();
+
 
   board.createBoard();
   controls.createHotkeys();
