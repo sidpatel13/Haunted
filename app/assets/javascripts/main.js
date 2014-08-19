@@ -23,12 +23,45 @@ $(document).ready(function() {
     $("#msg-input").val("");
     firebase.sendMessage(fb, name, content);
   });
+
+  $("#instructions-button").click(function(){
+    vex.dialog.buttons.YES.text = 'OK';
+    vex.dialog.alert('Here are the rules of the game.<br /><br /><b>Player1:</b><br /><i>Controls</i> - Move your character with the arrow keys.<br /><i>Objective</i> - Collect all dots and powerups, or eat all the ghosts. The choice is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which ghost you want to control by pressing numbers 1 through 4. Then, move your character with the arrow keys.<br /><i>Objective</i> - Eat the hero until the hero has no lives left.');
+  });
+
+  var urlModal = function() {
+    vex.dialog.alert({
+      message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
+      callback: function() {
+        confirmPlayerModal();
+      }
+    });
+  }
+
+  var confirmPlayerModal = function() {
+    vex.dialog.buttons.YES.text = 'Player1';
+    vex.dialog.buttons.NO.text = 'Player2';
+    vex.dialog.confirm({
+      message: "Choose:",
+      callback: function(value) {
+        if (value) {
+          currentPlayer = "player1";
+          fb.player1.set(true);
+        } else {
+          currentPlayer = "player2";
+          fb.player2.set(true);
+        }
+      }
+    });
+  }
+
+  urlModal();
 });
 
 // Constants
 CANVAS_WIDTH = 833;
 CANVAS_HEIGHT = 715;
-CANVAS_OFFSET = 100;
+CANVAS_OFFSET = 60;
 
 SCORE = 0;
 MAX_SCORE = 20;
@@ -36,7 +69,9 @@ LIVES = 100;
 GHOST_LIVES = 3;
 DOT_COUNT = 10;
 POWERUP_COUNT = 1;
-
+player1 = false;
+player2 = false;
+currentPlayer = false;
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
@@ -122,8 +157,8 @@ function create() {
   key3.onDown.add( function() { controls.setUserControl(3) } );
   key4.onDown.add( function() { controls.setUserControl(4) } );
 
-  livesText = game.add.text(CANVAS_WIDTH - CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "#ffffff", align: "left" });
-  scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "#ffffff", align: "left" });
+  livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
+  scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
 
 
   cursors = game.input.keyboard.createCursorKeys();
@@ -131,46 +166,94 @@ function create() {
 }
 
 function update() {
-
-  // game.physics.arcade.collide(person, walls);
-  // game.physics.arcade.collide(person, layer);
-
-  // console.log(game.physics.p2.collide)
-  // game.physics.p2.collide(person, layerObjects[0]);
   game.physics.arcade.collide(person,layer);
+ features.togglePause();
 
-  if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
-    fb.person.set({
-      x : person.position.x,
-      y : person.position.y
-    });
-  }
-
-  if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
-    fb.ghost1.set({
-      x : ghost1.position.x,
-      y : ghost1.position.y
-    });
-  }
-
-  fb.person.on("value", function(snapshot) {
-    person.x = snapshot.val().x
-    person.y = snapshot.val().y
-  });
-
-  fb.ghost1.on("value", function(snapshot) {
-    ghost1.x = snapshot.val().x
-    ghost1.y = snapshot.val().y
-  });
-
-  for (var i = 0; i < ghosts.length; i++) {
-    game.physics.arcade.collide(ghosts[i], walls);
-  }
+  // game.physics.arcade.collide(person, layer);
+  // game.physics.arcade.collide(person, collisionLayer);
+  game.physics.arcade.collide(person, walls);
   game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
   game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
   game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
+
+
+  for (var i = 0; i < ghosts.length; i++) {
+    game.physics.arcade.collide(ghosts[i], walls);
+  }
+
+  livesText.text = 'lives: ' + lives;
+  scoreText.text = 'score: ' + score;
+
+  fb.pause.on("value", function(snapshot) {
+    game.paused = snapshot.val();
+  });
+
+  if (currentPlayer === "player1") {
+    person.userControl = true;
+    if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
+      fb.person.set({
+        x : person.position.x,
+        y : person.position.y
+      });
+    }
+
+    fb.ghost1.on("value", function(snapshot) {
+      ghost1.x = snapshot.val().x
+      ghost1.y = snapshot.val().y
+    });
+
+    // fb.ghost2.on("value", function(snapshot) {
+    //   ghost2.x = snapshot.val().x
+    //   ghost2.y = snapshot.val().y
+    // });
+
+    // fb.ghost3.on("value", function(snapshot) {
+    //   ghost3.x = snapshot.val().x
+    //   ghost3.y = snapshot.val().y
+    // });
+
+    // fb.ghost4.on("value", function(snapshot) {
+    //   ghost4.x = snapshot.val().x
+    //   ghost4.y = snapshot.val().y
+    // });
+  }
+
+  if (currentPlayer === "player2") {
+    if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
+      fb.ghost1.set({
+        x : ghost1.position.x,
+        y : ghost1.position.y
+      });
+    }
+
+    // if ((ghost2.x !== ghost2.lastx) || (ghost2.y !== ghost2.lasty )) {
+    //   fb.ghost2.set({
+    //     x : ghost2.position.x,
+    //     y : ghost2.position.y
+    //   });
+    // }
+
+    // if ((ghost3.x !== ghost3.lastx) || (ghost3.y !== ghost3.lasty )) {
+    //   fb.ghost3.set({
+    //     x : ghost3.position.x,
+    //     y : ghost3.position.y
+    //   });
+    // }
+
+    // if ((ghost4.x !== ghost4.lastx) || (ghost4.y !== ghost4.lasty )) {
+    //   fb.ghost4.set({
+    //     x : ghost4.position.x,
+    //     y : ghost4.position.y
+    //   });
+    // }
+
+    fb.person.on("value", function(snapshot) {
+      person.x = snapshot.val().x
+      person.y = snapshot.val().y
+    });
+  }
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
@@ -195,9 +278,7 @@ function update() {
       game.physics.arcade.moveToObject(character, person, 60);
     }
 
-    livesText.text = 'lives: ' + lives;
-    scoreText.text = 'score: ' + score;
-
   });
 
 }
+

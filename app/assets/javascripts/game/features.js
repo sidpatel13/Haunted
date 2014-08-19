@@ -74,3 +74,16 @@ features.changeMusicVolume = function() {
     //     music.volume -= 0.1;
     // }
 };
+
+
+features.togglePause = function () {
+  document.onkeydown = function (e) {
+    if(e.which == 80) {
+      game.paused = true;
+      fb.pause.set(true);
+    } else if (e.which == 82) {
+      game.paused = false;
+      fb.pause.set(false);
+    }
+  }
+}
