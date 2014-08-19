@@ -44,12 +44,8 @@ features.gameOver = function(winner) {
 };
 
 features.eatGhosts = function(person, ghosts) {
-    ghostLives--;
-    ghosts.kill();
-
-    if (ghostLives === 0) {
-      features.gameOver("Player 1");
-    }
+  ghosts.kill();
+  ghosts.reset(Math.random() * CANVAS_WIDTH, Math.random() * CANVAS_HEIGHT);
 };
 
 features.pacMeetsGhost = function(person, ghosts) {
@@ -62,20 +58,9 @@ features.pacMeetsGhost = function(person, ghosts) {
 }
 
 features.changeMusicVolume = function() {
-    // if (pointer.y < 300){
-    //     music.volume += 0.1;
-    // } else {
-    //     music.volume -= 0.1;
-    // }
-};
-
-
-features.togglePause = function () {
-  document.onkeydown = function (e) {
-    if(e.which == 80) {
-      fb.pause.set(true);
-    } else if (e.which == 82) {
-      fb.pause.set(false);
-    }
+  if (pointer.y < 300){
+      music.volume += 0.1;
+  } else {
+      music.volume -= 0.1;
   }
-}
+};

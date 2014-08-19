@@ -126,15 +126,7 @@ function create() {
   map.addTilesetImage('Desert');
   layer = map.createLayer('Ground');
   map.setCollision(38);
-
-  // console.log(layerObjects)
-  // console.log(map)
-  // collisionLayer = map.createLayer('ObjectLayer'); //no work :(
-  // console.log(map.height)
-  // this.game.physics.p2.convertCollisionObjects(map,"ObjectLayer")
-
   layer.resizeWorld();
-  //board.createBoard();
   controls.createHotkeys();
   gameCharacters.createPerson();
   gameCharacters.createGhosts();
