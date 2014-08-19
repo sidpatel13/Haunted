@@ -25,24 +25,17 @@ features.loseLife = function(person, ghosts) {
 
 features.eatDot = function(person, dots) {
   score++;
-  dotCount--;
   dots.kill();
 
-  if (dotCount === 0 && powerUpCount === 0) {
+  if (score === MAX_SCORE) {
     features.gameOver("Player 1");
   }
 }
 
 features.powerUp = function(person, powerUp) {
-  score += 5;
-  powerUpCount--;
   powerUp.kill();
   person.powerUp = true;
   setTimeout(function(){person.powerUp = false}, 5000);
-
-  if (dotCount === 0 && powerUpCount === 0) {
-    features.gameOver("Player 1");
-  }
 }
 
 features.gameOver = function(winner) {

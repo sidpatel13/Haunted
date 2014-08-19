@@ -56,7 +56,6 @@ $(document).ready(function() {
   }
 
   fb.pause.on("value", function(snapshot) {
-    console.log("Pause changed");
     game.paused = snapshot.val();
   });
 
@@ -75,10 +74,8 @@ CANVAS_HEIGHT = 715;
 CANVAS_OFFSET = 60;
 
 SCORE = 0;
-MAX_SCORE = 20;
+MAX_SCORE = 10;
 LIVES = 100;
-GHOST_LIVES = 3;
-DOT_COUNT = 10;
 POWERUP_COUNT = 1;
 player1 = false;
 player2 = false;
@@ -95,11 +92,7 @@ function preload() {
 
 // Declare Variables
 var score = SCORE;
-var maxScore = MAX_SCORE;
 var lives = LIVES;
-var ghostLives = GHOST_LIVES;
-var dotCount = DOT_COUNT;
-var powerUpCount = POWERUP_COUNT;
 
 var characters = [], dots = [], ghosts = [], powerUp = [];
 var key1, key2, key3, key4;
@@ -136,7 +129,7 @@ function create() {
   gameCharacters.createGhosts();
   board.createTeleport();
   board.createPowerUp();
-  board.createMultipleDots(dotCount);
+  board.createMultipleDots(MAX_SCORE);
 
   var gamePhysicsArray = [characters, dots, powerUp, starOne, starTwo];
 
