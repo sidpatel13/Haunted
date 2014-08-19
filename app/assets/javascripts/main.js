@@ -125,7 +125,7 @@ function create() {
   layer = map.createLayer('Ground');
   map.setCollision(38);
   layer.resizeWorld();
-  controls.createHotkeys();
+
   gameCharacters.createCharacters();
   board.createBoard();
 
@@ -138,11 +138,6 @@ function create() {
   for (var i = 0; i < characters.length; i++) {
     characters[i].body.collideWorldBounds = true;
   }
-
-  key1.onDown.add( function() { controls.setUserControl(1) } );
-  key2.onDown.add( function() { controls.setUserControl(2) } );
-  key3.onDown.add( function() { controls.setUserControl(3) } );
-  key4.onDown.add( function() { controls.setUserControl(4) } );
 
   livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
   scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
