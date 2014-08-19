@@ -14,4 +14,7 @@ function loadImages() {
   createImage("firstaid");
   createImage("diamond");
   createSpritesheet("sprites", 32);
+  createImage("johnny_bravo");
+  createImage("dexter");
+  createImage("All_3_eds");
 };
