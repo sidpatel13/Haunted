@@ -75,14 +75,6 @@ features.changeMusicVolume = function() {
     // }
 };
 
-features.pauseModal = function () {
-  if (game.paused == true) {
-    vex.dialog.alert({
-      message: "Game paused!<br>Hit R to resume"
-    })
-  }
-}
-
 
 features.togglePause = function () {
   document.onkeydown = function (e) {

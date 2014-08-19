@@ -150,7 +150,6 @@ function create() {
 function update() {
 
  features.togglePause();
- features.pauseModal();
 
 
   // game.physics.arcade.collide(person, layer);
