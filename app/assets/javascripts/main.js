@@ -54,7 +54,6 @@ POWERUP_COUNT = 1;
 player1 = false;
 player2 = false;
 
-
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
 function preload() {
@@ -77,6 +76,7 @@ var key1, key2, key3, key4;
 var person, ghost1, ghost2, ghost3, ghost4;
 var platforms;
 var scoreText, livesText, starOne, starTwo;
+var flag = true;
 
 var map;
 var layer;
@@ -131,9 +131,9 @@ function create() {
 
 function update() {
 
+ features.togglePause();
+
   game.physics.arcade.collide(person, walls);
-  // game.physics.arcade.collide(person, layer);
-  // game.physics.arcade.collide(person, collisionLayer);
 
   if (player1) {
     if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
@@ -201,3 +201,4 @@ function update() {
   });
 
 }
+
