@@ -28,16 +28,33 @@ $(document).ready(function() {
     vex.dialog.alert('Game instructions go here.');
   });
 
-  $("#player1-button").click(function(){
-    player1 = true;
-    player2 = false;
-  });
+  var urlModal = function() {
+    vex.dialog.alert({
+      message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
+      callback: function() {
+        confirmPlayerModal();
+      }
+    });
+  }
 
-  $("#player2-button").click(function(){
-    player1 = false;
-    player2 = true;
-  });
+  var confirmPlayerModal = function() {
+    vex.dialog.buttons.YES.text = 'Player1';
+    vex.dialog.buttons.NO.text = 'Player2';
+    vex.dialog.confirm({
+      message: "Choose:",
+      callback: function(value) {
+        if (value) {
+          currentPlayer = "player1";
+          fb.player1.set(true);
+        } else {
+          currentPlayer = "player2";
+          fb.player2.set(true);
+        }
+      }
+    });
+  }
 
+  urlModal();
 });
 
 // Constants
@@ -53,6 +70,7 @@ DOT_COUNT = 10;
 POWERUP_COUNT = 1;
 player1 = false;
 player2 = false;
+currentPlayer = false;
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
@@ -76,7 +94,6 @@ var key1, key2, key3, key4;
 var person, ghost1, ghost2, ghost3, ghost4;
 var platforms;
 var scoreText, livesText, starOne, starTwo;
-var flag = true;
 
 var map;
 var layer;
@@ -133,9 +150,24 @@ function update() {
 
  features.togglePause();
 
+  // game.physics.arcade.collide(person, layer);
+  // game.physics.arcade.collide(person, collisionLayer);
   game.physics.arcade.collide(person, walls);
+  game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
+  game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
+  game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
+  game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
+  game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
 
-  if (player1) {
+  for (var i = 0; i < ghosts.length; i++) {
+    game.physics.arcade.collide(ghosts[i], walls);
+  }
+
+  livesText.text = 'lives: ' + lives;
+  scoreText.text = 'score: ' + score;
+
+  if (currentPlayer === "player1") {
+    person.userControl = true;
     if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
       fb.person.set({
         x : person.position.x,
@@ -149,11 +181,32 @@ function update() {
     });
   }
 
-  if (player2) {
+  if (currentPlayer === "player2") {
     if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
       fb.ghost1.set({
         x : ghost1.position.x,
         y : ghost1.position.y
+      });
+    }
+
+    if ((ghost2.x !== ghost2.lastx) || (ghost2.y !== ghost2.lasty )) {
+      fb.ghost2.set({
+        x : ghost2.position.x,
+        y : ghost2.position.y
+      });
+    }
+
+    if ((ghost3.x !== ghost3.lastx) || (ghost3.y !== ghost3.lasty )) {
+      fb.ghost3.set({
+        x : ghost3.position.x,
+        y : ghost3.position.y
+      });
+    }
+
+    if ((ghost4.x !== ghost4.lastx) || (ghost4.y !== ghost4.lasty )) {
+      fb.ghost4.set({
+        x : ghost4.position.x,
+        y : ghost4.position.y
       });
     }
 
@@ -162,15 +215,6 @@ function update() {
       person.y = snapshot.val().y
     });
   }
-
-  for (var i = 0; i < ghosts.length; i++) {
-    game.physics.arcade.collide(ghosts[i], walls);
-  }
-  game.physics.arcade.overlap(person, dots, features.eatDot, null, this);
-  game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
-  game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
-  game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-  game.physics.arcade.overlap(person, ghosts, features.pacMeetsGhost, null, this);
 
   characters.forEach(function(character) {
     if (character.userControl === true) {
@@ -194,9 +238,6 @@ function update() {
     } else {
       game.physics.arcade.moveToObject(character, person, 60);
     }
-
-    livesText.text = 'lives: ' + lives;
-    scoreText.text = 'score: ' + score;
 
   });
 
