@@ -1,7 +1,7 @@
 var gameCharacters = {};
 
 gameCharacters.createCharacters = function() {
-  gameCharacters.createPersion();
+  gameCharacters.createPerson();
   gameCharacters.createGhost();
 }
 

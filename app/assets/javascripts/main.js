@@ -115,14 +115,8 @@ function create() {
   music = game.add.audio('music');
   // music.play(); commented out so no music plays
 
-  map = game.add.tilemap('map');
-  map.addTilesetImage('Desert');
-  layer = map.createLayer('Ground');
-  map.setCollision(38);
-  layer.resizeWorld();
-
-  gameCharacters.createCharacters();
   board.createBoard();
+  gameCharacters.createCharacters();
 
   var gamePhysicsArray = [characters, apples, powerUp, starOne, starTwo];
 

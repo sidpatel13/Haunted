@@ -1,10 +1,19 @@
 var board = {}
 
 board.createBoard = function() {
+  board.createMap();
   board.createTeleport();
   board.createApples();
   board.createPowerUp();
   board.createSpeedUp();
+}
+
+board.createMap = function() {
+  map = game.add.tilemap('map');
+  map.addTilesetImage('Desert');
+  layer = map.createLayer('Ground');
+  map.setCollision(38);
+  layer.resizeWorld();
 }
 
 board.createTeleport = function() {
