@@ -5,6 +5,31 @@
 //= require game/images.js
 //= require game/features.js
 
+// Constants
+CANVAS_WIDTH = 833;
+CANVAS_HEIGHT = 715;
+CANVAS_OFFSET = 60;
+MAX_SCORE = 10;
+DEFAULT_LIVES = 3;
+player1 = false;
+player2 = false;
+currentPlayer = false;
+
+// Variables
+var score = 0;
+var lives = DEFAULT_LIVES;
+var apples = [];
+var cherry;
+var person;
+var ghost;
+var scoreText, livesText;
+var starOne, starTwo;
+var map;
+var layer;
+var cursors;
+var music;
+var fb;
+
 $(document).ready(function() {
   var roomSession = $("#room-session").val();
   if (typeof roomSession !== "undefined") {
@@ -72,18 +97,6 @@ $(document).ready(function() {
   urlModal();
 });
 
-// Constants
-CANVAS_WIDTH = 833;
-CANVAS_HEIGHT = 715;
-CANVAS_OFFSET = 60;
-
-SCORE = 0;
-MAX_SCORE = 10;
-LIVES = 3;
-player1 = false;
-player2 = false;
-currentPlayer = false;
-
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
 function preload() {
@@ -93,20 +106,6 @@ function preload() {
   game.load.audio('music', '/music.mp3');
 };
 
-// Declare Variables
-var score = SCORE;
-var lives = LIVES;
-var apples = [], ghosts = [], powerUp = [];
-var key1, key2, key3, key4;
-var person, ghost1, ghost2, ghost3, ghost4;
-var platforms;
-var scoreText, livesText, starOne, starTwo;
-var map;
-var layer;
-var cursors;
-var music;
-var fb;
-
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -115,14 +114,14 @@ function create() {
   board.createBoard();
   characters.createCharacters();
 
-  var gamePhysicsArray = [person, ghost1, apples, powerUp, starOne, starTwo];
+  var gamePhysicsArray = [person, ghost, apples, cherry, starOne, starTwo];
 
   for (var i = 0; i < gamePhysicsArray.length; i++) {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
 
   person.body.collideWorldBounds = true;
-  ghost1.body.collideWorldBounds = true;
+  ghost.body.collideWorldBounds = true;
 
   cursors = game.input.keyboard.createCursorKeys();
 }
@@ -130,12 +129,12 @@ function create() {
 function update() {
 
   game.physics.arcade.collide(person,layer);
-  game.physics.arcade.collide(ghost1,layer);
+  game.physics.arcade.collide(ghost,layer);
   game.physics.arcade.overlap(person, apples, features.eatApple, null, this);
-  game.physics.arcade.overlap(person, powerUp, features.powerUp, null, this);
+  game.physics.arcade.overlap(person, cherry, features.cherry, null, this);
   game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
   game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-  game.physics.arcade.overlap(person, ghost1, features.pacMeetsGhost, null, this);
+  game.physics.arcade.overlap(person, ghost, features.pacMeetsGhost, null, this);
 
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
@@ -170,18 +169,18 @@ function update() {
       });
     }
 
-    fb.ghost1.on("value", function(snapshot) {
-      ghost1.x = snapshot.val().x
-      ghost1.y = snapshot.val().y
+    fb.ghost.on("value", function(snapshot) {
+      ghost.x = snapshot.val().x
+      ghost.y = snapshot.val().y
     });
   }
 
   if (currentPlayer === "player2") {
-    movePlayer(ghost1);
-    if ((ghost1.x !== ghost1.lastx) || (ghost1.y !== ghost1.lasty )) {
-      fb.ghost1.set({
-        x : ghost1.position.x,
-        y : ghost1.position.y
+    movePlayer(ghost);
+    if ((ghost.x !== ghost.lastx) || (ghost.y !== ghost.lasty )) {
+      fb.ghost.set({
+        x : ghost.position.x,
+        y : ghost.position.y
       });
     }
 

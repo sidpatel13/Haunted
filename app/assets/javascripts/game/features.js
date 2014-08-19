@@ -12,7 +12,7 @@ features.teleportTwo = function(person, starTwo) {
   person.body.velocity.x = 200;
 };
 
-features.loseLife = function(person, ghosts) {
+features.loseLife = function(person) {
   lives--;
   person.kill();
 
@@ -32,10 +32,10 @@ features.eatApple = function(person, apples) {
   }
 }
 
-features.powerUp = function(person, powerUp) {
-  powerUp.kill();
-  person.powerUp = true;
-  setTimeout(function(){person.powerUp = false}, 5000);
+features.cherry = function(person, cherry) {
+  cherry.kill();
+  person.cherry = true;
+  setTimeout(function(){person.cherry = false}, 5000);
 }
 
 features.gameOver = function(winner) {
@@ -43,16 +43,16 @@ features.gameOver = function(winner) {
   location.reload();
 };
 
-features.eatGhosts = function(person, ghosts) {
-  ghosts.kill();
-  ghosts.reset(Math.random() * CANVAS_WIDTH, Math.random() * CANVAS_HEIGHT);
+features.eatGhost = function(person, ghost) {
+  ghost.kill();
+  ghost.reset(Math.random() * CANVAS_WIDTH, Math.random() * CANVAS_HEIGHT);
 };
 
-features.pacMeetsGhost = function(person, ghosts) {
-  if (person.powerUp === true){
-    features.eatGhosts(person, ghosts);
+features.pacMeetsGhost = function(person, ghost) {
+  if (person.cherry === true){
+    features.eatGhost(person, ghost);
   }
   else {
-    features.loseLife(person, ghosts);
+    features.loseLife(person, ghost);
   }
 }

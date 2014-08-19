@@ -4,7 +4,7 @@ board.createBoard = function() {
   board.createMap();
   board.createTeleport();
   board.createApples();
-  board.createPowerUp();
+  board.createCherry();
   board.createSpeedUp();
   board.addMusic();
   board.addScoreText();
@@ -61,14 +61,12 @@ board.createApples = function() {
   board.createApple(CANVAS_WIDTH - 65, 670); //bot right
 }
 
-board.createPowerUp = function() {
+board.createCherry = function() {
   cherry = game.add.sprite(CANVAS_WIDTH - 65, 250, 'star');
   cherry.anchor.setTo(0.5, 0.5);
-  powerUp.push(cherry);
 }
 
 board.createSpeedUp = function() {
   speed = game.add.sprite(CANVAS_WIDTH - 200, CANVAS_HEIGHT - 200, 'star');
   speed.anchor.setTo(0.5, 0.5);
-  powerUp.push(speed);
 }
