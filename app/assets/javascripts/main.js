@@ -154,11 +154,11 @@ function update() {
       character.body.velocity.x = 200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('right');
-    } else if (cursors.up.isDown){
+    } else if (cursors.up.isDown || pointer('up')){
       character.body.velocity.y = -200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('up');
-    } else if (cursors.down.isDown) {
+    } else if (cursors.down.isDown || pointer('down')) {
       character.body.velocity.y = 200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('bottom');
