@@ -92,8 +92,9 @@ function create() {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
 
-  person.body.collideWorldBounds = true;
-  ghost.body.collideWorldBounds = true;
+  [person, ghost].forEach(function(character){
+    character.body.collideWorldBounds = true;
+  })
 
   cursors = game.input.keyboard.createCursorKeys();
 
