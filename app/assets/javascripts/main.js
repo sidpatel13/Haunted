@@ -59,6 +59,29 @@ $(document).ready(function() {
     vex.dialog.buttons.YES.text = 'OK';
     vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog @ https://github.com/red-spotted-newts-2014/haunted !');
   });
+  // vex.dialog.open({
+  //   message: 'Choose your avatar:<br><br><img class="image" src="images/person.png"><img class="image" src="images/star.png"><img class="image" src="images/diamond.png">',
+  //   buttons: [
+  //     $.extend({}, vex.dialog.buttons.NO, { className: 'button', text: 'Person', click: function($vexContent, event) {
+  //           $vexContent.data().vex.value = 'person';
+  //           vex.close($vexContent.data().vex.id);
+  //       }}),
+  //     $.extend({}, vex.dialog.buttons.NO, { className: 'button', text: 'Star', click: function($vexContent, event) {
+  //           $vexContent.data().vex.value = 'star';
+  //           vex.close($vexContent.data().vex.id);
+  //       }}),
+  //     $.extend({}, vex.dialog.buttons.NO, { className: 'button', text: "Diamond", click: function($vexContent, event) {
+  //           $vexContent.data().vex.value = 'diamond';
+  //           vex.close($vexContent.data().vex.id);
+  //       }})
+  //   ],
+  //    callback: function(value) {
+
+  //     avatar = game.add.sprite(100, 100, value);
+  //     avatar.scale.setTo(0.2, 0.2);
+  //     avatar.anchor.setTo(0.5, 0.5);
+  //    }
+  // });
 
   var urlModal = function() {
     vex.dialog.alert({
@@ -77,7 +100,7 @@ $(document).ready(function() {
       callback: function(value) {
         if (value) {
           currentPlayer = "player1";
-          fb.player1.set(true);     
+          fb.player1.set(true);
         } else {
           currentPlayer = "player2";
           fb.player2.set(true);
@@ -105,7 +128,7 @@ function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
-  game.load.audio('music', '/music.mp3');
+  // game.load.audio('music', '/music.mp3');
 };
 
 function create() {
