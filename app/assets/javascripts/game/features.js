@@ -5,7 +5,7 @@ features.eatApple = function(person, apples) {
   apples.kill();
 
   if (score === MAX_SCORE) {
-    features.gameOver("Player 1");
+    this.gameOver("Player 1");
   }
 }
 
@@ -41,10 +41,10 @@ features.teleportTwo = function(person, starTwo) {
 
 features.pacMeetsGhost = function(person, ghost) {
   if (person.cherry === true){
-    features.eatGhost(person, ghost);
+    this.eatGhost(person, ghost);
   }
   else {
-    features.loseLife(person, ghost);
+    this.loseLife(person, ghost);
   }
 }
 
@@ -58,7 +58,7 @@ features.loseLife = function(person) {
   person.kill();
 
   if (lives === 0) {
-    features.gameOver("Player 2");
+    this.gameOver("Player 2");
   } else {
     person.reset(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
   }
@@ -106,6 +106,41 @@ features.pointer = function(direction) {
   }
   return false;
 }
+
+features.pacmanCoordinates = function() {
+  if (currentPlayer === "player1") {
+    this.movePlayer(person);
+    if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
+      fb.person.set({
+        x : person.position.x,
+        y : person.position.y
+      });
+    }
+
+    fb.ghost.on("value", function(snapshot) {
+      ghost.x = snapshot.val().x
+      ghost.y = snapshot.val().y
+    });
+  }
+}
+
+features.ghostCoordinates = function() {
+  if (currentPlayer === "player2") {
+    this.movePlayer(ghost);
+    if ((ghost.x !== ghost.lastx) || (ghost.y !== ghost.lasty )) {
+      fb.ghost.set({
+        x : ghost.position.x,
+        y : ghost.position.y
+      });
+    }
+
+    fb.person.on("value", function(snapshot) {
+      person.x = snapshot.val().x
+      person.y = snapshot.val().y
+    });
+  }
+}
+
 
 features.gameOver = function(winner) {
   features.reset();
