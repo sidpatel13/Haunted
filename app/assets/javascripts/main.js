@@ -60,6 +60,14 @@ $(document).ready(function() {
 
   fb.chat.on("child_added", firebase.recieveMessage);
 
+  document.onkeydown = function (e) {
+    if(e.which == 80) {
+      fb.pause.set(true);
+    } else if (e.which == 82) {
+      fb.pause.set(false);
+    }
+  }
+
   fb.pause.on("value", function(snapshot) {
     game.paused = snapshot.val();
   });
@@ -98,8 +106,6 @@ function create() {
   })
 
   cursors = game.input.keyboard.createCursorKeys();
-
-  //fb.pause.set(true);
 
 }
 
