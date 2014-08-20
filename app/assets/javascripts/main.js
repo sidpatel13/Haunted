@@ -1,11 +1,11 @@
 //= require vendor/phaser.min.js
 //= require firebase.js
+//= require modals.js
 //= require game/board.js
 //= require game/characters.js
 //= require game/images.js
 //= require game/features.js
 
-// Constants
 CANVAS_WIDTH = 833;
 CANVAS_HEIGHT = 715;
 CANVAS_OFFSET = 60;
@@ -15,7 +15,6 @@ player1 = false;
 player2 = false;
 currentPlayer = false;
 
-// Variables
 var score = 0;
 var lives = DEFAULT_LIVES;
 var apples = [];
@@ -31,83 +30,42 @@ var layer;
 var cursors;
 var music;
 var fb;
+var instructions = 'Here are the rules of the game.<br /><br /><b>Player1:</b><br /><i>'
+                 + 'Controls</i> - Move your character with the arrow keys.<br /><i>Objective'
+                 + '</i> - Collect all apples and powerups, or eat all the ghosts. The choice'
+                 + ' is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which'
+                 + ' ghost you want to control by pressing numbers 1 through 4. Then, move your'
+                 + ' character with the arrow keys.<br /><i>Objective</i> - Eat the hero until'
+                 + ' the hero has no lives left.<br /><br />Need a moment? Press <b>P</b> to'
+                 + ' pause and <b>R</b> to resume.';
+
+var aboutUs      = 'Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are'
+                 + ' currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul'
+                 + ' Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing'
+                 + 'this game as much as we enjoyed creating it. Check out our <a id="aboutus" '
+                 + 'href="https://github.com/red-spotted-newts-2014/haunted">GitHub Repo</a>!';
 
 $(document).ready(function() {
-  var roomSession = $("#room-session").val();
+  roomSession = $("#room-session").val();
   if (typeof roomSession !== "undefined") {
     fb = new firebase.firebaseSetup(roomSession);
   }
 
-  // Recieve a message
-  fb.chat.on("child_added", firebase.recieveMessage);
 
-  // Send a message
-  $("#chat-form").submit(function(event) {
-    event.preventDefault();
-    var name = $("#user-name").val()
-    var content = $("#msg-input").val()
-    $("#msg-input").val("");
-    firebase.sendMessage(fb, name, content);
-  });
 
   $("#instructions-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert('Here are the rules of the game.<br /><br /><b>Player1:</b><br /><i>Controls</i> - Move your character with the arrow keys.<br /><i>Objective</i> - Collect all apples and powerups, or eat all the ghosts. The choice is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which ghost you want to control by pressing numbers 1 through 4. Then, move your character with the arrow keys.<br /><i>Objective</i> - Eat the hero until the hero has no lives left.<br /><br />Need a moment? Press <b>P</b> to pause and <b>R</b> to resume.');
+    vex.dialog.alert(instructions);
   });
 
   $("#aboutus-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog @ https://github.com/red-spotted-newts-2014/haunted !');
+    vex.dialog.alert(aboutUs);
   });
-  // vex.dialog.open({
-  //   message: 'Choose your avatar:<br><br><img class="image" src="images/person.png"><img class="image" src="images/star.png"><img class="image" src="images/diamond.png">',
-  //   buttons: [
-  //     $.extend({}, vex.dialog.buttons.NO, { className: 'button', text: 'Person', click: function($vexContent, event) {
-  //           $vexContent.data().vex.value = 'person';
-  //           vex.close($vexContent.data().vex.id);
-  //       }}),
-  //     $.extend({}, vex.dialog.buttons.NO, { className: 'button', text: 'Star', click: function($vexContent, event) {
-  //           $vexContent.data().vex.value = 'star';
-  //           vex.close($vexContent.data().vex.id);
-  //       }}),
-  //     $.extend({}, vex.dialog.buttons.NO, { className: 'button', text: "Diamond", click: function($vexContent, event) {
-  //           $vexContent.data().vex.value = 'diamond';
-  //           vex.close($vexContent.data().vex.id);
-  //       }})
-  //   ],
-  //    callback: function(value) {
 
-  //     avatar = game.add.sprite(100, 100, value);
-  //     avatar.scale.setTo(0.2, 0.2);
-  //     avatar.anchor.setTo(0.5, 0.5);
-  //    }
-  // });
+  $("#chat-form").submit(firebase.preMessage);
 
-  var urlModal = function() {
-    vex.dialog.alert({
-      message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
-      callback: function() {
-        confirmPlayerModal();
-      }
-    });
-  }
-
- var confirmPlayerModal = function() {
-    vex.dialog.buttons.YES.text = 'Hero';
-    vex.dialog.buttons.NO.text = 'Ghost';
-    vex.dialog.confirm({
-      message: "Are you hero or ghost?",
-      callback: function(value) {
-        if (value) {
-          currentPlayer = "player1";
-          fb.player1.set(true);
-        } else {
-          currentPlayer = "player2";
-          fb.player2.set(true);
-        }
-      }
-    });
-  }
+  fb.chat.on("child_added", firebase.recieveMessage);
 
   fb.pause.on("value", function(snapshot) {
     game.paused = snapshot.val();
@@ -119,7 +77,7 @@ $(document).ready(function() {
     }
   });
 
-  urlModal();
+  modals.urlModal(roomSession);
 });
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
@@ -128,13 +86,11 @@ function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
-  // game.load.audio('music', '/music.mp3');
+  //game.load.audio('music', '/music.mp3');
 };
 
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
-
-  fb.pause.set(true);
 
   board.createBoard();
   characters.createCharacters();
@@ -149,6 +105,9 @@ function create() {
   ghost.body.collideWorldBounds = true;
 
   cursors = game.input.keyboard.createCursorKeys();
+
+  //fb.pause.set(true);
+
 }
 
 function update() {
