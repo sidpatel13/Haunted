@@ -59,6 +59,7 @@ $(document).ready(function() {
     vex.dialog.buttons.YES.text = 'OK';
     vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog @ https://github.com/red-spotted-newts-2014/haunted !');
   });
+
   // vex.dialog.open({
   //   message: 'Choose your avatar:<br><br><img class="image" src="images/person.png"><img class="image" src="images/star.png"><img class="image" src="images/diamond.png">',
   //   buttons: [
@@ -86,9 +87,6 @@ $(document).ready(function() {
   var urlModal = function() {
     vex.dialog.alert({
       message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
-      callback: function() {
-        confirmPlayerModal();
-      }
     });
   }
 
@@ -119,15 +117,17 @@ $(document).ready(function() {
     }
   });
 
-  urlModal();
+  if (fb.player1 !== true) { urlModal(); }
+
 });
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
 
 function preload() {
-  loadImages();
+  
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
+  loadImages();
   // game.load.audio('music', '/music.mp3');
 };
 
@@ -147,7 +147,7 @@ function create() {
 
   person.body.collideWorldBounds = true;
   ghost.body.collideWorldBounds = true;
-
+  
   cursors = game.input.keyboard.createCursorKeys();
 }
 
