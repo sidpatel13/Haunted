@@ -16,7 +16,6 @@ firebase.recieveMessage = function(snapshot) {
   var message = snapshot.val().message;
   var name = message.name;
   var content = message.content;
-  //var user = $('#user-name').val();//((name === "Rootul") ? "me" : "you"); //Set Rootul to user.name
   var output = "<div class='message'><b>" + name + ":</b> ";
         output += "<span>" + content + "</span>";
         output += "</div>";
