@@ -7,7 +7,7 @@ characters.createCharacters = function() {
 
 characters.createPerson = function() {
   person = game.add.sprite(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 'sprites');
-  person.scale.setTo(1.2, 1.2);
+  person.scale.setTo(1.3, 1.3);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = false;
   person.animations.add('right', [10, 11], 0, true);
