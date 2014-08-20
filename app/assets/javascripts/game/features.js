@@ -18,13 +18,13 @@ features.cherry = function(person, cherry) {
 features.speedUp = function(character, speedUp) {
   speedUp.kill();
   character.speedMultiplyer = 1.5;
-  setTimeout(function(){person.speedMultiplyer = 1}, 5000);
+  setTimeout(function(){character.speedMultiplyer = 1}, 5000);
 }
 
 features.slowDown = function(character, slowDown) {
   slowDown.kill();
   character.speedMultiplyer = 0.5;
-  setTimeout(function(){person.speedMultiplyer = 1}, 5000);
+  setTimeout(function(){character.speedMultiplyer = 1}, 5000);
 }
 
 features.teleportOne = function(person, starOne) {
