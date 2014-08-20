@@ -69,15 +69,15 @@ $(document).ready(function() {
     });
   }
 
-  var confirmPlayerModal = function() {
-    vex.dialog.buttons.YES.text = 'Player1';
-    vex.dialog.buttons.NO.text = 'Player2';
+ var confirmPlayerModal = function() {
+    vex.dialog.buttons.YES.text = 'Hero';
+    vex.dialog.buttons.NO.text = 'Ghost';
     vex.dialog.confirm({
-      message: "Choose:",
+      message: "Are you hero or ghost?",
       callback: function(value) {
         if (value) {
           currentPlayer = "player1";
-          fb.player1.set(true);
+          fb.player1.set(true);     
         } else {
           currentPlayer = "player2";
           fb.player2.set(true);
