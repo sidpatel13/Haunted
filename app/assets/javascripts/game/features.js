@@ -109,7 +109,7 @@ features.pointer = function(direction) {
 
 features.pacmanCoordinates = function() {
   if (currentPlayer === "player1") {
-    features.movePlayer(person);
+    this.movePlayer(person);
     if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
       fb.person.set({
         x : person.position.x,
@@ -126,7 +126,7 @@ features.pacmanCoordinates = function() {
 
 features.ghostCoordinates = function() {
   if (currentPlayer === "player2") {
-    features.movePlayer(ghost);
+    this.movePlayer(ghost);
     if ((ghost.x !== ghost.lastx) || (ghost.y !== ghost.lasty )) {
       fb.ghost.set({
         x : ghost.position.x,
