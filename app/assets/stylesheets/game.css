@@ -1,4 +1,16 @@
 /* Game */
+/* Mobile Only */
+@media (max-width: 640px) {
+  canvas {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+  }
+}
+
+/* Desktop Only */
+@media (min-width: 900px) {
 
 canvas {
   position: fixed;
@@ -19,7 +31,6 @@ canvas {
 }
 
 /* Sidebar */
-
 h2 {
   color: white;
   font-family: 'Iceland';
@@ -127,4 +138,6 @@ h3 {
   padding-left: 5px;
   padding-right: 5px;
   font-family: 'Avenir';
+}
+
 }
