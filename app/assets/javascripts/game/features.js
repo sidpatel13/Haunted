@@ -41,10 +41,10 @@ features.teleportTwo = function(person, starTwo) {
 
 features.pacMeetsGhost = function(person, ghost) {
   if (person.cherry === true){
-    this.eatGhost(person, ghost);
+    features.eatGhost(person, ghost);
   }
   else {
-    this.loseLife(person, ghost);
+    features.loseLife(person, ghost);
   }
 }
 
@@ -58,7 +58,7 @@ features.loseLife = function(person) {
   person.kill();
 
   if (lives === 0) {
-    this.gameOver("Player 2");
+    features.gameOver("Player 2");
   } else {
     person.reset(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
   }
@@ -150,13 +150,13 @@ features.gameOver = function(winner) {
 
 features.reset = function() {
   fb.ghost.set({
-    x : Math.random() * CANVAS_WIDTH,
-    y : Math.random() * CANVAS_HEIGHT
+    x : 70,
+    y : 70
   });
 
   fb.person.set({
-    x : Math.random() * CANVAS_WIDTH,
-    y : Math.random() * CANVAS_HEIGHT
+    x : CANVAS_WIDTH/2,
+    y : CANVAS_HEIGHT/2
   });
 
   fb.pause.set(true);
