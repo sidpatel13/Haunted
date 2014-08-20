@@ -146,11 +146,11 @@ function update() {
   scoreText.text = 'score: ' + score;
 
   var movePlayer = function(character) {
-    if (cursors.left.isDown){
+    if (cursors.left.isDown || pointer('left')){
       character.body.velocity.x = -200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('left');
-    } else if (cursors.right.isDown){
+    } else if (cursors.right.isDown || pointer('right')){
       character.body.velocity.x = 200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('right');
@@ -163,6 +163,21 @@ function update() {
       character.body.velocity.x = 0;
       character.animations.play('bottom');
     }
+  }
+
+  var pointer = function(direction) {
+    if (game.input.mousePointer.isDown) {
+      if (direction === "left") {
+        if (game.input.mousePointer.x < 200) {
+          return true;
+        }
+      } else if (direction === "right") {
+        if (game.input.mousePointer.x > 600) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   if (currentPlayer === "player1") {
