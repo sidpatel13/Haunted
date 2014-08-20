@@ -97,19 +97,19 @@ h3 {
 #chat-widget input {
   margin-left: 20px;
   margin-right: 0px;
-  padding: 5px;
   font-family: 'Avenir';
   font-size: 1em;
 }
 
-/*#user-name {
+#user-name {
   display: none;
 }
-*/
+
 #msg-input {
-  line-height: 20px;
-  background-color: white;
+  margin-top: 20px;
+  line-height: 30px;
   width: 70%;
+  background-color: white;
 }
 
 #msg-output {
