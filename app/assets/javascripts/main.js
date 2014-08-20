@@ -60,6 +60,33 @@ $(document).ready(function() {
     vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog @ https://github.com/red-spotted-newts-2014/haunted !');
   });
 
+//Modal for picking avatars and placing them on the game board
+ vex.dialog.open({
+    message: 'Choose your avatar:<br><br><img class="image" src="images/dexter.png"><img class="image" src="images/johnny_bravo.png"><img class="image" src="images/All_3_eds.png">',
+    buttons: [
+      $.extend({}, vex.dialog.buttons.NO, { className: 'button1', text: 'Dexter', click: function($vexContent, event) {
+            $vexContent.data().vex.value = 'dexter';
+            vex.close($vexContent.data().vex.id);
+        }}),
+      $.extend({}, vex.dialog.buttons.NO, { className: 'button2', text: 'Johnny Bravo', click: function($vexContent, event) {
+            $vexContent.data().vex.value = 'johnny_bravo';
+            vex.close($vexContent.data().vex.id);
+        }}),
+      $.extend({}, vex.dialog.buttons.NO, { className: 'button3', text: "Ed Ed'n Eddy", click: function($vexContent, event) {
+            $vexContent.data().vex.value = 'All_3_eds';
+            vex.close($vexContent.data().vex.id);
+        }})
+    ],
+     callback: function(value) {
+
+      avatar = game.add.sprite(100, 100, value);
+      avatar.scale.setTo(0.2, 0.2);
+      avatar.anchor.setTo(0.5, 0.5);
+     }
+  });
+
+/*************************************/
+
   var urlModal = function() {
     vex.dialog.alert({
       message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
