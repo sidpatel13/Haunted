@@ -14,4 +14,6 @@ function loadImages() {
   createImage("firstaid");
   createImage("apple");
   createSpritesheet("sprites", 32);
+  createImage("person");
+  createImage("diamond");
 };
