@@ -77,7 +77,6 @@ var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { p
 function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
-  game.load.image('Desert', '/images/deserttile.png');
   //game.load.audio('music', '/music.mp3');
 };
 
