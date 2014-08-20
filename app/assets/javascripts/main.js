@@ -106,15 +106,16 @@ function update() {
 
   game.physics.arcade.collide(person,layer);
   game.physics.arcade.collide(ghost,layer);
-  game.physics.arcade.overlap(person, apples, features.eatApple, null, this);
-  game.physics.arcade.overlap(person, cherry, features.cherry, null, this);
-  game.physics.arcade.overlap(person, speedUp, features.speedUp, null, this);
-  game.physics.arcade.overlap(person, slowDown, features.slowDown, null, this);
-  game.physics.arcade.overlap(ghost, speedUp, features.speedUp, null, this);
-  game.physics.arcade.overlap(ghost, slowDown, features.slowDown, null, this);
-  game.physics.arcade.overlap(person, starOne, features.teleportOne, null, this);
-  game.physics.arcade.overlap(person, starTwo, features.teleportTwo, null, this);
-  game.physics.arcade.overlap(person, ghost, features.pacMeetsGhost, null, this);
+
+  board.overlap(person, apples, features.eatApple);
+  board.overlap(person, cherry, features.cherry);
+  board.overlap(person, speedUp, features.speedUp);
+  board.overlap(person, slowDown, features.slowDown);
+  board.overlap(ghost, speedUp, features.speedUp);
+  board.overlap(ghost, slowDown, features.slowDown);
+  board.overlap(person, starOne, features.teleportOne);
+  board.overlap(person, starTwo, features.teleportTwo);
+  board.overlap(person, ghost, features.pacMeetsGhost);
 
   livesText.text = 'lives: ' + lives;
   scoreText.text = 'score: ' + score;
