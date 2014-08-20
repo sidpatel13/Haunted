@@ -51,6 +51,7 @@ $(document).ready(function() {
     fb = new firebase.firebaseSetup(roomSession);
   }
 
+
   $("#instructions-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
     vex.dialog.alert(instructions);
@@ -83,7 +84,11 @@ $(document).ready(function() {
     }
   });
 
-  modals.urlModal(roomSession);
+  if (fb.player1.val() !== true) { 
+    modals.urlModal(roomSession); 
+  } else if (fb.player1.val() == true) {
+    modals.confirmPlayerModal();
+  }
 
 });
 
