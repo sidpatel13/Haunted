@@ -63,16 +63,16 @@ board.createApples = function() {
 }
 
 board.createCherry = function() {
-  cherry = game.add.sprite(CANVAS_WIDTH - 65, 250, 'star');
+  cherry = game.add.sprite(CANVAS_WIDTH - 65, 250, 'cherry');
   cherry.anchor.setTo(0.5, 0.5);
 }
 
 board.createSpeedUp = function() {
-  speedUp = game.add.sprite(CANVAS_WIDTH - 200, CANVAS_HEIGHT - 200, 'star');
+  speedUp = game.add.sprite(CANVAS_WIDTH - 200, CANVAS_HEIGHT - 200, 'speed');
   speedUp.anchor.setTo(0.5, 0.5);
 }
 
 board.createSlowDown = function() {
-  slowDown = game.add.sprite(200, 200, 'star');
+  slowDown = game.add.sprite(200, 200, 'slow');
   slowDown.anchor.setTo(0.5, 0.5);
 }
