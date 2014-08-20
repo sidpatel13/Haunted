@@ -29,13 +29,13 @@ features.slowDown = function(character, slowDown) {
 
 features.teleportOne = function(person, starOne) {
   person.kill();
-  person.reset(790,358);
+  person.reset(790,353);
   person.body.velocity.x = -200;
 };
 
 features.teleportTwo = function(person, starTwo) {
   person.kill();
-  person.reset(40,358);
+  person.reset(40,353);
   person.body.velocity.x = 200;
 };
 
