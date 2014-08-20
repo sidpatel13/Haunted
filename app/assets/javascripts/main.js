@@ -169,23 +169,46 @@ function update() {
   scoreText.text = 'score: ' + score;
 
   var movePlayer = function(character) {
-    if (cursors.left.isDown){
+    if (cursors.left.isDown || pointer('left')){
       character.body.velocity.x = -200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('left');
-    } else if (cursors.right.isDown){
+    } else if (cursors.right.isDown || pointer('right')){
       character.body.velocity.x = 200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('right');
-    } else if (cursors.up.isDown){
+    } else if (cursors.up.isDown || pointer('up')){
       character.body.velocity.y = -200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('up');
-    } else if (cursors.down.isDown) {
+    } else if (cursors.down.isDown || pointer('down')) {
       character.body.velocity.y = 200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('bottom');
     }
+  }
+
+  var pointer = function(direction) {
+    if (game.input.activePointer.isDown) {
+      if (direction === "up") {
+        if (game.input.activePointer.y < 200) {
+          return true;
+        }
+      } else if (direction === "down") {
+        if (game.input.activePointer.y > 600) {
+          return true;
+        }
+      } else if (direction === "left") {
+        if (game.input.activePointer.x < 200) {
+          return true;
+        }
+      } else if (direction === "right") {
+        if (game.input.activePointer.x > 600) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   if (currentPlayer === "player1") {
