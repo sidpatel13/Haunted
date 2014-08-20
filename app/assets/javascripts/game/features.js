@@ -65,6 +65,23 @@ features.loseLife = function(person) {
 };
 
 features.gameOver = function(winner) {
+  features.reset();
   alert("Game Over. " + winner + " wins!");
   location.reload();
 };
+
+features.reset = function() {
+  fb.ghost.set({
+    x : Math.random() * CANVAS_WIDTH,
+    y : Math.random() * CANVAS_HEIGHT
+  });
+
+  fb.person.set({
+    x : Math.random() * CANVAS_WIDTH,
+    y : Math.random() * CANVAS_HEIGHT
+  });
+
+  fb.pause.set(true);
+  fb.player1.set(true);
+  fb.player2.set(true);
+}
