@@ -64,6 +64,49 @@ features.loseLife = function(person) {
   }
 };
 
+features.movePlayer = function(character) {
+  if (cursors.left.isDown || this.pointer('left')){
+    character.body.velocity.x = -VELOCITY * character.speedMultiplyer;
+    character.body.velocity.y = 0;
+    character.animations.play('left', 10, true);
+  } else if (cursors.right.isDown || this.pointer('right')){
+    character.body.velocity.x = VELOCITY * character.speedMultiplyer;
+    character.body.velocity.y = 0;
+    character.animations.play('right', 10, true);
+  } else if (cursors.up.isDown || this.pointer('up')){
+    character.body.velocity.y = -VELOCITY * character.speedMultiplyer;
+    character.body.velocity.x = 0;
+    character.animations.play('up', 10, true);
+  } else if (cursors.down.isDown || this.pointer('down')) {
+    character.body.velocity.y = VELOCITY * character.speedMultiplyer;
+    character.body.velocity.x = 0;
+    character.animations.play('bottom', 10, true);
+  }
+}
+
+features.pointer = function(direction) {
+  if (game.input.activePointer.isDown) {
+    if (direction === "up") {
+      if (game.input.activePointer.y < VELOCITY) {
+        return true;
+      }
+    } else if (direction === "down") {
+      if (game.input.activePointer.y > 600) {
+        return true;
+      }
+    } else if (direction === "left") {
+      if (game.input.activePointer.x < VELOCITY) {
+        return true;
+      }
+    } else if (direction === "right") {
+      if (game.input.activePointer.x > 600) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 features.gameOver = function(winner) {
   features.reset();
   alert("Game Over. " + winner + " wins!");

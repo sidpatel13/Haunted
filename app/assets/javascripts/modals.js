@@ -26,6 +26,16 @@ modals.confirmPlayerModal = function() {
    });
  }
 
+modals.instructions = function(){
+    vex.dialog.buttons.YES.text = 'OK';
+    vex.dialog.alert(instructions);
+  };
+
+modals.aboutUs = function(){
+    vex.dialog.buttons.YES.text = 'OK';
+    vex.dialog.alert(aboutUs);
+  };
+
  // vex.dialog.open({
  //   message: 'Choose your avatar:<br><br><img class="image" src="images/person.png"><img class="image" src="images/star.png"><img class="image" src="images/diamond.png">',
  //   buttons: [

@@ -76,3 +76,7 @@ board.createSlowDown = function() {
   slowDown = game.add.sprite(200, 200, 'slow');
   slowDown.anchor.setTo(0.5, 0.5);
 }
+
+board.overlap = function(from, to, features) {
+  game.physics.arcade.overlap(from, to, features, null, this);
+}
