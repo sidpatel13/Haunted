@@ -9,14 +9,11 @@ function createSpritesheet(name, num) {
 }
 
 function loadImages() {
-  createImage("ghost");
   createImage("star");
-  createImage("firstaid");
   createImage("apple");
   createImage("slow");
   createImage("speed");
   createImage("cherry");
   createSpritesheet("sprites", 32);
   createImage("person");
-  createImage("diamond");
 };
