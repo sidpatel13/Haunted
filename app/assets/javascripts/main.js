@@ -78,7 +78,20 @@ $(document).ready(function() {
     }
   });
 
-  modals.urlModal(roomSession);
+  fb.player1.on("value", function(snapshot) {
+    if (snapshot.val() != true) {
+      modals.urlModal(roomSession);
+    }
+    else {
+      modals.confirmPlayerModal();
+    }
+  })
+  // if (fb.player1.val() !== true) { 
+  //   modals.urlModal(roomSession); 
+  // } else if (fb.player1.val() == true) {
+  //   modals.confirmPlayerModal();
+  // }
+
 });
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
@@ -87,6 +100,7 @@ function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   //game.load.audio('music', '/music.mp3');
+
 };
 
 function create() {
