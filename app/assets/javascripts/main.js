@@ -86,11 +86,6 @@ $(document).ready(function() {
       modals.confirmPlayerModal();
     }
   })
-  // if (fb.player1.val() !== true) { 
-  //   modals.urlModal(roomSession); 
-  // } else if (fb.player1.val() == true) {
-  //   modals.confirmPlayerModal();
-  // }
 
 });
 
