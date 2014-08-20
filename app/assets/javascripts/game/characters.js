@@ -21,7 +21,7 @@ characters.createPerson = function() {
 }
 
 characters.createGhost = function() {
-  ghost = game.add.sprite(CANVAS_WIDTH * Math.random(), CANVAS_HEIGHT * Math.random(), 'sprites');
+  ghost = game.add.sprite(70, 70, 'sprites');
   ghost.scale.setTo(1,1);
   ghost.anchor.setTo(0.5, 0.5);
   ghost.userControl = true;
