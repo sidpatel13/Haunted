@@ -154,11 +154,11 @@ function update() {
       character.body.velocity.x = 200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
       character.animations.play('right');
-    } else if (cursors.up.isDown){
+    } else if (cursors.up.isDown || pointer('up')){
       character.body.velocity.y = -200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('up');
-    } else if (cursors.down.isDown) {
+    } else if (cursors.down.isDown || pointer('down')) {
       character.body.velocity.y = 200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
       character.animations.play('bottom');
@@ -167,7 +167,15 @@ function update() {
 
   var pointer = function(direction) {
     if (game.input.activePointer.isDown) {
-      if (direction === "left") {
+      if (direction === "up") {
+        if (game.input.activePointer.y < 200) {
+          return true;
+        }
+      } else if (direction === "down") {
+        if (game.input.activePointer.y > 600) {
+          return true;
+        }
+      } else if (direction === "left") {
         if (game.input.activePointer.x < 200) {
           return true;
         }
