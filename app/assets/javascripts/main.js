@@ -6,7 +6,6 @@
 //= require game/images.js
 //= require game/features.js
 
-// Constants
 CANVAS_WIDTH = 833;
 CANVAS_HEIGHT = 715;
 CANVAS_OFFSET = 60;
@@ -16,7 +15,6 @@ player1 = false;
 player2 = false;
 currentPlayer = false;
 
-// Variables
 var score = 0;
 var lives = DEFAULT_LIVES;
 var apples = [];
@@ -32,6 +30,20 @@ var layer;
 var cursors;
 var music;
 var fb;
+var instructions = 'Here are the rules of the game.<br /><br /><b>Player1:</b><br /><i>'
+                 + 'Controls</i> - Move your character with the arrow keys.<br /><i>Objective'
+                 + '</i> - Collect all apples and powerups, or eat all the ghosts. The choice'
+                 + ' is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which'
+                 + ' ghost you want to control by pressing numbers 1 through 4. Then, move your'
+                 + ' character with the arrow keys.<br /><i>Objective</i> - Eat the hero until'
+                 + ' the hero has no lives left.<br /><br />Need a moment? Press <b>P</b> to'
+                 + ' pause and <b>R</b> to resume.';
+
+var aboutUs      = 'Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are'
+                 + ' currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul'
+                 + ' Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing'
+                 + 'this game as much as we enjoyed creating it. Check out our <a id="aboutus" '
+                 + 'href="https://github.com/red-spotted-newts-2014/haunted">GitHub Repo</a>!';
 
 $(document).ready(function() {
   roomSession = $("#room-session").val();
@@ -39,28 +51,21 @@ $(document).ready(function() {
     fb = new firebase.firebaseSetup(roomSession);
   }
 
-  // Recieve a message
-  fb.chat.on("child_added", firebase.recieveMessage);
 
-  // Send a message
-  $("#chat-form").submit(function(event) {
-    event.preventDefault();
-    var name = $("#user-name").val()
-    var content = $("#msg-input").val()
-    $("#msg-input").val("");
-    firebase.sendMessage(fb, name, content);
-  });
 
   $("#instructions-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert('Here are the rules of the game.<br /><br /><b>Player1:</b><br /><i>Controls</i> - Move your character with the arrow keys.<br /><i>Objective</i> - Collect all apples and powerups, or eat all the ghosts. The choice is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which ghost you want to control by pressing numbers 1 through 4. Then, move your character with the arrow keys.<br /><i>Objective</i> - Eat the hero until the hero has no lives left.<br /><br />Need a moment? Press <b>P</b> to pause and <b>R</b> to resume.');
+    vex.dialog.alert(instructions);
   });
 
   $("#aboutus-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert('Hello! Welcome to <i>Haunted</i>! We are a team of 5 members that are currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy playing this game as much as we enjoyed creating it. Check out our blog @ https://github.com/red-spotted-newts-2014/haunted !');
+    vex.dialog.alert(aboutUs);
   });
 
+  $("#chat-form").submit(firebase.preMessage);
+
+  fb.chat.on("child_added", firebase.recieveMessage);
 
   fb.pause.on("value", function(snapshot) {
     game.paused = snapshot.val();
@@ -81,13 +86,11 @@ function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('Desert', '/images/deserttile.png');
-  // game.load.audio('music', '/music.mp3');
+  //game.load.audio('music', '/music.mp3');
 };
 
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
-
-  fb.pause.set(true);
 
   board.createBoard();
   characters.createCharacters();
@@ -102,6 +105,9 @@ function create() {
   ghost.body.collideWorldBounds = true;
 
   cursors = game.input.keyboard.createCursorKeys();
+
+  //fb.pause.set(true);
+
 }
 
 function update() {

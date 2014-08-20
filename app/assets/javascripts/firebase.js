@@ -22,6 +22,14 @@ firebase.recieveMessage = function(snapshot) {
   $("#msg-output").append(output);
 }
 
+firebase.preMessage = function(event) {
+  event.preventDefault();
+  var name = $("#user-name").val()
+  var content = $("#msg-input").val()
+  $("#msg-input").val("");
+  firebase.sendMessage(fb, name, content);
+}
+
 firebase.sendMessage = function(firebase, name, content) {
   firebase.chat.push({
     message : {
