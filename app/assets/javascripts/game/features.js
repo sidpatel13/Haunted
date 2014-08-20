@@ -61,15 +61,6 @@ features.pacMeetsGhost = function(person, ghosts) {
   }
 }
 
-features.changeMusicVolume = function() {
-    // if (pointer.y < 300){
-    //     music.volume += 0.1;
-    // } else {
-    //     music.volume -= 0.1;
-    // }
-};
-
-
 features.togglePause = function () {
   document.onkeydown = function (e) {
     if(e.which == 80) {

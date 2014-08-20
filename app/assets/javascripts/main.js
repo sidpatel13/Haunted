@@ -120,7 +120,7 @@ function create() {
   fb.pause.set(true);
 
   music = game.add.audio('music');
-  // music.play(); commented out so no music plays
+  music.play(); commented out so no music plays
 
   map = game.add.tilemap('map');
   map.addTilesetImage('Desert');
