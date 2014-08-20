@@ -51,17 +51,9 @@ $(document).ready(function() {
     fb = new firebase.firebaseSetup(roomSession);
   }
 
+  $("#instructions-button").click(modals.instructions);
 
-
-  $("#instructions-button").click(function(){
-    vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert(instructions);
-  });
-
-  $("#aboutus-button").click(function(){
-    vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert(aboutUs);
-  });
+  $("#aboutus-button").click(modals.aboutUs);
 
   $("#chat-form").submit(firebase.preMessage);
 

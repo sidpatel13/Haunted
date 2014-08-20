@@ -15,5 +15,4 @@ function loadImages() {
   createImage("speed");
   createImage("cherry");
   createSpritesheet("sprites", 32);
-  createImage("person");
 };
