@@ -102,10 +102,10 @@ h3 {
   font-size: 1em;
 }
 
-#user-name {
+/*#user-name {
   display: none;
 }
-
+*/
 #msg-input {
   line-height: 20px;
   background-color: white;
