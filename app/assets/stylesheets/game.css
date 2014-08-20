@@ -1,7 +1,6 @@
 /* Game */
 
 canvas {
-/*  visibility: hidden;*/
   position: fixed;
   min-width: 800px;
   top: 0%;
@@ -63,13 +62,13 @@ h3 {
   color: white;
   padding: 10px;
   border: 2px solid white;
-  letter-spacing: 2px;
   font-size: 1.2em;
   background-color: indigo;
   margin: 20px;
 }
 
 #chat-widget {
+  background-color: black;
   color: black;
   position: fixed;
   width: 30%;
@@ -124,6 +123,7 @@ h3 {
 #send {
   width: 60px;
   text-align: center;
+  letter-spacing: 2px;
   padding-left: 5px;
   padding-right: 5px;
   font-family: 'Avenir';

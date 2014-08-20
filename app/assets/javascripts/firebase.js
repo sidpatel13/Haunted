@@ -9,7 +9,7 @@ firebase.firebaseSetup = function(roomSession) {
   this.player1 = this.game.child("player1");
   this.player2 = this.game.child("player2");
   this.person = this.game.child("person");
-  this.ghost1 = this.game.child("ghost1");
+  this.ghost = this.game.child("ghost");
 }
 
 firebase.recieveMessage = function(snapshot) {

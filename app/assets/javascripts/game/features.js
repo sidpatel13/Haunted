@@ -1,5 +1,32 @@
 var features = {};
 
+features.eatApple = function(person, apples) {
+  score++;
+  apples.kill();
+
+  if (score === MAX_SCORE) {
+    features.gameOver("Player 1");
+  }
+}
+
+features.cherry = function(person, cherry) {
+  cherry.kill();
+  person.cherry = true;
+  setTimeout(function(){person.cherry = false}, 5000);
+}
+
+features.speedUp = function(character, speedUp) {
+  speedUp.kill();
+  character.speedMultiplyer = 1.5;
+  setTimeout(function(){person.speedMultiplyer = 1}, 5000);
+}
+
+features.slowDown = function(character, slowDown) {
+  slowDown.kill();
+  character.speedMultiplyer = 0.5;
+  setTimeout(function(){person.speedMultiplyer = 1}, 5000);
+}
+
 features.teleportOne = function(person, starOne) {
   person.kill();
   person.reset(790,358);
@@ -12,7 +39,21 @@ features.teleportTwo = function(person, starTwo) {
   person.body.velocity.x = 200;
 };
 
-features.loseLife = function(person, ghosts) {
+features.pacMeetsGhost = function(person, ghost) {
+  if (person.cherry === true){
+    features.eatGhost(person, ghost);
+  }
+  else {
+    features.loseLife(person, ghost);
+  }
+}
+
+features.eatGhost = function(person, ghost) {
+  ghost.kill();
+  ghost.reset(Math.random() * CANVAS_WIDTH, Math.random() * CANVAS_HEIGHT);
+};
+
+features.loseLife = function(person) {
   lives--;
   person.kill();
 
@@ -23,50 +64,7 @@ features.loseLife = function(person, ghosts) {
   }
 };
 
-features.eatDot = function(person, dots) {
-  score++;
-  dots.kill();
-
-  if (score === MAX_SCORE) {
-    features.gameOver("Player 1");
-  }
-}
-
-features.powerUp = function(person, powerUp) {
-  powerUp.kill();
-  person.powerUp = true;
-  setTimeout(function(){person.powerUp = false}, 5000);
-}
-
 features.gameOver = function(winner) {
   alert("Game Over. " + winner + " wins!");
   location.reload();
 };
-
-features.eatGhosts = function(person, ghosts) {
-    ghostLives--;
-    ghosts.kill();
-
-    if (ghostLives === 0) {
-      features.gameOver("Player 1");
-    }
-};
-
-features.pacMeetsGhost = function(person, ghosts) {
-  if (person.powerUp === true){
-    features.eatGhosts(person, ghosts);
-  }
-  else {
-    features.loseLife(person, ghosts);
-  }
-}
-
-features.togglePause = function () {
-  document.onkeydown = function (e) {
-    if(e.which == 80) {
-      fb.pause.set(true);
-    } else if (e.which == 82) {
-      fb.pause.set(false);
-    }
-  }
-}
