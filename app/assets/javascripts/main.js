@@ -149,19 +149,19 @@ function update() {
     if (cursors.left.isDown || pointer('left')){
       character.body.velocity.x = -200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
-      character.animations.play('left');
+      character.animations.play('left', 10, true);
     } else if (cursors.right.isDown || pointer('right')){
       character.body.velocity.x = 200 * character.speedMultiplyer;
       character.body.velocity.y = 0;
-      character.animations.play('right');
+      character.animations.play('right', 10, true);
     } else if (cursors.up.isDown || pointer('up')){
       character.body.velocity.y = -200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
-      character.animations.play('up');
+      character.animations.play('up', 10, true);
     } else if (cursors.down.isDown || pointer('down')) {
       character.body.velocity.y = 200 * character.speedMultiplyer;
       character.body.velocity.x = 0;
-      character.animations.play('bottom');
+      character.animations.play('bottom', 10, true);
     }
   }
 
