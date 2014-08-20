@@ -51,8 +51,6 @@ $(document).ready(function() {
     fb = new firebase.firebaseSetup(roomSession);
   }
 
-
-
   $("#instructions-button").click(function(){
     vex.dialog.buttons.YES.text = 'OK';
     vex.dialog.alert(instructions);
@@ -66,6 +64,14 @@ $(document).ready(function() {
   $("#chat-form").submit(firebase.preMessage);
 
   fb.chat.on("child_added", firebase.recieveMessage);
+
+  document.onkeydown = function (e) {
+    if(e.which == 80) {
+      fb.pause.set(true);
+    } else if (e.which == 82) {
+      fb.pause.set(false);
+    }
+  }
 
   fb.pause.on("value", function(snapshot) {
     game.paused = snapshot.val();
@@ -105,8 +111,6 @@ function create() {
   ghost.body.collideWorldBounds = true;
 
   cursors = game.input.keyboard.createCursorKeys();
-
-  //fb.pause.set(true);
 
 }
 
