@@ -166,13 +166,13 @@ function update() {
   }
 
   var pointer = function(direction) {
-    if (game.input.mousePointer.isDown) {
+    if (game.input.activePointer.isDown) {
       if (direction === "left") {
-        if (game.input.mousePointer.x < 200) {
+        if (game.input.activePointer.x < 200) {
           return true;
         }
       } else if (direction === "right") {
-        if (game.input.mousePointer.x > 600) {
+        if (game.input.activePointer.x > 600) {
           return true;
         }
       }
