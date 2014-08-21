@@ -31,20 +31,20 @@ var layer;
 var cursors;
 var music;
 var fb;
-var instructions = "<b>Player1:</b><br /><i>"
-                 + 'Controls</i> - Move your character with the arrow keys.<br /><i>Objective'
-                 + '</i> - Collect all apples and powerups, or eat all the ghosts. The choice'
-                 + ' is yours.<br /><br /><b>Player2</b>:<br /><i>Controls</i> - Select which'
-                 + ' ghost you want to control by pressing numbers 1 through 4. Then, move your'
-                 + ' character with the arrow keys.<br /><i>Objective</i> - Eat the hero until'
-                 + ' the hero has no lives left.<br /><br />Need a moment? Press <b>P</b> to'
-                 + ' pause and <b>R</b> to resume.';
 
-var aboutUs      = 'Hello! <i>Haunted</i> was created by a a team of 5 members who are'
-                 + ' currently pursuing our passion for coding @ Dev Bootcamp: David Sin, Rootul'
-                 + ' Patel, Sid Patel, Cassie Moy, and Julius Jung. <br><br>We hope you enjoy playing '
-                 + 'this game as much as we enjoyed creating it. Check us out on <a id="aboutus" '
-                 + 'href="https://github.com/red-spotted-newts-2014/haunted">GitHub</a>!';
+var instructions = '<b>PacMan:</b><br />'
+  + '<i>Controls</i> - Move your character with the arrow keys.<br />'
+  + '<i>Objective</i> - Collect all the apples to win.<br /><br />'
+  + '<b>Ghost</b>:<br />'
+  + '<i>Controls</i> - Move your character with the arrow keys.<br />'
+  + '<i>Objective</i> - Eat PacMan until he has no more lives.<br />'
+  + '<br />Need a moment? Press <b>P</b> to pause and <b>R</b> to resume.';
+
+var aboutUs = 'Hello! Welcome to <i>Haunted</i>! We are a team of 5 '
+  + 'members that are currently pursuing our passion for coding @ Dev Bootcamp: '
+  + 'David Sin, Rootul Patel, Sid Patel, Cassie Moy, and Julius Jung. We hope you enjoy '
+  + 'playingthis game as much as we enjoyed creating it. Check out our <a id="aboutus" '
+  + 'href="https://github.com/red-spotted-newts-2014/haunted">GitHub Repo</a>!';
 
 $(document).ready(function() {
   roomSession = $("#room-session").val();

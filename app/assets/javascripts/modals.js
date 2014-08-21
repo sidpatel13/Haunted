@@ -15,6 +15,7 @@ modals.confirmP1 = function(roomSession) {
   });
  }
 
+<<<<<<< HEAD
 // modals.confirmPlayerModal = function() {
 //    vex.dialog.buttons.YES.text = 'Hero';
 //    vex.dialog.buttons.NO.text = 'Ghost';
@@ -31,6 +32,13 @@ modals.confirmP1 = function(roomSession) {
 //      }
 //    });
 //  }
+=======
+modals.waiting = function() {
+  vex.dialog.alert({
+    message: "Waiting for your friend to join room."
+  });
+}
+>>>>>>> 44591f516924aa2c87f7b6de37bcce8d46ce5454
 
  modals.confirmP2 = function() {
   vex.dialog.alert({
@@ -43,14 +51,14 @@ modals.confirmP1 = function(roomSession) {
       }
     }
   })
- };
+ }
 
 modals.instructions = function(){
-    vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert(instructions);
-  };
+  vex.dialog.buttons.YES.text = 'OK';
+  vex.dialog.alert(instructions);
+}
 
 modals.aboutUs = function(){
-    vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert(aboutUs);
-  };
+  vex.dialog.buttons.YES.text = 'OK';
+  vex.dialog.alert(aboutUs);
+}
