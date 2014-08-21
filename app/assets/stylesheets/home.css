@@ -1,9 +1,9 @@
 #welcome {
   margin: auto;
+  margin-top: 400px;
   width: 400px;
   font-size: 1.1em;
   font-style: bold;
-  background: rgba(255, 255, 255, 0.2);
   padding-top: 10px;
   text-shadow: 2px 2px 2px indigo;
 }
