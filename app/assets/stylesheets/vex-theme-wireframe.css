@@ -1,118 +1,3 @@
-@keyframes vex-pulse {
-  /* line 136, ../sass/_keyframes.sass */
-  0% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-
-  /* line 138, ../sass/_keyframes.sass */
-  70% {
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-  }
-
-  /* line 140, ../sass/_keyframes.sass */
-  100% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-}
-
-@-webkit-keyframes vex-pulse {
-  /* line 136, ../sass/_keyframes.sass */
-  0% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-
-  /* line 138, ../sass/_keyframes.sass */
-  70% {
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-  }
-
-  /* line 140, ../sass/_keyframes.sass */
-  100% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-}
-
-@-moz-keyframes vex-pulse {
-  /* line 136, ../sass/_keyframes.sass */
-  0% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-
-  /* line 138, ../sass/_keyframes.sass */
-  70% {
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-  }
-
-  /* line 140, ../sass/_keyframes.sass */
-  100% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-}
-
-@-ms-keyframes vex-pulse {
-  /* line 136, ../sass/_keyframes.sass */
-  0% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-
-  /* line 138, ../sass/_keyframes.sass */
-  70% {
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-  }
-
-  /* line 140, ../sass/_keyframes.sass */
-  100% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-}
-
-@-o-keyframes vex-pulse {
-  /* line 136, ../sass/_keyframes.sass */
-  0% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-
-  /* line 138, ../sass/_keyframes.sass */
-  70% {
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-  }
-
-  /* line 140, ../sass/_keyframes.sass */
-  100% {
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent;
-  }
-}
-
 /* line 9, ../sass/vex-theme-wireframe.sass */
 .vex.vex-theme-wireframe {
   padding-top: 160px;
@@ -124,7 +9,7 @@
 }
 /* line 16, ../sass/vex-theme-wireframe.sass */
 .vex.vex-theme-wireframe .vex-content {
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: 'Avenir', sans-serif;
   background: white;
   color: black;
   border: 2px solid black;
@@ -165,6 +50,7 @@
 .vex.vex-theme-wireframe .vex-close:hover:before, .vex.vex-theme-wireframe .vex-close:active:before {
   color: black;
 }
+
 /* line 56, ../sass/vex-theme-wireframe.sass */
 .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-message {
   margin-bottom: 0.5em;
@@ -208,14 +94,12 @@
   -o-border-radius: 0;
   border-radius: 0;
   border: 0;
-  float: right;
-  margin: 0 0 0 0.5em;
   font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.8em;
   line-height: 1em;
-  padding: 0.75em 2em;
+  padding: 0.75em 1.5em;
 }
 /* line 92, ../sass/vex-theme-wireframe.sass */
 .vex.vex-theme-wireframe .vex-dialog-button.vex-last {
@@ -231,6 +115,7 @@
   -webkit-backface-visibility: hidden;
   outline: none;
 }
+
 @media (max-width: 568px) {
   /* line 95, ../sass/vex-theme-wireframe.sass */
   .vex.vex-theme-wireframe .vex-dialog-button:focus {
@@ -247,12 +132,22 @@
   background: black;
   color: white;
   border: 2px solid transparent;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-top: 30px;
+  margin-right: 30px;
+  margin-bottom: 10px;
 }
 /* line 109, ../sass/vex-theme-wireframe.sass */
 .vex.vex-theme-wireframe .vex-dialog-button.vex-dialog-button-secondary {
-  background: white;
+  /*background: white;
   color: black;
-  border: 2px solid black;
+  border: 2px solid black;*/
+  background: black;
+  color: white;
+  border: 2px solid transparent;
 }
 
 /* line 114, ../sass/vex-theme-wireframe.sass */

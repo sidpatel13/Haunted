@@ -9,12 +9,12 @@ function createSpritesheet(name, num) {
 }
 
 function loadImages() {
-  createImage("ghost");
   createImage("star");
-  createImage("firstaid");
   createImage("apple");
-  createSpritesheet("sprites", 32);
-  createImage("johnny_bravo");
-  createImage("dexter");
-  createImage("All_3_eds");
+  createImage("slow");
+  createImage("speed");
+  createImage("cherry");
+  createImage("desert");
+  createSpritesheet("ghost", 32);
+  createSpritesheet("pacman", 32);
 };
