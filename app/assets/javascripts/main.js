@@ -90,13 +90,11 @@ var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { p
 function preload() {
   loadImages();
   game.load.tilemap('map', '/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
-  //game.load.audio('music', '/music.mp3');
-
+  game.load.audio('music', '/music.mp3');
 };
 
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
-
   board.createBoard();
   characters.createCharacters();
 
@@ -106,21 +104,15 @@ function create() {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
 
-  [person, ghost].forEach(function(character){
-    character.body.collideWorldBounds = true;
-  })
-
+  person.body.collideWorldBounds = true;
+  ghost.body.collideWorldBounds = true;
   cursors = game.input.keyboard.createCursorKeys();
-
 }
 
 function update() {
-
   game.physics.arcade.collide(person,layer);
   game.physics.arcade.collide(ghost,layer);
-
   board.createOverlaps();
-
   features.pacmanCoordinates();
   features.ghostCoordinates();
 }
