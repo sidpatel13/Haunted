@@ -32,13 +32,6 @@ modals.confirmP1 = function(roomSession) {
 //    });
 //  }
 
-// modals.waiting = function() {
-//   vex.dialog.alert({
-//     message: "Waiting for your friend to join room."
-//   });
-// }
-
-
  modals.confirmP2 = function() {
   vex.dialog.alert({
     message: "You've been invited to play Haunted! You are playing Ghost.",
