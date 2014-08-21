@@ -1,12 +1,12 @@
 var modals = {}
 
 modals.urlModal = function(roomSession) {
-   vex.dialog.alert({
-     message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
-     callback: function() {
-       modals.confirmPlayerModal();
-     }
-   });
+  vex.dialog.alert({
+  message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
+  callback: function(value) {
+    modals.confirmP1();
+  }
+  });
  }
 
 modals.confirmPlayerModal = function() {
@@ -25,6 +25,30 @@ modals.confirmPlayerModal = function() {
      }
    });
  }
+
+ modals.confirmP1 = function() {
+  vex.dialog.alert({
+    message: "You are playing Hero.",
+    callback: function(value) {
+      if (value) {
+        currentPlayer = "player1";
+        fb.player1.set(true);
+      }
+    }
+  })
+ };
+
+ modals.confirmP2 = function() {
+  vex.dialog.alert({
+    message: "You've been invited to play Haunted!",
+    callback: function(value) {
+      if (value) {
+        currentPlayer = "player2";
+        fb.player2.set(true);
+      }
+    }
+  })
+ };
 
 modals.instructions = function(){
     vex.dialog.buttons.YES.text = 'OK';
