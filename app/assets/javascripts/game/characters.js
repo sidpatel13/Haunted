@@ -16,8 +16,8 @@ characters.createPerson = function() {
   person.animations.add('up', [42, 43], 0, true);
   person.cherry = false;
   person.speedMultiplyer = 1;
-  person.lastx = person.x;
-  person.lasty = person.y;
+  person.lastx = 0;
+  person.lasty = 0;
 }
 
 characters.createGhost = function() {

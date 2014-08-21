@@ -10,7 +10,7 @@ CANVAS_WIDTH = 833;
 CANVAS_HEIGHT = 715;
 CANVAS_OFFSET = 60;
 MAX_SCORE = 10;
-DEFAULT_LIVES = 3;
+DEFAULT_LIVES = 1;
 player1 = false;
 player2 = false;
 currentPlayer = false;
@@ -24,7 +24,6 @@ var speedUp;
 var slowDown;
 var person;
 var ghost;
-var scoreText, livesText;
 var starOne, starTwo;
 var map;
 var layer;
@@ -121,9 +120,6 @@ function update() {
   game.physics.arcade.collide(ghost,layer);
 
   board.createOverlaps();
-
-  livesText.text = 'lives: ' + lives;
-  scoreText.text = 'score: ' + score;
 
   features.pacmanCoordinates();
   features.ghostCoordinates();
