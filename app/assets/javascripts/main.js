@@ -72,21 +72,17 @@ $(document).ready(function() {
     game.paused = snapshot.val();
   });
 
-  fb.player2.on("value", function(snapshot) {
-    if (snapshot.val()) {
-      fb.pause.set(false);
-    }
-  });
+
+
 
   fb.player1.on("value", function(snapshot) {
-    if ((snapshot.val() == true) && (currentPlayer !== "player1")) {
+    if ((snapshot.val() === true) && (currentPlayer !== "player1")) {
       fb.player2.on("value", function(snapshot) {
         if (snapshot.val() !== true) {
           modals.confirmP2();
         }
       });
-    } 
-    else {
+    } else {
       modals.confirmP1(roomSession);    
     }
   });
