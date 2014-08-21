@@ -5,7 +5,7 @@
   font-style: bold;
   padding-top: 10px;
   text-shadow: 2px 2px 2px indigo;
-  margin-top: 480px;
+  margin-top: 350px;
 }
 
 #welcome a:link, a:visited {
@@ -101,4 +101,12 @@ h1:hover {
   font-size: 1em;
   margin-bottom: 20px;
   line-height: 20px;
+}
+
+#social-media {
+  text-align: center;
+}
+
+#social-media img {
+  background-color: white;
 }
