@@ -1,14 +1,5 @@
 var modals = {}
 
-modals.urlModal = function(roomSession) {
-  vex.dialog.alert({
-  message:'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '">',
-  callback: function(value) {
-    modals.confirmP1();
-  }
-  });
- }
-
 modals.confirmPlayerModal = function() {
    vex.dialog.buttons.YES.text = 'Hero';
    vex.dialog.buttons.NO.text = 'Ghost';
@@ -26,27 +17,28 @@ modals.confirmPlayerModal = function() {
    });
  }
 
+ modals.waitingP1 = function() {
+  vex.dialog.alert({
+    message: 'Waiting for friend to join room.'
+  })
+ }
+
  modals.confirmP1 = function() {
   vex.dialog.alert({
-    message: "You are playing Hero.",
-    callback: function(value) {
-      if (value) {
-        currentPlayer = "player1";
-        fb.player1.set(true);
-      }
-    }
+    message: 'Send your friend this url to play!<br><input id="game-url" type="text" value="http://haunted-game.herokuapp.com/' + roomSession + '"> <br> You are playing PacMan.',
+    callback: modals.waitingP1()
   })
- };
+ }
 
  modals.confirmP2 = function() {
   vex.dialog.alert({
-    message: "You've been invited to play Haunted!",
-    callback: function(value) {
-      if (value) {
-        currentPlayer = "player2";
-        fb.player2.set(true);
-      }
-    }
+    message: "You've been invited to play Haunted!"
+    // callback: function(value) {
+    //   if (value) {
+    //     currentPlayer = "player2";
+    //     fb.player2.set(true);
+    //   }
+    // }
   })
  };
 
