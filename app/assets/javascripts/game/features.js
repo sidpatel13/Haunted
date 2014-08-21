@@ -138,9 +138,7 @@ features.ghostCoordinates = function() {
   }
 }
 
-
 features.gameOver = function(winner) {
-  //alert("Game Over. " + winner + " wins!");
   fb.pause.set(true);
   fb.player1.set(false);
   fb.player2.set(false);
