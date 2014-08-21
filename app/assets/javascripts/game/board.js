@@ -26,7 +26,7 @@ board.addMusic = function() {
 
 board.createMap = function() {
   map = game.add.tilemap('map');
-  map.addTilesetImage('Desert');
+  map.addTilesetImage('desert');
   layer = map.createLayer('Ground');
   map.setCollision(38);
   layer.resizeWorld();
