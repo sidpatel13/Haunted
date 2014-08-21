@@ -73,7 +73,7 @@ board.createSpeedUp = function() {
 }
 
 board.createSlowDown = function() {
-  slowDown = game.add.sprite(200, 200, 'slow');
+  slowDown = game.add.sprite(160, 200, 'slow');
   slowDown.anchor.setTo(0.5, 0.5);
 }
 
