@@ -31,6 +31,7 @@ var layer;
 var cursors;
 var music;
 var fb;
+
 var instructions = '<b>PacMan:</b><br />'
   + '<i>Controls</i> - Move your character with the arrow keys.<br />'
   + '<i>Objective</i> - Collect all the apples to win.<br /><br />'
@@ -70,9 +71,6 @@ $(document).ready(function() {
   fb.pause.on("value", function(snapshot) {
     game.paused = snapshot.val();
   });
-
-
-
 
   fb.player1.on("value", function(snapshot) {
     if ((snapshot.val() === true) && (currentPlayer !== "player1")) {

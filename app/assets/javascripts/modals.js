@@ -15,11 +15,22 @@ modals.confirmP1 = function(roomSession) {
   });
  }
 
-modals.waiting = function() {
-  vex.dialog.alert({
-    message: "Waiting for your friend to join room."
-  });
-}
+// modals.confirmPlayerModal = function() {
+//    vex.dialog.buttons.YES.text = 'Hero';
+//    vex.dialog.buttons.NO.text = 'Ghost';
+//    vex.dialog.confirm({
+//      message: "Are you hero or ghost?",
+//      callback: function(value) {
+//        if (value) {
+//          currentPlayer = "player1";
+//          fb.player1.set(true);
+//        } else {
+//          currentPlayer = "player2";
+//          fb.player2.set(true);
+//        }
+//      }
+//    });
+//  }
 
  modals.confirmP2 = function() {
   vex.dialog.alert({

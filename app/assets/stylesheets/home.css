@@ -1,9 +1,9 @@
 #welcome {
   margin: auto;
+  margin-top: 450px;
   width: 400px;
   font-size: 1.1em;
   font-style: bold;
-  background: rgba(255, 255, 255, 0.2);
   padding-top: 10px;
   text-shadow: 2px 2px 2px indigo;
 }
@@ -51,7 +51,6 @@
 
 h1 {
   margin-top: 5%;
-  margin-bottom: 5%;
   margin-right: auto;
   margin-left: auto;
   width: 500px;
@@ -83,4 +82,23 @@ h1:hover {
 
 #aboutus {
   color:black;
+}
+
+.devise-menus {
+  width: 500px;
+  padding: 20px;
+  margin: auto;
+  line-height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.devise-menus a:link {
+  color: white;
+}
+
+.devise-menus input {
+  font-family: 'Avenir';
+  font-size: 1em;
+  margin-bottom: 20px;
+  line-height: 20px;
 }
