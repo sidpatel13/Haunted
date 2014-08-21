@@ -52,12 +52,12 @@ board.createApple = function(x, y) {
 board.createApples = function() {
   board.createApple(290, 67); //top left
   board.createApple(65, 250); //upper left
-  board.createApple(90, 445); //mid left
+  board.createApple(160, 445); //mid left
   board.createApple(260, 580); //center left
   board.createApple(65, 670); //bot left
   board.createApple(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 50) //center mid
   board.createApple(CANVAS_WIDTH - 290, 67); //top right
-  board.createApple(CANVAS_WIDTH - 90, 445); //mid right
+  board.createApple(CANVAS_WIDTH - 160, 445); //mid right
   board.createApple(CANVAS_WIDTH - 260, 580); //mid left
   board.createApple(CANVAS_WIDTH - 65, 670); //bot right
 }
