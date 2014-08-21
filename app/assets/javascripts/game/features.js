@@ -5,7 +5,7 @@ features.eatApple = function(person, apples) {
   apples.kill();
 
   if (score === MAX_SCORE) {
-    features.gameOver("Player 1");
+    this.gameOver("Player 1");
   }
 }
 
@@ -107,6 +107,41 @@ features.pointer = function(direction) {
   return false;
 }
 
+features.pacmanCoordinates = function() {
+  if (currentPlayer === "player1") {
+    this.movePlayer(person);
+    if ((person.x !== person.lastx) || (person.y !== person.lasty )) {
+      fb.person.set({
+        x : person.position.x,
+        y : person.position.y
+      });
+    }
+
+    fb.ghost.on("value", function(snapshot) {
+      ghost.x = snapshot.val().x
+      ghost.y = snapshot.val().y
+    });
+  }
+}
+
+features.ghostCoordinates = function() {
+  if (currentPlayer === "player2") {
+    this.movePlayer(ghost);
+    if ((ghost.x !== ghost.lastx) || (ghost.y !== ghost.lasty )) {
+      fb.ghost.set({
+        x : ghost.position.x,
+        y : ghost.position.y
+      });
+    }
+
+    fb.person.on("value", function(snapshot) {
+      person.x = snapshot.val().x
+      person.y = snapshot.val().y
+    });
+  }
+}
+
+
 features.gameOver = function(winner) {
   features.reset();
   alert("Game Over. " + winner + " wins!");
@@ -115,13 +150,13 @@ features.gameOver = function(winner) {
 
 features.reset = function() {
   fb.ghost.set({
-    x : Math.random() * CANVAS_WIDTH,
-    y : Math.random() * CANVAS_HEIGHT
+    x : 70,
+    y : 70
   });
 
   fb.person.set({
-    x : Math.random() * CANVAS_WIDTH,
-    y : Math.random() * CANVAS_HEIGHT
+    x : CANVAS_WIDTH/2,
+    y : CANVAS_HEIGHT/2
   });
 
   fb.pause.set(true);

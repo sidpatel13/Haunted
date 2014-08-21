@@ -6,14 +6,14 @@ characters.createCharacters = function() {
 }
 
 characters.createPerson = function() {
-  person = game.add.sprite(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 'sprites');
-  person.scale.setTo(1.3, 1.3);
+  person = game.add.sprite(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 'pacman');
+  person.scale.setTo(1, 1);
   person.anchor.setTo(0.5, 0.5);
   person.userControl = false;
-  person.animations.add('right', [10, 11], 0, true);
-  person.animations.add('bottom', [24, 25], 0, true);
-  person.animations.add('left', [38, 39], 0, true);
-  person.animations.add('up', [52, 53], 0, true);
+  person.animations.add('right', [0, 1], 0, true);
+  person.animations.add('bottom', [14, 15], 0, true);
+  person.animations.add('left', [28, 29], 0, true);
+  person.animations.add('up', [42, 43], 0, true);
   person.cherry = false;
   person.speedMultiplyer = 1;
   person.lastx = person.x;
@@ -21,8 +21,8 @@ characters.createPerson = function() {
 }
 
 characters.createGhost = function() {
-  ghost = game.add.sprite(CANVAS_WIDTH * Math.random(), CANVAS_HEIGHT * Math.random(), 'sprites');
-  ghost.scale.setTo(1.2,1.2);
+  ghost = game.add.sprite(70, 70, 'ghost');
+  ghost.scale.setTo(1,1);
   ghost.anchor.setTo(0.5, 0.5);
   ghost.userControl = true;
   ghost.animations.add('right', [0, 1], 0, true);

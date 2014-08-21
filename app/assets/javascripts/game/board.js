@@ -80,3 +80,15 @@ board.createSlowDown = function() {
 board.overlap = function(from, to, features) {
   game.physics.arcade.overlap(from, to, features, null, this);
 }
+
+board.createOverlaps = function() {
+  this.overlap(person, apples, features.eatApple);
+  this.overlap(person, cherry, features.cherry);
+  this.overlap(person, speedUp, features.speedUp);
+  this.overlap(person, slowDown, features.slowDown);
+  this.overlap(ghost, speedUp, features.speedUp);
+  this.overlap(ghost, slowDown, features.slowDown);
+  this.overlap(person, starOne, features.teleportOne);
+  this.overlap(person, starTwo, features.teleportTwo);
+  this.overlap(person, ghost, features.pacMeetsGhost);
+}
