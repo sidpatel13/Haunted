@@ -84,19 +84,19 @@ features.movePlayer = function(character) {
 features.pointer = function(direction) {
   if (game.input.activePointer.isDown) {
     if (direction === "up") {
-      if (game.input.activePointer.y < VELOCITY) {
+      if (game.input.activePointer.y < 100) {
         return true;
       }
     } else if (direction === "down") {
-      if (game.input.activePointer.y > 600) {
+      if (game.input.activePointer.y > 220) {
         return true;
       }
     } else if (direction === "left") {
-      if (game.input.activePointer.x < VELOCITY) {
+      if (game.input.activePointer.x < 100) {
         return true;
       }
     } else if (direction === "right") {
-      if (game.input.activePointer.x > 600) {
+      if (game.input.activePointer.x > 400) {
         return true;
       }
     }
