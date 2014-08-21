@@ -84,13 +84,10 @@ $(document).ready(function() {
         if (snapshot.val() !== true) {
           modals.confirmP2();
         }
-        else if (snapshot.val() == true) {
-          modals.confirmPlayerModal();
-        }
       });
     } 
     else {
-      modals.urlModal();    
+      modals.confirmP1(roomSession);    
     }
   });
   
