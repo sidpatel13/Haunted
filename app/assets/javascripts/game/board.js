@@ -8,15 +8,6 @@ board.createBoard = function() {
   board.createSpeedUp();
   board.createSlowDown();
   board.addMusic();
-  board.addScoreText();
-  board.addLivesText();
-}
-
-board.addLivesText = function() {
-  livesText = game.add.text(CANVAS_WIDTH - (CANVAS_OFFSET * 2), CANVAS_HEIGHT - CANVAS_OFFSET, 'lives:' + lives, { font: "20px Arial", fill: "indigo", align: "left" });
-}
-board.addScoreText = function() {
-  scoreText = game.add.text(CANVAS_OFFSET, CANVAS_HEIGHT - CANVAS_OFFSET, 'score:' + score, { font: "20px Arial", fill: "indigo", align: "left" });
 }
 
 board.addMusic = function() {
