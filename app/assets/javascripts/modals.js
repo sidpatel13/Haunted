@@ -35,15 +35,11 @@ modals.waiting = function() {
  }
 
 modals.instructions = function(){
-    vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert(instructions);
-  }
+  vex.dialog.buttons.YES.text = 'OK';
+  vex.dialog.alert(instructions);
+}
 
 modals.aboutUs = function(){
-    vex.dialog.buttons.YES.text = 'OK';
-    vex.dialog.alert(aboutUs);
-<<<<<<< HEAD
-  }
-=======
-  };
->>>>>>> b4ea23baf9e4e8e78ed925a568f083cc78cbfa77
+  vex.dialog.buttons.YES.text = 'OK';
+  vex.dialog.alert(aboutUs);
+}
