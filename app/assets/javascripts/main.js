@@ -78,14 +78,21 @@ $(document).ready(function() {
   });
 
   fb.player1.on("value", function(snapshot) {
-    if (snapshot.val() != true) {
-      modals.urlModal(roomSession);
-    }
+    if ((snapshot.val() == true) && (currentPlayer !== "player1")) {
+      fb.player2.on("value", function(snapshot) {
+        if (snapshot.val() !== true) {
+          modals.confirmP2();
+        }
+        else if (snapshot.val() == true) {
+          modals.confirmPlayerModal();
+        }
+      });
+    } 
     else {
-      modals.confirmPlayerModal();
+      modals.urlModal();    
     }
-  })
-
+  });
+  
 });
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
