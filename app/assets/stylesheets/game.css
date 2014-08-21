@@ -1,5 +1,5 @@
 /* Mobile Only */
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   canvas {
     position: fixed;
     top: 0%;
@@ -11,7 +11,7 @@
 
 /* Desktop Only */
 
-@media (min-width: 640px) {
+@media (min-width: 900px) {
 
 canvas {
   position: fixed;
